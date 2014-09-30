@@ -2,10 +2,11 @@ package ir.bigandsmall.explorer_android;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import android.os.Bundle;
 import android.app.ListActivity;
+import android.os.Bundle;
 
 
 public class MainActivity extends ListActivity  {
@@ -48,6 +49,9 @@ public class MainActivity extends ListActivity  {
 	     }
 	     catch(Exception e)
 	     {}
+	     
+	     Collections.sort(dir);
+         Collections.sort(fls);
 	 
 	     dir.addAll(fls);
 	     
