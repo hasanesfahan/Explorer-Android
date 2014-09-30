@@ -37,11 +37,11 @@ public class MainActivity extends ListActivity  {
 	         {
 	             if(ff.isDirectory())
 	             {
-	                dir.add(new FileSpecifications(ff.getName(),R.drawable.ic_launcher));
+	                dir.add(new FileSpecifications(ff.getName(),R.drawable.directory_icon));
 	             }
 	             else
 	             {
-	                 fls.add(new FileSpecifications(ff.getName(),R.drawable.ic_launcher));
+	                 fls.add(new FileSpecifications(ff.getName(),R.drawable.file_icon));
 	             } 
 	         }
 	         
