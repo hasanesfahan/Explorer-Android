@@ -24,6 +24,7 @@
 
 		<TextView
 		    android:id="@+id/item_view_Text_Desc"
+		     android:paddingRight="10dip"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_alignLeft="@+id/item_view_Text_Name"
