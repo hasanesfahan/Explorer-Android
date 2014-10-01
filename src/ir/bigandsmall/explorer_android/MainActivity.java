@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 import android.app.ListActivity;
-import android.content.ClipData.Item;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -14,8 +13,7 @@ import android.widget.ListView;
 
 public class MainActivity extends ListActivity  {
 
-	private File currentDirctory;
-    private FileArrayAdapter adapter;
+	private FileArrayAdapter adapter;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +21,7 @@ public class MainActivity extends ListActivity  {
 		
 		
 		
-		currentDirctory = new File("/");
-        showCurentDirectory(currentDirctory);
+		showCurentDirectory(new File("/"));
     }
 	
 	
@@ -66,7 +63,7 @@ public class MainActivity extends ListActivity  {
 	     
 	     adapter = new FileArrayAdapter(this,R.layout.item_view,dir);
 	     setListAdapter(adapter);
-   }
+	}
 	
 	@Override
     protected void onListItemClick(ListView listview, View view, int position, long id) 
@@ -76,11 +73,7 @@ public class MainActivity extends ListActivity  {
     	
     	if(!obj.isFileType())
     	{
-    		currentDirctory = new File(obj.getPath());
-    		showCurentDirectory(currentDirctory);
+    		showCurentDirectory(new File(obj.getPath()));
     	}
-	    
     }
-
-
 }
