@@ -38,11 +38,17 @@ public class MainActivity extends ListActivity  {
 	         {
 	             if(ff.isDirectory())
 	             {
-	                dir.add(new FileSpecifications(ff.getName(),R.drawable.directory_icon));
+	            	 File[] filelist =ff.listFiles(); 
+
+	            	 int buf = 0;
+	            	 if(filelist != null)
+	            		 buf = filelist.length;
+                   
+	                dir.add(new FileSpecifications(ff.getName() , buf,R.drawable.directory_icon));
 	             }
 	             else
 	             {
-	                 fls.add(new FileSpecifications(ff.getName(),R.drawable.file_icon));
+	                 fls.add(new FileSpecifications(ff.getName(),ff.length() ,R.drawable.file_icon));
 	             } 
 	         }
 	         

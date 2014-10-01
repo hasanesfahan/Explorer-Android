@@ -4,12 +4,14 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
 
 	private String name;
 	private String nameShow;
+	private long desc;
     private int image;
    
-    public FileSpecifications(String nameFile, int imgFile)
+    public FileSpecifications(String nameFile, long  descFile, int imgFile)
     {
         name = nameFile;
-        image = imgFile;      
+        image = imgFile;   
+        desc = descFile;   
         
         setFirstCharNameUpperCase();
     }
@@ -27,6 +29,11 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     public String getNameShow()
     {
     	return nameShow;
+    }
+    
+    public long getDescription()
+    {
+    	return desc;
     }
   
     public int getImage() 
