@@ -1,4 +1,5 @@
 package ir.bigandsmall.explorer_android;
+ 
 
 public class FileSpecifications implements Comparable<FileSpecifications> {
 
@@ -6,12 +7,15 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
 	private String nameShow;
 	private long desc;
     private int image;
+    private boolean fileType;
    
-    public FileSpecifications(String nameFile, long  descFile, int imgFile)
+    public FileSpecifications(String nameFile, long  descFile, int imgFile , boolean fileType)
     {
         name = nameFile;
         image = imgFile;   
-        desc = descFile;   
+        desc = descFile;  
+        fileType = fileType;   
+        
         
         setFirstCharNameUpperCase();
     }
@@ -24,6 +28,11 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     public String getName()
     {
     	return name;
+    }
+    
+    public boolean isFileType()
+    {
+    	return fileType;
     }
     
     public String getNameShow()

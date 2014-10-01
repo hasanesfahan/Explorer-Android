@@ -47,7 +47,12 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		
 		tvName.setText(o.getNameShow());
 		tvImage.setImageResource(o.getImage());
-		tvDesc.setText(o.getDescription()+" Byte");
+		
+		if(o.isFileType())
+			tvDesc.setText(o.getDescription()+" Byte");
+		else
+			tvDesc.setText("<Dir> "+o.getDescription()+" Byte");
+			
 		 
 		return cv;
 	}

@@ -44,11 +44,11 @@ public class MainActivity extends ListActivity  {
 	            	 if(filelist != null)
 	            		 buf = filelist.length;
                    
-	                dir.add(new FileSpecifications(ff.getName() , buf,R.drawable.directory_icon));
+	                dir.add(new FileSpecifications(ff.getName() , buf,R.drawable.directory_icon , false));
 	             }
 	             else
 	             {
-	                 fls.add(new FileSpecifications(ff.getName(),ff.length() ,R.drawable.file_icon));
+	                 fls.add(new FileSpecifications(ff.getName(),ff.length() ,R.drawable.file_icon ,true));
 	             } 
 	         }
 	         
