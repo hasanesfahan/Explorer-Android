@@ -7,14 +7,14 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
 	private String nameShow;
 	private long desc;
     private boolean fileType;
+    private String pathFile;
    
-    public FileSpecifications(String nameFile, long  descFile, boolean fileType)
+    public FileSpecifications(String nameFile, long  descFile,String pathFile, boolean filetype)
     {
-        name = nameFile;
-  
-        desc = descFile;  
-        fileType = fileType;   
-        
+        this.name = nameFile;
+          this.desc = descFile;  
+        this.fileType = filetype;   
+        this.pathFile = pathFile;
         
         setFirstCharNameUpperCase();
     }
@@ -27,6 +27,11 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     public String getName()
     {
     	return name;
+    }
+    
+    public String getPath()
+    {
+    	return pathFile;
     }
     
     public boolean isFileType()

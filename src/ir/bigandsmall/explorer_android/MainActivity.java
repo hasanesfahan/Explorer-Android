@@ -6,7 +6,10 @@ import java.util.Collections;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.ClipData.Item;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
 
 
 public class MainActivity extends ListActivity  {
@@ -44,11 +47,11 @@ public class MainActivity extends ListActivity  {
 	            	 if(filelist != null)
 	            		 buf = filelist.length;
                    
-	                dir.add(new FileSpecifications(ff.getName() , buf  , false));
+	                dir.add(new FileSpecifications(ff.getName() , buf ,ff.getAbsolutePath() , false));
 	             }
 	             else
 	             {
-	                 fls.add(new FileSpecifications(ff.getName(),ff.length()   ,true));
+	                 fls.add(new FileSpecifications(ff.getName(),ff.length() ,ff.getAbsolutePath()  ,true));
 	             } 
 	         }
 	         
@@ -64,6 +67,20 @@ public class MainActivity extends ListActivity  {
 	     adapter = new FileArrayAdapter(this,R.layout.item_view,dir);
 	     setListAdapter(adapter);
    }
+	
+	@Override
+    protected void onListItemClick(ListView listview, View view, int position, long id) 
+    {
+    	super.onListItemClick(listview, view, position, id);
+    	FileSpecifications obj = adapter.getItem(position);
+    	
+    	if(!obj.isFileType())
+    	{
+    		currentDirctory = new File(obj.getPath());
+    		showCurentDirectory(currentDirctory);
+    	}
+	    
+    }
 
 
 }
