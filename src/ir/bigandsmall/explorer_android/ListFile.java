@@ -16,8 +16,15 @@ public class ListFile {
 	    dir = new ArrayList<FileSpecifications>();
 	    List<FileSpecifications>fls = new ArrayList<FileSpecifications>();
 	    
-	     try
-	     {
+	    String  parentPath =  f.getAbsolutePath().substring(0,f.getAbsolutePath().lastIndexOf("/")+1);
+	    if(parentPath.length() == 0)
+	    	parentPath = "/";
+	   
+	    if(f.getAbsolutePath().length() > 1)
+	    	dir.add(new FileSpecifications(".." , 0 ,parentPath , false));
+	    
+	    try
+	    {
 	         for(File ff: dirs)
 	         {
 	             if(ff.isDirectory())
