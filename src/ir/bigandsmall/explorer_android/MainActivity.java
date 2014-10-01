@@ -27,42 +27,8 @@ public class MainActivity extends ListActivity  {
 	
 	private void showCurentDirectory(File f)
 	{
-		 File[]dirs = f.listFiles();
-	     
-	     List<FileSpecifications>dir = new ArrayList<FileSpecifications>();
-	     List<FileSpecifications>fls = new ArrayList<FileSpecifications>();
-	    
-	     try
-	     {
-	         for(File ff: dirs)
-	         {
-	             if(ff.isDirectory())
-	             {
-	            	 File[] filelist =ff.listFiles(); 
-
-	            	 int buf = 0;
-	            	 if(filelist != null)
-	            		 buf = filelist.length;
-                   
-	                dir.add(new FileSpecifications(ff.getName() , buf ,ff.getAbsolutePath() , false));
-	             }
-	             else
-	             {
-	                 fls.add(new FileSpecifications(ff.getName(),ff.length() ,ff.getAbsolutePath()  ,true));
-	             } 
-	         }
-	         
-	     }
-	     catch(Exception e)
-	     {}
-	     
-	     Collections.sort(dir);
-         Collections.sort(fls);
-	 
-	     dir.addAll(fls);
-	     
-	     adapter = new FileArrayAdapter(this,R.layout.item_view,dir);
-	     setListAdapter(adapter);
+	    adapter = new FileArrayAdapter(this,R.layout.item_view, new ListFile(f).getListFile());
+	    setListAdapter(adapter);
 	}
 	
 	@Override
