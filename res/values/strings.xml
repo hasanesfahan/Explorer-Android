@@ -4,5 +4,9 @@
     <string name="app_name">Explorer-Android</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    
+     <string name="temp_file_name">File Name</string>
+     <string name="temp_file_desc">Description</string>
 
 </resources>
