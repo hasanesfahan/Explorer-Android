@@ -6,13 +6,12 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
 	private String name;
 	private String nameShow;
 	private long desc;
-    private int image;
     private boolean fileType;
    
-    public FileSpecifications(String nameFile, long  descFile, int imgFile , boolean fileType)
+    public FileSpecifications(String nameFile, long  descFile, boolean fileType)
     {
         name = nameFile;
-        image = imgFile;   
+  
         desc = descFile;  
         fileType = fileType;   
         
@@ -40,14 +39,19 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     	return nameShow;
     }
     
-    public long getDescription()
+    public String getDescription(boolean filetype)
     {
-    	return desc;
+    	if(filetype)
+    		return desc+" Byte";
+    	return "<Dir> "+desc+" Byte";
+   	
     }
   
-    public int getImage() 
+    public int getImage(boolean filetype) 
     {
-    	return image;
+    	if(filetype)
+    		return R.drawable.file_icon;
+    	return R.drawable.directory_icon;
     }
     public int compareTo(FileSpecifications o) 
     {

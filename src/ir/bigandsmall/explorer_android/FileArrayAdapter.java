@@ -46,13 +46,9 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		TextView tvDesc = (TextView) cv.findViewById(R.id.item_view_Text_Desc);
 		
 		tvName.setText(o.getNameShow());
-		tvImage.setImageResource(o.getImage());
+		tvImage.setImageResource(o.getImage(o.isFileType()));
+		tvDesc.setText(o.getDescription(o.isFileType()));
 		
-		if(o.isFileType())
-			tvDesc.setText(o.getDescription()+" Byte");
-		else
-			tvDesc.setText("<Dir> "+o.getDescription()+" Byte");
-			
 		 
 		return cv;
 	}
