@@ -12,7 +12,7 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     public FileSpecifications(String nameFile, long  descFile,String pathFile, boolean filetype)
     {
         this.name = nameFile;
-          this.desc = descFile;  
+        this.desc = descFile;  
         this.fileType = filetype;   
         this.pathFile = pathFile;
         
@@ -21,7 +21,7 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     
     public void setFirstCharNameUpperCase()
     {
-    	nameShow  = name.substring(0,1).toUpperCase() + name.substring(1);;
+    	nameShow  = name.substring(0,1).toUpperCase() + name.substring(1);
     }
     
     public String getName()
@@ -55,8 +55,8 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     public int getImage(boolean filetype) 
     {
     	if(filetype)
-    		return R.drawable.file_icon;
-    	return R.drawable.directory_icon;
+    		return new IconType(getName()).getIconId();
+    	return R.drawable.ic_directory;
     }
     public int compareTo(FileSpecifications o) 
     {
