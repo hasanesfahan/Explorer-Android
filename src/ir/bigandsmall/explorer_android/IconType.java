@@ -27,6 +27,14 @@ public class IconType {
 		else if(getExtention().equalsIgnoreCase("txt"))
 			return R.drawable.ic_txt;
  
+		else if((getExtention().equalsIgnoreCase("png"))||
+				(getExtention().equalsIgnoreCase("jpg"))||
+				(getExtention().equalsIgnoreCase("jpeg"))||
+				(getExtention().equalsIgnoreCase("gif"))||
+				(getExtention().equalsIgnoreCase("bmp")))
+			return R.drawable.ic_photo;
+		
+		
 		else 
 			return R.drawable.ic_file;
 	}

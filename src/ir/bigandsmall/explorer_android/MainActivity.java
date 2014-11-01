@@ -46,6 +46,7 @@ public class MainActivity extends Activity  {
             	if(!obj.isFileType())
             	{
             		showCurentDirectory(new File(obj.getPath()));
+            	//	Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
             	}
             	else
             		Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
