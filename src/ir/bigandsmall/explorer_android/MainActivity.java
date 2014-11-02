@@ -5,12 +5,12 @@ import java.io.File;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends Activity  {
@@ -21,10 +21,18 @@ public class MainActivity extends Activity  {
 	
 	private String MainFolderSelectedPath;
 	
+	private LinearLayout ll;
+	private ListView lv ;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		
+		ll = (LinearLayout)findViewById(R.id.LinearLayout_Main);
+		lv = new ListView(this);
+		ll.addView(lv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		
 		
 		setParametr();
@@ -37,22 +45,20 @@ public class MainActivity extends Activity  {
 	{
 		
 		MainFolderSelectedPath = "";
-		ListView lv = (ListView) findViewById(R.id.act_main_list_view);
 		adapter = new FileArrayAdapter(this,R.layout.item_view, new ListMainFolder().getListFile());
 	    lv.setAdapter(adapter);
+	    
 	}
 	
 	
 	private void showCurentDirectory(File f,FileSpecifications fsp)
 	{
-		ListView lv = (ListView) findViewById(R.id.act_main_list_view);
 	    adapter = new FileArrayAdapter(this,R.layout.item_view, new ListFiles(f,fsp).getListFile());
 		lv.setAdapter(adapter);
 	}
 	
 	private void setParametr()
 	{
-		ListView lv = (ListView) findViewById(R.id.act_main_list_view);
 		lv.setOnItemClickListener(new OnItemClickListener() 
 		{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -87,7 +93,6 @@ public class MainActivity extends Activity  {
             	else if(obj.getFileType() == ListFileTypes.File)
             	{
             		openfil1e(obj.getPath());
-            		//Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
             	}
             	setCurentPath();
             }
