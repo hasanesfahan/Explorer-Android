@@ -85,8 +85,8 @@ public class IconFileType {
 	public String getExtention()
 	{
 		File f = new File(urlPaht);
-		if((f.getName().lastIndexOf(".")-1)>0)
-			return f.getName().substring(f.getName().lastIndexOf(".")+1);
+		if((f.getName().lastIndexOf("."))>0)
+			return f.getName().substring(f.getName().lastIndexOf("."));
 
 		return "";
 	}
