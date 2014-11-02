@@ -1,8 +1,6 @@
 package ir.bigandsmall.explorer_android;
 
 import java.io.File;
-import java.io.IOException;
-
 import android.content.Intent;
 import android.net.Uri;
 
