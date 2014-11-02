@@ -53,8 +53,5 @@ public class FileOpen extends Intent {
 	        }  else {
 	            setDataAndType(uri, "*/*");
 	        }
-	        
-	        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
-
 	    }
 }
