@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,7 +23,11 @@ public class MainActivity extends Activity  {
 	private String MainFolderSelectedPath;
 	
 	private LinearLayout ll;
+	
 	private ListView lv ;
+	private GridView gv ;
+	
+	private boolean GridViewListView =  false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +36,23 @@ public class MainActivity extends Activity  {
 		
 		
 		ll = (LinearLayout)findViewById(R.id.LinearLayout_Main);
-		lv = new ListView(this);
-		ll.addView(lv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		
+		
+		
+		if(GridViewListView)
+		{
+			lv = new ListView(this);
+			ll.addView(lv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		}
+		else
+		{
+			gv = new GridView(this);
+			gv.setNumColumns(4);
+			ll.addView(gv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		}
+			
+		
+		
 		
 		
 		setParametr();
@@ -45,59 +65,90 @@ public class MainActivity extends Activity  {
 	{
 		
 		MainFolderSelectedPath = "";
-		adapter = new FileArrayAdapter(this,R.layout.item_view, new ListMainFolder().getListFile());
-	    lv.setAdapter(adapter);
+		
+		
+		
+	    
+		
+		if(GridViewListView)
+		{
+			adapter = new FileArrayAdapter(this,R.layout.list_view, new ListMainFolder().getListFile());
+			lv.setAdapter(adapter);
+		}
+		else
+		{
+			adapter = new FileArrayAdapter(this,R.layout.grid_view, new ListMainFolder().getListFile());
+			gv.setAdapter(adapter);
+		}
+			
 	    
 	}
 	
 	
 	private void showCurentDirectory(File f,FileSpecifications fsp)
 	{
-	    adapter = new FileArrayAdapter(this,R.layout.item_view, new ListFiles(f,fsp).getListFile());
-		lv.setAdapter(adapter);
+	     
+	    if(GridViewListView)
+		{
+	    	adapter = new FileArrayAdapter(this,R.layout.list_view, new ListFiles(f,fsp).getListFile());
+			lv.setAdapter(adapter);
+		}
+		else
+		{
+			adapter = new FileArrayAdapter(this,R.layout.grid_view, new ListFiles(f,fsp).getListFile());
+			gv.setAdapter(adapter);
+		}
 	}
 	
 	private void setParametr()
 	{
-		lv.setOnItemClickListener(new OnItemClickListener() 
-		{
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-            	FileSpecifications obj = adapter.getItem(position);
-            	
-            	if((obj.getFileType() == ListFileTypes.Folder)||(obj.getFileType() == ListFileTypes.UpFolder))
-            	{
-            		FileSpecifications fs;
-            		if(MainFolderSelectedPath.equalsIgnoreCase(""))
-            		{
-            			MainFolderSelectedPath = obj.getPath();
-            			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.MainFolder);
-            		}
-            		else if(MainFolderSelectedPath.equalsIgnoreCase(obj.getPath()))
-            		{
-            			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.MainFolder);
-            		}
-            		else
-            		{
-            			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.UpFolder);
-            		}	
-            		
-            		showCurentDirectory(new File(obj.getPath()),fs);
-            		CurentPath = obj.getPath();  
-            	}
-            	else if(obj.getFileType() == ListFileTypes.MainFolder)
-            	{
-            		CurentPath = "";
-            		showMainDirectory();
-            	}
-            	else if(obj.getFileType() == ListFileTypes.File)
-            	{
-            		openfil1e(obj.getPath());
-            	}
-            	setCurentPath();
-            }
-		});
+		if(GridViewListView)
+			lv.setOnItemClickListener(oicl);
+		else
+			gv.setOnItemClickListener(oicl);
+		
+		 
 	}
+	
+	
+	OnItemClickListener oicl = new OnItemClickListener() 
+	{
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        {
+        	FileSpecifications obj = adapter.getItem(position);
+        	
+        	if((obj.getFileType() == ListFileTypes.Folder)||(obj.getFileType() == ListFileTypes.UpFolder))
+        	{
+        		FileSpecifications fs;
+        		if(MainFolderSelectedPath.equalsIgnoreCase(""))
+        		{
+        			MainFolderSelectedPath = obj.getPath();
+        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.MainFolder);
+        		}
+        		else if(MainFolderSelectedPath.equalsIgnoreCase(obj.getPath()))
+        		{
+        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.MainFolder);
+        		}
+        		else
+        		{
+        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.UpFolder);
+        		}	
+        		
+        		showCurentDirectory(new File(obj.getPath()),fs);
+        		CurentPath = obj.getPath();  
+        	}
+        	else if(obj.getFileType() == ListFileTypes.MainFolder)
+        	{
+        		CurentPath = "";
+        		showMainDirectory();
+        	}
+        	else if(obj.getFileType() == ListFileTypes.File)
+        	{
+        		openfil1e(obj.getPath());
+        	}
+        	setCurentPath();
+        }
+	};
 	
 	private void openfil1e(String filePath)
 	{ 

@@ -53,6 +53,9 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     
     public String getDescription(ListFileTypes filetype)
     {
+    	if((ListFileTypes.MainFolder == filetype)|| (ListFileTypes.UpFolder == filetype))
+    		return "";
+    	
     	if(ListFileTypes.File == filetype)
     		return desc+" Byte";
     	return "<Dir> "+desc+" Byte";
