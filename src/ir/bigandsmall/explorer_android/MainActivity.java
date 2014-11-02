@@ -56,12 +56,8 @@ public class MainActivity extends Activity  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
             	FileSpecifications obj = adapter.getItem(position);
-            	//
-
-            	Toast.makeText(getApplicationContext(), obj.isFileType()+"----"+MainFolderSelectedPath+"---"+obj.getPath(), Toast.LENGTH_SHORT).show();
             	
-            	
-            	if(obj.isFileType() == ListFileTypes.Folder)
+            	if((obj.getFileType() == ListFileTypes.Folder)||(obj.getFileType() == ListFileTypes.UpFolder))
             	{
             		FileSpecifications fs;
             		if(MainFolderSelectedPath.equalsIgnoreCase(""))
@@ -75,17 +71,17 @@ public class MainActivity extends Activity  {
             		}
             		else
             		{
-            			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Folder);
+            			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.UpFolder);
             		}
             			
             		
             		showCurentDirectory(new File(obj.getPath()),fs);
             	}
-            	else if(obj.isFileType() == ListFileTypes.MainFolder)
+            	else if(obj.getFileType() == ListFileTypes.MainFolder)
             	{
             		showMainDirectory();
             	}
-            	else if(obj.isFileType() == ListFileTypes.File)
+            	else if(obj.getFileType() == ListFileTypes.File)
             	{
             		openfil1e(obj.getPath());
             		//Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();

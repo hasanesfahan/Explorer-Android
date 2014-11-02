@@ -41,7 +41,7 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     	return pathFile;
     }
     
-    public ListFileTypes isFileType()
+    public ListFileTypes getFileType()
     {
     	return ListFileType;
     }
@@ -63,6 +63,14 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     {
     	if(ListFileTypes.File == filetype)
     		return new IconFileType(getName()).getImageId();
+    	
+    	else if(ListFileTypes.MainFolder == filetype)
+    		return R.drawable.ic_home;
+    	
+    	else if(ListFileTypes.UpFolder == filetype)
+    		return R.drawable.ic_up;
+	
+    	
     	return R.drawable.ic_directory;
     }
     public int compareTo(FileSpecifications o) 
