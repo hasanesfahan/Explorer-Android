@@ -48,7 +48,7 @@ public class FileOpen extends Intent {
 	            // Video files
 	            setDataAndType(uri, "video/*");
 	        }else if(url.toString().contains(".apk"))  {
-	            // Apk files
+	            // APK files
 	            setDataAndType(uri, "application/vnd.android.package-archive");
 	        }  else {
 	            setDataAndType(uri, "*/*");
@@ -57,18 +57,4 @@ public class FileOpen extends Intent {
 	        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
 
 	    }
-	 
-	 /*
-	  
-		public static String getMimeType(String url)
-		{
-		    String type = null;
-		    String extension = MimeTypeMap.getFileExtensionFromUrl(url);
-		    if (extension != null) {
-		        MimeTypeMap mime = MimeTypeMap.getSingleton();
-		        type = mime.getMimeTypeFromExtension(extension);
-		    }
-		    return type;
-		}
-	  */
 }
