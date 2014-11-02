@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -15,9 +17,9 @@ public class MainActivity extends Activity  {
 
 	private FileArrayAdapter adapter;
     
-	//private static String CurentPath;
+	private String CurentPath;
 	
-	private static String MainFolderSelectedPath;
+	private String MainFolderSelectedPath;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +74,14 @@ public class MainActivity extends Activity  {
             		else
             		{
             			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.UpFolder);
-            		}
-            			
+            		}	
             		
             		showCurentDirectory(new File(obj.getPath()),fs);
+            		CurentPath = obj.getPath();  
             	}
             	else if(obj.getFileType() == ListFileTypes.MainFolder)
             	{
+            		CurentPath = "";
             		showMainDirectory();
             	}
             	else if(obj.getFileType() == ListFileTypes.File)
@@ -86,6 +89,7 @@ public class MainActivity extends Activity  {
             		openfil1e(obj.getPath());
             		//Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
             	}
+            	setCurentPath();
             }
 		});
 	}
@@ -102,6 +106,12 @@ public class MainActivity extends Activity  {
 	}
 	
 	
+	private void setCurentPath()
+	{ 
+		TextView tv = (TextView)findViewById(R.id.textView_Path_Curent);
+		tv.setText(CurentPath);
+		
+	}
 
    
 	
