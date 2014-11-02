@@ -15,6 +15,10 @@ public class MainActivity extends Activity  {
 
 	private FileArrayAdapter adapter;
     
+	//private static String CurentPath;
+	
+	private static String MainFolderSelectedPath;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,16 +33,18 @@ public class MainActivity extends Activity  {
 	
 	private void showMainDirectory()
 	{
+		
+		MainFolderSelectedPath = "";
 		ListView lv = (ListView) findViewById(R.id.act_main_list_view);
 		adapter = new FileArrayAdapter(this,R.layout.item_view, new ListMainFolder().getListFile());
 	    lv.setAdapter(adapter);
 	}
 	
 	
-	private void showCurentDirectory(File f)
+	private void showCurentDirectory(File f,FileSpecifications fsp)
 	{
 		ListView lv = (ListView) findViewById(R.id.act_main_list_view);
-	    adapter = new FileArrayAdapter(this,R.layout.item_view, new ListFiles(f).getListFile());
+	    adapter = new FileArrayAdapter(this,R.layout.item_view, new ListFiles(f,fsp).getListFile());
 		lv.setAdapter(adapter);
 	}
 	
@@ -50,17 +56,39 @@ public class MainActivity extends Activity  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
             	FileSpecifications obj = adapter.getItem(position);
+            	//
+
+            	Toast.makeText(getApplicationContext(), obj.isFileType()+"----"+MainFolderSelectedPath+"---"+obj.getPath(), Toast.LENGTH_SHORT).show();
             	
-            	if(!obj.isFileType())
+            	
+            	if(obj.isFileType() == ListFileTypes.Folder)
             	{
-            		showCurentDirectory(new File(obj.getPath()));
-            		Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
+            		FileSpecifications fs;
+            		if(MainFolderSelectedPath.equalsIgnoreCase(""))
+            		{
+            			MainFolderSelectedPath = obj.getPath();
+            			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.MainFolder);
+            		}
+            		else if(MainFolderSelectedPath.equalsIgnoreCase(obj.getPath()))
+            		{
+            			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.MainFolder);
+            		}
+            		else
+            		{
+            			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Folder);
+            		}
+            			
+            		
+            		showCurentDirectory(new File(obj.getPath()),fs);
             	}
-            	else
+            	else if(obj.isFileType() == ListFileTypes.MainFolder)
+            	{
+            		showMainDirectory();
+            	}
+            	else if(obj.isFileType() == ListFileTypes.File)
             	{
             		openfil1e(obj.getPath());
             		//Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
-            		
             	}
             }
 		});
@@ -75,8 +103,11 @@ public class MainActivity extends Activity  {
 		 } 
 		 catch (Exception e) {
 		 } 
-		    
 	}
+	
+	
+
+   
 	
 	 
 }

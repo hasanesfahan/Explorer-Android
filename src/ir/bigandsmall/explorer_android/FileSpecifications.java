@@ -5,21 +5,28 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
 
 	private String name;
 	private String nameShow;
-	private long desc;
-    private boolean fileType;
+	private long desc; 
     private String pathFile;
+    
+    private ListFileTypes ListFileType;
    
-    public FileSpecifications(String nameFile, long  descFile,String pathFile, boolean filetype)
+    public FileSpecifications(String nameFile, long  descFile,String pathFile, ListFileTypes ListFileType)
     {
         this.name = nameFile;
-        this.desc = descFile;  
-        this.fileType = filetype;   
+        this.desc = descFile;   
         this.pathFile = pathFile;
+        this.ListFileType = ListFileType;
         
         setFirstCharNameUpperCase();
     }
     
-    public void setFirstCharNameUpperCase()
+    public void setFirstName(String nameFile)
+    {
+    	this.name  =  nameFile;
+    	setFirstCharNameUpperCase();
+    }
+    
+    private void setFirstCharNameUpperCase()
     {
     	nameShow  = name.substring(0,1).toUpperCase() + name.substring(1);
     }
@@ -34,9 +41,9 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     	return pathFile;
     }
     
-    public boolean isFileType()
+    public ListFileTypes isFileType()
     {
-    	return fileType;
+    	return ListFileType;
     }
     
     public String getNameShow()
@@ -44,17 +51,17 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     	return nameShow;
     }
     
-    public String getDescription(boolean filetype)
+    public String getDescription(ListFileTypes filetype)
     {
-    	if(filetype)
+    	if(ListFileTypes.File == filetype)
     		return desc+" Byte";
     	return "<Dir> "+desc+" Byte";
    	
     }
   
-    public int getImage(boolean filetype) 
+    public int getImage(ListFileTypes filetype) 
     {
-    	if(filetype)
+    	if(ListFileTypes.File == filetype)
     		return new IconFileType(getName()).getImageId();
     	return R.drawable.ic_directory;
     }
@@ -64,6 +71,18 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     		return this.name.compareToIgnoreCase(o.getName());
     	else
     		throw new IllegalArgumentException();
+    }
+    
+    
+    public String getParentPath() 
+    {
+    	if(pathFile.lastIndexOf("/") > 0)
+    		return  pathFile.substring(0,pathFile.lastIndexOf("/"));
+    	
+    	if(pathFile.lastIndexOf("/") == 0)
+    		return  "/";
+    	
+    	return "";
     }
 
 }

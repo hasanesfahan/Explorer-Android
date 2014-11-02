@@ -9,19 +9,15 @@ public class ListFiles {
 	
 	 
 	private List<FileSpecifications>dir;
-	public  ListFiles(File f)
+	public  ListFiles(File f,FileSpecifications fsp)
 	{
 		File[]dirs = f.listFiles();
 	     
 	    dir = new ArrayList<FileSpecifications>();
 	    List<FileSpecifications>fls = new ArrayList<FileSpecifications>();
-	    
-	    String  parentPath =  f.getAbsolutePath().substring(0,f.getAbsolutePath().lastIndexOf("/")+1);
-	    if(parentPath.length() == 0)
-	    	parentPath = "/";
 	   
-	    if(f.getAbsolutePath().length() > 1)
-	    	dir.add(new FileSpecifications(".." , 0 ,parentPath , false));
+	    // add up folder
+	    dir.add(fsp);
 	    
 	    try
 	    {
@@ -35,11 +31,11 @@ public class ListFiles {
 	            	 if(filelist != null)
 	            		 buf = filelist.length;
                    
-	                dir.add(new FileSpecifications(ff.getName() , buf ,ff.getAbsolutePath() , false));
+	                dir.add(new FileSpecifications(ff.getName() , buf ,ff.getAbsolutePath() , ListFileTypes.Folder));
 	             }
 	             else
 	             {
-	                 fls.add(new FileSpecifications(ff.getName(),ff.length() ,ff.getAbsolutePath()  ,true));
+	                 fls.add(new FileSpecifications(ff.getName(),ff.length() ,ff.getAbsolutePath()  ,ListFileTypes.File));
 	             } 
 	         }
 	         
