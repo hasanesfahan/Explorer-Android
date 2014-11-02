@@ -63,43 +63,14 @@ public class MainActivity extends Activity  {
 	
 	private void openfil1e(String filePath)
 	{ 
-		
-		Toast.makeText(getApplicationContext(), getMimeType(filePath), Toast.LENGTH_SHORT).show();
-		
-	//	getMimeType(filePath);
-		 
 		 FileOpen inten = new FileOpen(filePath);
 
-		    try {
-		    	startActivity(inten);
-			} catch (Exception e) {
-				// TODO: handle exception
-			} 
+		 try {
+			 startActivity(inten);
+		 } 
+		 catch (Exception e) {
+		 } 
 		    
-		    
-		/*Intent intent = new Intent();
-		intent.setAction(Intent.ACTION_VIEW);
-		intent.setDataAndType(Uri.parse("file://" + "/sdcard/test.jpg"), "image/*");
-		 
-		*/
-		 
-		//OpenFile intentFile = new OpenFile(pathFile);
-		
-	 
-				
-	//	Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-	//	intent.setDataAndType(Uri.fromFile(f), "*/*");
-	//	startActivity(intent);*/
 	}
 	
-	public static String getMimeType(String url)
-	{
-	    String type = null;
-	    String extension = MimeTypeMap.getFileExtensionFromUrl(url);
-	    if (extension != null) {
-	        MimeTypeMap mime = MimeTypeMap.getSingleton();
-	        type = mime.getMimeTypeFromExtension(extension);
-	    }
-	    return type;
-	}
 }

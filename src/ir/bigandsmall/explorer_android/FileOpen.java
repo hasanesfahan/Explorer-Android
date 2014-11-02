@@ -1,6 +1,7 @@
 package ir.bigandsmall.explorer_android;
 
 import java.io.File;
+
 import android.content.Intent;
 import android.net.Uri;
 
@@ -56,4 +57,18 @@ public class FileOpen extends Intent {
 	        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
 
 	    }
+	 
+	 /*
+	  
+		public static String getMimeType(String url)
+		{
+		    String type = null;
+		    String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+		    if (extension != null) {
+		        MimeTypeMap mime = MimeTypeMap.getSingleton();
+		        type = mime.getMimeTypeFromExtension(extension);
+		    }
+		    return type;
+		}
+	  */
 }
