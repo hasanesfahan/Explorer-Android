@@ -10,17 +10,11 @@ public class FileOpen extends Intent {
 	
 	 public FileOpen(String url) 
 	 {
-	        
-		 	File file=new File (url);
-	        Uri uri = Uri.fromFile(file);
+	        Uri uri = Uri.fromFile(new File (url));
 	        
 	        setAction(Intent.ACTION_VIEW);
 			
-			
-			
-	        // Check what kind of file you are trying to open, by comparing the url with extensions.
-	        // When the if condition is matched, plugin sets the correct intent (mime) type, 
-	        // so Android knew what application to use to open the file
+
 	        if (url.toString().contains(".doc") || url.toString().contains(".docx")) {
 	            // Word document
 	            setDataAndType(uri, "application/msword");
@@ -57,9 +51,7 @@ public class FileOpen extends Intent {
 	        }else if(url.toString().contains(".apk"))  {
 	            // Apk files
 	            setDataAndType(uri, "application/vnd.android.package-archive");
-	        } 
-	        
-	        else {
+	        }  else {
 	            setDataAndType(uri, "*/*");
 	        }
 	        

@@ -55,7 +55,7 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     public int getImage(boolean filetype) 
     {
     	if(filetype)
-    		return new IconType(getName()).getIconId();
+    		return new IconFileType(getName()).getImageId();
     	return R.drawable.ic_directory;
     }
     public int compareTo(FileSpecifications o) 
