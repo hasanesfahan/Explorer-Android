@@ -3,8 +3,11 @@ package ir.bigandsmall.explorer_android;
 import java.io.File;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -49,9 +52,54 @@ public class MainActivity extends Activity  {
             	//	Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
             	}
             	else
-            		Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
+            	{
+            		openfil1e(obj.getPath());
+            		//Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
+            		
+            	}
             }
 		});
 	}
 	
+	private void openfil1e(String filePath)
+	{ 
+		
+		Toast.makeText(getApplicationContext(), getMimeType(filePath), Toast.LENGTH_SHORT).show();
+		
+	//	getMimeType(filePath);
+		 
+		 FileOpen inten = new FileOpen(filePath);
+
+		    try {
+		    	startActivity(inten);
+			} catch (Exception e) {
+				// TODO: handle exception
+			} 
+		    
+		    
+		/*Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_VIEW);
+		intent.setDataAndType(Uri.parse("file://" + "/sdcard/test.jpg"), "image/*");
+		 
+		*/
+		 
+		//OpenFile intentFile = new OpenFile(pathFile);
+		
+	 
+				
+	//	Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+	//	intent.setDataAndType(Uri.fromFile(f), "*/*");
+	//	startActivity(intent);*/
+	}
+	
+	public static String getMimeType(String url)
+	{
+	    String type = null;
+	    String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+	    if (extension != null) {
+	        MimeTypeMap mime = MimeTypeMap.getSingleton();
+	        type = mime.getMimeTypeFromExtension(extension);
+	    }
+	    return type;
+	}
 }
