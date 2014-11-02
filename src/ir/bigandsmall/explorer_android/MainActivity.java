@@ -3,11 +3,8 @@ package ir.bigandsmall.explorer_android;
 import java.io.File;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -26,15 +23,23 @@ public class MainActivity extends Activity  {
 		
 		setParametr();
 		
-		showCurentDirectory(new File("/"));
+		showMainDirectory();
     }
+	
+	
+	private void showMainDirectory()
+	{
+		ListView lv = (ListView) findViewById(R.id.act_main_list_view);
+		adapter = new FileArrayAdapter(this,R.layout.item_view, new ListMainFolder().getListFile());
+	    lv.setAdapter(adapter);
+	}
 	
 	
 	private void showCurentDirectory(File f)
 	{
 		ListView lv = (ListView) findViewById(R.id.act_main_list_view);
-	    adapter = new FileArrayAdapter(this,R.layout.item_view, new ListFile(f).getListFile());
-	    lv.setAdapter(adapter);
+	    adapter = new FileArrayAdapter(this,R.layout.item_view, new ListFiles(f).getListFile());
+		lv.setAdapter(adapter);
 	}
 	
 	private void setParametr()
@@ -49,7 +54,7 @@ public class MainActivity extends Activity  {
             	if(!obj.isFileType())
             	{
             		showCurentDirectory(new File(obj.getPath()));
-            	//	Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
+            		Toast.makeText(getApplicationContext(), obj.getPath(), Toast.LENGTH_SHORT).show();
             	}
             	else
             	{
@@ -73,4 +78,5 @@ public class MainActivity extends Activity  {
 		    
 	}
 	
+	 
 }

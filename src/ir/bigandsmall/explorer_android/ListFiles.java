@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ListFile {
+public class ListFiles {
 	
 	 
 	private List<FileSpecifications>dir;
-	public  ListFile(File f)
+	public  ListFiles(File f)
 	{
 		File[]dirs = f.listFiles();
 	     
