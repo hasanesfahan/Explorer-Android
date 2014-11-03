@@ -1,4 +1,8 @@
 package ir.bigandsmall.explorer_android;
+
+import java.io.File;
+
+import android.widget.ImageView;
  
 
 public class FileSpecifications implements Comparable<FileSpecifications> {
@@ -53,28 +57,40 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     
     public String getDescription(ListFileTypes filetype)
     {
-    	if((ListFileTypes.MainFolder == filetype)|| (ListFileTypes.UpFolder == filetype))
+    	if((ListFileTypes.Folder_Main == filetype)|| (ListFileTypes.Folder_Up == filetype))
     		return "";
     	
-    	if(ListFileTypes.File == filetype)
+    	if(ListFileTypes.File_None == filetype)
     		return desc+" Byte";
     	return "<Dir> "+desc+" Byte";
    	
     }
   
-    public int getImage(ListFileTypes filetype) 
+    public void setImage(ImageView img) 
     {
-    	if(ListFileTypes.File == filetype)
-    		return new IconFileType(getName()).getImageId();
     	
-    	else if(ListFileTypes.MainFolder == filetype)
-    		return R.drawable.ic_home;
     	
-    	else if(ListFileTypes.UpFolder == filetype)
-    		return R.drawable.ic_up;
-	
+    	if(ListFileTypes.Folder_Main  == getFileType())
+    		img.setBackgroundResource(R.drawable.ic_directory);
     	
-    	return R.drawable.ic_directory;
+    	else if(ListFileTypes.Folder_Up == getFileType())
+    		img.setBackgroundResource(R.drawable.ic_up);
+    	
+    	else if(ListFileTypes.Folder_None == getFileType())
+    		img.setBackgroundResource(R.drawable.ic_directory);
+    	
+    	
+    	
+    	else 
+    	{
+    		ImageFile imgFi = new ImageFile();
+	    	ListFileTypes filetype = imgFi.getImageFileType(name);
+	    	
+	    	if(ListFileTypes.File_Photo != filetype)
+	    		img.setBackgroundResource(imgFi.getImageId(filetype));
+	    	else
+	    		img.setBackgroundDrawable(imgFi.getImageBitmap(pathFile));
+    	}
     }
     public int compareTo(FileSpecifications o) 
     {
@@ -95,5 +111,8 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     	
     	return "";
     }
+
+    
+
 
 }

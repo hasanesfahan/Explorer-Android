@@ -27,7 +27,7 @@ public class MainActivity extends Activity  {
 	private ListView lv ;
 	private GridView gv ;
 	
-	private boolean GridViewListView =  false;
+	private boolean GridViewListView =  true;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,32 +117,32 @@ public class MainActivity extends Activity  {
         {
         	FileSpecifications obj = adapter.getItem(position);
         	
-        	if((obj.getFileType() == ListFileTypes.Folder)||(obj.getFileType() == ListFileTypes.UpFolder))
+        	if((obj.getFileType() == ListFileTypes.Folder_None)||(obj.getFileType() == ListFileTypes.Folder_Up))
         	{
         		FileSpecifications fs;
         		if(MainFolderSelectedPath.equalsIgnoreCase(""))
         		{
         			MainFolderSelectedPath = obj.getPath();
-        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.MainFolder);
+        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Folder_Main);
         		}
         		else if(MainFolderSelectedPath.equalsIgnoreCase(obj.getPath()))
         		{
-        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.MainFolder);
+        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Folder_Main);
         		}
         		else
         		{
-        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.UpFolder);
+        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Folder_Up);
         		}	
         		
         		showCurentDirectory(new File(obj.getPath()),fs);
         		CurentPath = obj.getPath();  
         	}
-        	else if(obj.getFileType() == ListFileTypes.MainFolder)
+        	else if(obj.getFileType() == ListFileTypes.Folder_Main)
         	{
         		CurentPath = "";
         		showMainDirectory();
         	}
-        	else if(obj.getFileType() == ListFileTypes.File)
+        	else if(obj.getFileType() == ListFileTypes.File_None)
         	{
         		openfil1e(obj.getPath());
         	}

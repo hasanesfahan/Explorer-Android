@@ -45,8 +45,8 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		ImageView tvImage = (ImageView) cv.findViewById(R.id.item_view_Image_File);
 		TextView tvDesc = (TextView) cv.findViewById(R.id.item_view_Text_Desc);
 		
+		o.setImage(tvImage);
 		tvName.setText(o.getNameShow());
-		tvImage.setImageResource(o.getImage(o.getFileType()));
 		tvDesc.setText(o.getDescription(o.getFileType()));
 		
 		 

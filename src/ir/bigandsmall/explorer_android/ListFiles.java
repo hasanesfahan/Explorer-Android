@@ -31,11 +31,11 @@ public class ListFiles {
 	            	 if(filelist != null)
 	            		 buf = filelist.length;
                    
-	                dir.add(new FileSpecifications(ff.getName() , buf ,ff.getAbsolutePath() , ListFileTypes.Folder));
+	                dir.add(new FileSpecifications(ff.getName() , buf ,ff.getAbsolutePath() , ListFileTypes.Folder_None));
 	             }
 	             else
 	             {
-	                 fls.add(new FileSpecifications(ff.getName(),ff.length() ,ff.getAbsolutePath()  ,ListFileTypes.File));
+	                 fls.add(new FileSpecifications(ff.getName(),ff.length() ,ff.getAbsolutePath()  ,ListFileTypes.File_None));
 	             } 
 	         }
 	         
