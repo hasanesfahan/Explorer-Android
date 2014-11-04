@@ -67,13 +67,6 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
         setFirstCharNameUpperCase();
     }
     
-    public void setFolderType( ListFolderTypes listFolderTypes)
-    {
-    	this.listFolderTypes = listFolderTypes;
-    }
-    
-    
-    
     public void setFirstName(String nameFile)
     {
     	this.name  =  nameFile;
@@ -96,14 +89,15 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     	return pathFile;
     }
     
-    public void  setPath(String pa)
-    {
-    	pathFile = pa;
-    }
     
     public ListTypes getType()
     {
     	return listTypes;
+    }
+    
+    public ListFolderTypes getFlolderType()
+    {
+    	return listFolderTypes;
     }
     
     public String getNameShow()
@@ -124,7 +118,6 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
   
     public void setImage(ImageView img) 
     {
-    	
     	if(listTypes == ListTypes.Folder)
     		img.setBackgroundResource(ImageFolder.getImageId(listFolderTypes));
     	else
@@ -134,29 +127,8 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     		else
     			img.setBackgroundDrawable(ImageFile.getImageBitmap(pathFile));
     	}	
-    	
-    	/*if(ListFileTypes.Other  == getFileType())
-    		img.setBackgroundResource(R.drawable.ic_directory);
-    	
-    	else if(ListFileTypes.Other == getFileType())
-    		img.setBackgroundResource(R.drawable.ic_up);
-    	
-    	else if(ListFileTypes.Other == getFileType())
-    		img.setBackgroundResource(R.drawable.ic_directory);
-    	
-    	
-    	
-    	else 
-    	{
-    		ImageFile imgFi = new ImageFile();
-	    	ListFileTypes filetype = imgFi.getImageFileType(name);
-	    	
-	    	if(ListFileTypes.Photo != filetype)
-	    		img.setBackgroundResource(imgFi.getImageId(filetype));
-	    	else
-	    		img.setBackgroundDrawable(imgFi.getImageBitmap(pathFile));
-    	}*/
     }
+    
     public int compareTo(FileSpecifications o) 
     {
     	if(this.name != null)

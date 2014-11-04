@@ -116,49 +116,34 @@ public class MainActivity extends Activity  {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
         	FileSpecifications obj = adapter.getItem(position);
-        	String ppp =obj.getPath();
-        	if((obj.getType() == ListTypes.Folder))//||(obj.getFileType() == ListFileTypes.Other))
+
+        	
+        	if((obj.getType() == ListTypes.Folder))
         	{
-        		FileSpecifications fs;
-        		/*if(MainFolderSelectedPath.equalsIgnoreCase(""))
-        		{
+
+        		if(MainFolderSelectedPath.equalsIgnoreCase(""))
         			MainFolderSelectedPath = obj.getPath();
-        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Other);
-        			
-        		}
-        		else if(MainFolderSelectedPath.equalsIgnoreCase(obj.getPath()))
+        		
+        		
+        		if((obj.getFlolderType() == ListFolderTypes.Up)&&(MainFolderSelectedPath.equalsIgnoreCase(CurentPath)))
         		{
-        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Other);
+        			CurentPath = "";
+            		showMainDirectory();
         		}
         		else
         		{
-        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Other);
-        		}	*/
-        		
-        		obj.setFolderType(ListFolderTypes.Up);
-        		obj.setFirstName("..");
-        		obj.setPath(obj.getParentPath());
-
-
-        		
-        		
-        		showCurentDirectory(new File(ppp),obj);
-        		CurentPath = obj.getPath();  
+        			CurentPath = obj.getPath();
+        			FileSpecifications fsp =new FileSpecifications(new File(obj.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+        			showCurentDirectory(new File(obj.getPath()),fsp);
+				}
+        		  
         	}
         	else
         	{
         		openfil1e(obj.getPath());
 			}
-        	/*else if(obj.getFileType() == ListFileTypes.Other)
-        	{
-        		CurentPath = "";
-        		showMainDirectory();
-        	}
-        	else if(obj.getFileType() == ListFileTypes.Other)
-        	{
-        		
-        	}*/
-        	//setCurentPath();
+        	
+        	setCurentPath();
         }
 	};
 	
