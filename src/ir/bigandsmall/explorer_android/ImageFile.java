@@ -2,71 +2,75 @@ package ir.bigandsmall.explorer_android;
 
 import java.io.File;
 
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 
 public class ImageFile {
 	
+	public int getImageId(String fileName)
+	{
+		return getImageId(getImageFileType(fileName));
+	}
+	
 	public int getImageId(ListFileTypes listFileTypes)
 	{
 		// Word document
-		if (listFileTypes == ListFileTypes.File_Word) {
+		if (listFileTypes == ListFileTypes.Word) {
 			return R.drawable.ic_word;
         }
 		
 		// PDF file
-		if (listFileTypes == ListFileTypes.File_Pdf) {	
+		if (listFileTypes == ListFileTypes.Pdf) {	
 			return R.drawable.ic_pdf;
 		}
 
         // Power-point file
-		if (listFileTypes == ListFileTypes.File_Powerpoint) {
+		if (listFileTypes == ListFileTypes.Powerpoint) {
         	return R.drawable.ic_powerpoint;
         }
 		
         // Excel file
-		if (listFileTypes == ListFileTypes.File_Excel) {
+		if (listFileTypes == ListFileTypes.Excel) {
         	return R.drawable.ic_excel;
         }
 		
         // WAV audio file
-		if (listFileTypes == ListFileTypes.File_Zip) {
+		if (listFileTypes == ListFileTypes.Zip) {
         	return R.drawable.ic_zip;
         } 
         
 		// RTF file
-		if (listFileTypes == ListFileTypes.File_Rtf) {
+		if (listFileTypes == ListFileTypes.Rtf) {
         	return R.drawable.ic_rtf;
         }
 
         // WAV audio file
-		if (listFileTypes == ListFileTypes.File_Sound) {
+		if (listFileTypes == ListFileTypes.Sound) {
         	return R.drawable.ic_sound;
         } 
         
 		// GIF file
-		if (listFileTypes == ListFileTypes.File_Gif) {
+		if (listFileTypes == ListFileTypes.Gif) {
         	return R.drawable.ic_gif;
         } 
         
 		// Photo file
-		//if (listFileTypes == ListFileTypes.File_Photo) {
+		//if (listFileTypes == ListFileTypes.Photo) {
         //	return R.drawable.ic_photo;
         //}
         
 		// Text file
-		if (listFileTypes == ListFileTypes.File_Txt) {
+		if (listFileTypes == ListFileTypes.Txt) {
         	return R.drawable.ic_txt;
         } 
         
 		// Video files
-		if (listFileTypes == ListFileTypes.File_Video) {
+		if (listFileTypes == ListFileTypes.Video) {
         	return R.drawable.ic_video;
         }
         
 		// APK files
-		if (listFileTypes == ListFileTypes.File_Apk) {
+		if (listFileTypes == ListFileTypes.Apk) {
         	return R.drawable.ic_apk;
         } 
         
@@ -76,7 +80,6 @@ public class ImageFile {
         }
 	}
 	
-
 	public Drawable getImageBitmap(String url)
 	{
 		// photo file
@@ -89,66 +92,66 @@ public class ImageFile {
 		
 		// Word document
 		if (url.equalsIgnoreCase(".doc") || url.equalsIgnoreCase(".docx")) {
-			return ListFileTypes.File_Word;
+			return ListFileTypes.Word;
         }
 		// PDF file
 		else if(url.equalsIgnoreCase(".pdf")){	
-			return ListFileTypes.File_Pdf;
+			return ListFileTypes.Pdf;
 		}
 
         // Power-point file
         else if(url.equalsIgnoreCase(".ppt") || url.equalsIgnoreCase(".pptx")){
-        	return ListFileTypes.File_Powerpoint;
+        	return ListFileTypes.Powerpoint;
         }
 		
         // Excel file
         else if(url.equalsIgnoreCase(".xls") || url.equalsIgnoreCase(".xlsx")) {
-        	return ListFileTypes.File_Excel;
+        	return ListFileTypes.Excel;
         }
 		
         // WAV audio file
         else if(url.equalsIgnoreCase(".zip") || url.equalsIgnoreCase(".rar")) {
-        	return ListFileTypes.File_Zip;
+        	return ListFileTypes.Zip;
         } 
         
 		// RTF file
         else if(url.equalsIgnoreCase(".rtf")) {
-        	return ListFileTypes.File_Rtf;
+        	return ListFileTypes.Rtf;
         }
 
         // WAV audio file
         else if(url.equalsIgnoreCase(".wav") || url.equalsIgnoreCase(".mp3")) {
-        	return ListFileTypes.File_Sound;
+        	return ListFileTypes.Sound;
         } 
         
 		// GIF file
         else if(url.equalsIgnoreCase(".gif")) {
-        	return ListFileTypes.File_Gif;
+        	return ListFileTypes.Gif;
         } 
         
 		// JPG file
         else if(url.equalsIgnoreCase(".jpg") || url.equalsIgnoreCase(".jpeg") || url.equalsIgnoreCase(".png")) {
-        	return ListFileTypes.File_Photo;
+        	return ListFileTypes.Photo;
         }
         
 		// Text file
         else if(url.equalsIgnoreCase(".txt")) {
-        	return ListFileTypes.File_Txt;
+        	return ListFileTypes.Txt;
         } 
         
 		// Video files
         else if(url.equalsIgnoreCase(".3gp") || url.equalsIgnoreCase(".mpg") || url.equalsIgnoreCase(".mpeg") || url.equalsIgnoreCase(".mpe") || url.equalsIgnoreCase(".mp4") || url.equalsIgnoreCase(".avi")) {
-        	return ListFileTypes.File_Video;
+        	return ListFileTypes.Video;
         }
         
 		// APK files
         else if(url.equalsIgnoreCase(".apk"))  {
-        	return ListFileTypes.File_Apk;
+        	return ListFileTypes.Apk;
         } 
         
 		// Other File Type Or None
         else {
-        	return ListFileTypes.File_None;
+        	return ListFileTypes.Other;
         }
 	}
 

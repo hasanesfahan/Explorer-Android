@@ -117,32 +117,32 @@ public class MainActivity extends Activity  {
         {
         	FileSpecifications obj = adapter.getItem(position);
         	
-        	if((obj.getFileType() == ListFileTypes.Folder_None)||(obj.getFileType() == ListFileTypes.Folder_Up))
+        	if((obj.getFileType() == ListFileTypes.Other)||(obj.getFileType() == ListFileTypes.Other))
         	{
         		FileSpecifications fs;
         		if(MainFolderSelectedPath.equalsIgnoreCase(""))
         		{
         			MainFolderSelectedPath = obj.getPath();
-        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Folder_Main);
+        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Other);
         		}
         		else if(MainFolderSelectedPath.equalsIgnoreCase(obj.getPath()))
         		{
-        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Folder_Main);
+        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Other);
         		}
         		else
         		{
-        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Folder_Up);
+        			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Other);
         		}	
         		
         		showCurentDirectory(new File(obj.getPath()),fs);
         		CurentPath = obj.getPath();  
         	}
-        	else if(obj.getFileType() == ListFileTypes.Folder_Main)
+        	else if(obj.getFileType() == ListFileTypes.Other)
         	{
         		CurentPath = "";
         		showMainDirectory();
         	}
-        	else if(obj.getFileType() == ListFileTypes.File_None)
+        	else if(obj.getFileType() == ListFileTypes.Other)
         	{
         		openfil1e(obj.getPath());
         	}

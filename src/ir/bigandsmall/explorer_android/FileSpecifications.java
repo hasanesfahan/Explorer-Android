@@ -1,7 +1,5 @@
 package ir.bigandsmall.explorer_android;
 
-import java.io.File;
-
 import android.widget.ImageView;
  
 
@@ -57,10 +55,10 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     
     public String getDescription(ListFileTypes filetype)
     {
-    	if((ListFileTypes.Folder_Main == filetype)|| (ListFileTypes.Folder_Up == filetype))
+    	if((ListFileTypes.Other == filetype)|| (ListFileTypes.Other == filetype))
     		return "";
     	
-    	if(ListFileTypes.File_None == filetype)
+    	if(ListFileTypes.Other == filetype)
     		return desc+" Byte";
     	return "<Dir> "+desc+" Byte";
    	
@@ -70,13 +68,13 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     {
     	
     	
-    	if(ListFileTypes.Folder_Main  == getFileType())
+    	if(ListFileTypes.Other  == getFileType())
     		img.setBackgroundResource(R.drawable.ic_directory);
     	
-    	else if(ListFileTypes.Folder_Up == getFileType())
+    	else if(ListFileTypes.Other == getFileType())
     		img.setBackgroundResource(R.drawable.ic_up);
     	
-    	else if(ListFileTypes.Folder_None == getFileType())
+    	else if(ListFileTypes.Other == getFileType())
     		img.setBackgroundResource(R.drawable.ic_directory);
     	
     	
@@ -86,7 +84,7 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     		ImageFile imgFi = new ImageFile();
 	    	ListFileTypes filetype = imgFi.getImageFileType(name);
 	    	
-	    	if(ListFileTypes.File_Photo != filetype)
+	    	if(ListFileTypes.Photo != filetype)
 	    		img.setBackgroundResource(imgFi.getImageId(filetype));
 	    	else
 	    		img.setBackgroundDrawable(imgFi.getImageBitmap(pathFile));
