@@ -117,13 +117,14 @@ public class MainActivity extends Activity  {
         {
         	FileSpecifications obj = adapter.getItem(position);
         	
-        	if((obj.getFileType() == ListFileTypes.Other)||(obj.getFileType() == ListFileTypes.Other))
+        	//if((obj.getFileType() == ListFileTypes.Other)||(obj.getFileType() == ListFileTypes.Other))
         	{
         		FileSpecifications fs;
-        		if(MainFolderSelectedPath.equalsIgnoreCase(""))
+        		/*if(MainFolderSelectedPath.equalsIgnoreCase(""))
         		{
         			MainFolderSelectedPath = obj.getPath();
         			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Other);
+        			
         		}
         		else if(MainFolderSelectedPath.equalsIgnoreCase(obj.getPath()))
         		{
@@ -132,12 +133,15 @@ public class MainActivity extends Activity  {
         		else
         		{
         			fs = new FileSpecifications(".." , 0 , obj.getParentPath() , ListFileTypes.Other);
-        		}	
+        		}	*/
         		
-        		showCurentDirectory(new File(obj.getPath()),fs);
+        		obj.setFolderType(ListFolderTypes.Up);
+        		obj.setFirstName("..");
+        		
+        		showCurentDirectory(new File(obj.getPath()),obj);
         		CurentPath = obj.getPath();  
         	}
-        	else if(obj.getFileType() == ListFileTypes.Other)
+        	/*else if(obj.getFileType() == ListFileTypes.Other)
         	{
         		CurentPath = "";
         		showMainDirectory();
@@ -145,8 +149,8 @@ public class MainActivity extends Activity  {
         	else if(obj.getFileType() == ListFileTypes.Other)
         	{
         		openfil1e(obj.getPath());
-        	}
-        	setCurentPath();
+        	}*/
+        	//setCurentPath();
         }
 	};
 	

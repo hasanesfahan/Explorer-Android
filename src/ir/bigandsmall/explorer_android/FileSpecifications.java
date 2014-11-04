@@ -1,26 +1,73 @@
 package ir.bigandsmall.explorer_android;
 
+import java.io.File;
+
 import android.widget.ImageView;
  
 
-public class FileSpecifications implements Comparable<FileSpecifications> {
+public class FileSpecifications  implements Comparable<FileSpecifications> {
 
 	private String name;
 	private String nameShow;
 	private long desc; 
     private String pathFile;
     
-    private ListFileTypes ListFileType;
+    private ListFileTypes listFileType;
+    private ListFolderTypes listFolderTypes;
+    private ListTypes listTypes;
    
-    public FileSpecifications(String nameFile, long  descFile,String pathFile, ListFileTypes ListFileType)
+
+    public FileSpecifications(File f  ,ListTypes listTypes, ListFileTypes listFileType)
     {
-        this.name = nameFile;
-        this.desc = descFile;   
-        this.pathFile = pathFile;
-        this.ListFileType = ListFileType;
+        this.name = f.getName();
+        this.desc =  f.length() ;   
+        this.pathFile = f.getAbsolutePath();
         
-        setFirstCharNameUpperCase();
+        this.listFileType = listFileType;
+        this.listTypes = listTypes;
+        
+        //setFirstCharNameUpperCase();
     }
+    
+    
+    public FileSpecifications(File f , ListTypes listTypes, ListFolderTypes listFolderTypes)
+    {
+    	File[] filelist =f.listFiles(); 
+    	
+    	long  descFile = 0;
+	   	 if(filelist != null)
+	   		descFile = filelist.length;
+	   	 
+	   	 
+        this.name = f.getName();
+        this.desc = descFile;   
+        this.pathFile = f.getAbsolutePath();
+        
+        this.listFolderTypes = listFolderTypes;
+        this.listTypes = listTypes;
+        
+        //setFirstCharNameUpperCase();
+    }
+    
+    public FileSpecifications(File f , String NameOrder,ListTypes listTypes, ListFolderTypes listFolderTypes)
+    {
+    	
+        this.name = NameOrder;//f.getName();
+        this.desc = 0;   
+        this.pathFile = f.getAbsolutePath();
+        
+        this.listFolderTypes = listFolderTypes;
+        this.listTypes = listTypes;
+        
+        //setFirstCharNameUpperCase();
+    }
+    
+    public void setFolderType( ListFolderTypes listFolderTypes)
+    {
+    	this.listFolderTypes = listFolderTypes;
+    }
+    
+    
     
     public void setFirstName(String nameFile)
     {
@@ -30,7 +77,8 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     
     private void setFirstCharNameUpperCase()
     {
-    	nameShow  = name.substring(0,1).toUpperCase() + name.substring(1);
+//    	nameShow  = name.substring(0,1).toUpperCase() + name.substring(1);
+    	nameShow  = name;
     }
     
     public String getName()
@@ -43,9 +91,9 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     	return pathFile;
     }
     
-    public ListFileTypes getFileType()
+    public ListTypes getType()
     {
-    	return ListFileType;
+    	return listTypes;
     }
     
     public String getNameShow()
@@ -67,8 +115,14 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
     public void setImage(ImageView img) 
     {
     	
+    	if(listTypes == ListTypes.Folder)
+    		img.setBackgroundResource(ImageFolder.getImageId(listFolderTypes));
+    	else
+    		img.setBackgroundResource(R.drawable.ic_file);
+    		
     	
-    	if(ListFileTypes.Other  == getFileType())
+    	
+    	/*if(ListFileTypes.Other  == getFileType())
     		img.setBackgroundResource(R.drawable.ic_directory);
     	
     	else if(ListFileTypes.Other == getFileType())
@@ -88,7 +142,7 @@ public class FileSpecifications implements Comparable<FileSpecifications> {
 	    		img.setBackgroundResource(imgFi.getImageId(filetype));
 	    	else
 	    		img.setBackgroundDrawable(imgFi.getImageBitmap(pathFile));
-    	}
+    	}*/
     }
     public int compareTo(FileSpecifications o) 
     {

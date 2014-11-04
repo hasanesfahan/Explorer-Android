@@ -21,20 +21,17 @@ public class ListMainFolder {
 		
 		// add SD card
 	    if(IsMountedSDCard())
-	    	dir.add(new FileSpecifications("SD-card" , 0 ,getSDCardDirectory().getAbsolutePath() , ListFileTypes.Other));
-	    
+	    	dir.add(new FileSpecifications(getSDCardDirectory() , "SD-card" , ListTypes.Folder , ListFolderTypes.Directory ));
 	    
 	    // add Photos
 	    if(IsMountedSDCard())
-	    	dir.add(new FileSpecifications("Photos" , 0 ,getPhotoDirectory().getAbsolutePath() , ListFileTypes.Other));
-	   
+	    	dir.add(new FileSpecifications(getPhotoDirectory() , "Photos" , ListTypes.Folder , ListFolderTypes.Directory ));
 	   
 	    // 	add Download Files
-	    dir.add(new FileSpecifications("Downloaded Files" , 0 ,getDownloadDirectory().getAbsolutePath() , ListFileTypes.Other));
-	   
+	    dir.add(new FileSpecifications(getDownloadDirectory() , "Downloaded Files" , ListTypes.Folder , ListFolderTypes.Directory ));
 	   
 	    // 	add File system root
-	    dir.add(new FileSpecifications("File system root" , 0 ,getRootDirectory().getAbsolutePath() , ListFileTypes.Other));
+	    dir.add(new FileSpecifications(getRootDirectory() , "File system root" , ListTypes.Folder , ListFolderTypes.Directory ));
 	   
 	      
 	      

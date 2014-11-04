@@ -3,10 +3,10 @@ package ir.bigandsmall.explorer_android;
 public class ImageFolder {
 
 	
-	public int getImageId(ListFolderTypes listFolderTypes)
+	public static int getImageId(ListFolderTypes listFolderTypes)
 	{
 		//Folder Full
-		if (listFolderTypes == ListFolderTypes.Full) {
+		if (listFolderTypes == ListFolderTypes.Directory) {
 			return R.drawable.ic_directory;
         }
 		
@@ -17,7 +17,7 @@ public class ImageFolder {
 		
 		//Folder Empty
 		//if (listFolderTypes == listFolderTypes.Empty) {
-		return R.drawable.ic_empty;
+		return R.drawable.ic_directory;
         
 	}
 }

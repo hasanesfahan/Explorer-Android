@@ -53,18 +53,12 @@ public class ListFilesDirectory {
 	
 	private void addFolder(File f)
 	{
-	   	 File[] filelist =f.listFiles(); 
-	
-	   	 int buf = 0;
-	   	 if(filelist != null)
-	   		 buf = filelist.length;
-	      
-	   	 dir.add(new FileSpecifications(f.getName() , buf ,f.getAbsolutePath() , ListFileTypes.Other));
+		dir.add(new FileSpecifications(f  , ListTypes.Folder , ListFolderTypes.Directory ));
 	}
 	
 	private void addFile(File f)
 	{
-		fls.add(new FileSpecifications(f.getName(),f.length() ,f.getAbsolutePath()  ,ListFileTypes.Other));
+		fls.add(new FileSpecifications(f  ,ListTypes.File ,ListFileTypes.Other));
 	}
 
 	private void sort()
