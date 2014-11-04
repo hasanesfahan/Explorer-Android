@@ -58,7 +58,7 @@ public class ListFilesDirectory {
 	
 	private void addFile(File f)
 	{
-		fls.add(new FileSpecifications(f  ,ListTypes.File ,ListFileTypes.Other));
+		fls.add(new FileSpecifications(f  ,ListTypes.File));
 	}
 
 	private void sort()

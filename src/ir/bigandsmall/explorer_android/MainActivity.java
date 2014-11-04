@@ -116,8 +116,8 @@ public class MainActivity extends Activity  {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
         	FileSpecifications obj = adapter.getItem(position);
-        	
-        	//if((obj.getFileType() == ListFileTypes.Other)||(obj.getFileType() == ListFileTypes.Other))
+        	String ppp =obj.getPath();
+        	if((obj.getType() == ListTypes.Folder))//||(obj.getFileType() == ListFileTypes.Other))
         	{
         		FileSpecifications fs;
         		/*if(MainFolderSelectedPath.equalsIgnoreCase(""))
@@ -137,10 +137,18 @@ public class MainActivity extends Activity  {
         		
         		obj.setFolderType(ListFolderTypes.Up);
         		obj.setFirstName("..");
+        		obj.setPath(obj.getParentPath());
+
+
         		
-        		showCurentDirectory(new File(obj.getPath()),obj);
+        		
+        		showCurentDirectory(new File(ppp),obj);
         		CurentPath = obj.getPath();  
         	}
+        	else
+        	{
+        		openfil1e(obj.getPath());
+			}
         	/*else if(obj.getFileType() == ListFileTypes.Other)
         	{
         		CurentPath = "";
@@ -148,7 +156,7 @@ public class MainActivity extends Activity  {
         	}
         	else if(obj.getFileType() == ListFileTypes.Other)
         	{
-        		openfil1e(obj.getPath());
+        		
         	}*/
         	//setCurentPath();
         }

@@ -7,12 +7,12 @@ import android.graphics.drawable.Drawable;
 
 public class ImageFile {
 	
-	public int getImageId(String fileName)
+	public static int getImageId(String fileName)
 	{
 		return getImageId(getImageFileType(fileName));
 	}
 	
-	public int getImageId(ListFileTypes listFileTypes)
+	public static int getImageId(ListFileTypes listFileTypes)
 	{
 		// Word document
 		if (listFileTypes == ListFileTypes.Word) {
@@ -80,13 +80,13 @@ public class ImageFile {
         }
 	}
 	
-	public Drawable getImageBitmap(String url)
+	public static Drawable getImageBitmap(String url)
 	{
 		// photo file
 		return new ReadImageFile().ReadImageFromFile(url);
 	}
 	
-    public ListFileTypes getImageFileType(String fileName)
+    public static ListFileTypes getImageFileType(String fileName)
 	{
 		String url = getExtention(fileName);
 		
@@ -155,7 +155,7 @@ public class ImageFile {
         }
 	}
 
-	public String getExtention(String name)
+	public static String getExtention(String name)
 	{
 		File f = new File(name);
 		if((f.getName().lastIndexOf("."))>0)

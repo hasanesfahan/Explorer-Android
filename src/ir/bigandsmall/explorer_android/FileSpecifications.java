@@ -17,16 +17,18 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     private ListTypes listTypes;
    
 
-    public FileSpecifications(File f  ,ListTypes listTypes, ListFileTypes listFileType)
+    public FileSpecifications(File f  ,ListTypes listTypes)
     {
         this.name = f.getName();
         this.desc =  f.length() ;   
         this.pathFile = f.getAbsolutePath();
         
-        this.listFileType = listFileType;
-        this.listTypes = listTypes;
+         this.listTypes = listTypes;
         
-        //setFirstCharNameUpperCase();
+        setFirstCharNameUpperCase();
+        
+        this.listFileType = ImageFile.getImageFileType(name);
+        
     }
     
     
@@ -46,7 +48,10 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
         this.listFolderTypes = listFolderTypes;
         this.listTypes = listTypes;
         
-        //setFirstCharNameUpperCase();
+        
+        
+        
+        setFirstCharNameUpperCase();
     }
     
     public FileSpecifications(File f , String NameOrder,ListTypes listTypes, ListFolderTypes listFolderTypes)
@@ -59,7 +64,7 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
         this.listFolderTypes = listFolderTypes;
         this.listTypes = listTypes;
         
-        //setFirstCharNameUpperCase();
+        setFirstCharNameUpperCase();
     }
     
     public void setFolderType( ListFolderTypes listFolderTypes)
@@ -91,6 +96,11 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     	return pathFile;
     }
     
+    public void  setPath(String pa)
+    {
+    	pathFile = pa;
+    }
+    
     public ListTypes getType()
     {
     	return listTypes;
@@ -118,9 +128,12 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     	if(listTypes == ListTypes.Folder)
     		img.setBackgroundResource(ImageFolder.getImageId(listFolderTypes));
     	else
-    		img.setBackgroundResource(R.drawable.ic_file);
-    		
-    	
+    	{
+    		if(listFileType != ListFileTypes.Photo)
+    			img.setBackgroundResource(ImageFile.getImageId(name));
+    		else
+    			img.setBackgroundDrawable(ImageFile.getImageBitmap(pathFile));
+    	}	
     	
     	/*if(ListFileTypes.Other  == getFileType())
     		img.setBackgroundResource(R.drawable.ic_directory);
@@ -163,8 +176,5 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     	
     	return "";
     }
-
-    
-
 
 }
