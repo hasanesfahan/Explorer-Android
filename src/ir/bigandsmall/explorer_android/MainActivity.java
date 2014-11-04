@@ -90,12 +90,12 @@ public class MainActivity extends Activity  {
 	     
 	    if(GridViewListView)
 		{
-	    	adapter = new FileArrayAdapter(this,R.layout.list_view, new ListFiles(f,fsp).getListFile());
+	    	adapter = new FileArrayAdapter(this,R.layout.list_view, new ListFilesDirectory(f,fsp).getListFile());
 			lv.setAdapter(adapter);
 		}
 		else
 		{
-			adapter = new FileArrayAdapter(this,R.layout.grid_view, new ListFiles(f,fsp).getListFile());
+			adapter = new FileArrayAdapter(this,R.layout.grid_view, new ListFilesDirectory(f,fsp).getListFile());
 			gv.setAdapter(adapter);
 		}
 	}

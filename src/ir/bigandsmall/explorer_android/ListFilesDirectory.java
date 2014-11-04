@@ -5,22 +5,37 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ListFiles {
+public class ListFilesDirectory {
 
  
 	private List<FileSpecifications>dir;
-	   List<FileSpecifications>fls ;
+	private List<FileSpecifications>fls ;
+	private File f;
 	
-	public  ListFiles(File f,FileSpecifications fsp)
+	public  ListFilesDirectory(File f,FileSpecifications fsp)
+	{
+		this.f = f; 
+		dir = new ArrayList<FileSpecifications>();
+		fls = new ArrayList<FileSpecifications>();
+	   
+		addFolderGotoUp(fsp);
+	}
+	
+	public List<FileSpecifications> getListFile()
+	{
+		addFolderAndFile(f);
+		return dir;
+	}
+	
+	
+	private void addFolderGotoUp(FileSpecifications fsp)
+	{
+		dir.add(fsp);
+	}
+	
+	private void addFolderAndFile(File f)
 	{
 		File[]dirs = f.listFiles();
-	     
-	    dir = new ArrayList<FileSpecifications>();
-	    fls = new ArrayList<FileSpecifications>();
-	   
-	    // add up folder
-	    dir.add(fsp);
-	    
 	    try
 	    {
 	         for(File ff: dirs)
@@ -29,25 +44,12 @@ public class ListFiles {
 	            	 addFolder(ff);
 	             else
 	            	 addFile(ff);
-	                 
 	         }
-	         
-	     }
-	     catch(Exception e)
-	     {}
-	     
-
+	    }
+	    catch(Exception e){}
 	    sort();
-	 
-	    dir.addAll(fls);
-	      
+	    addFileAfterFolder();
 	}
-	
-	public List<FileSpecifications> getListFile()
-	{
-		return dir;
-	}
-	
 	
 	private void addFolder(File f)
 	{
@@ -69,6 +71,11 @@ public class ListFiles {
 	{
 		Collections.sort(dir);
         Collections.sort(fls);
+	}
+	
+	private void addFileAfterFolder()
+	{
+		dir.addAll(fls);
 	}
 
 }
