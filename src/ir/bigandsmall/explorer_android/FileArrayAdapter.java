@@ -47,8 +47,7 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		
 		o.setImage(tvImage);
 		tvName.setText(o.getNameShow());
-		tvDesc.setText("");
-		//tvDesc.setText(o.getDescription(o.getFileType()));
+		tvDesc.setText(o.getDescription());
 		
 		 
 		return cv;

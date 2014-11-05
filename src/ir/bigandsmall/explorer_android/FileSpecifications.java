@@ -28,7 +28,6 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
         setFirstCharNameUpperCase();
         
         this.listFileType = ImageFile.getImageFileType(name);
-        
     }
     
     
@@ -36,29 +35,29 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     {
     	File[] filelist =f.listFiles(); 
     	
-    	long  descFile = 0;
-	   	 if(filelist != null)
-	   		descFile = filelist.length;
+
+    	if(filelist != null)
+    		this.desc  = filelist.length;
 	   	 
 	   	 
-        this.name = f.getName();
-        this.desc = descFile;   
+        this.name = f.getName();   
         this.pathFile = f.getAbsolutePath();
         
         this.listFolderTypes = listFolderTypes;
         this.listTypes = listTypes;
-        
-        
-        
         
         setFirstCharNameUpperCase();
     }
     
     public FileSpecifications(File f , String NameOrder,ListTypes listTypes, ListFolderTypes listFolderTypes)
     {
+
+    	File[] filelist =f.listFiles(); 
     	
-        this.name = NameOrder;//f.getName();
-        this.desc = 0;   
+    	if(filelist != null)
+    		this.desc = filelist.length;
+
+        this.name = NameOrder;   
         this.pathFile = f.getAbsolutePath();
         
         this.listFolderTypes = listFolderTypes;
@@ -67,16 +66,12 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
         setFirstCharNameUpperCase();
     }
     
-    public void setFirstName(String nameFile)
-    {
-    	this.name  =  nameFile;
-    	setFirstCharNameUpperCase();
-    }
-    
     private void setFirstCharNameUpperCase()
     {
-//    	nameShow  = name.substring(0,1).toUpperCase() + name.substring(1);
-    	nameShow  = name;
+    	if(name.length()<=1)
+    		nameShow  = name.toUpperCase(); 
+    	else
+    		nameShow  = name.substring(0,1).toUpperCase() + name.substring(1);
     }
     
     public String getName()
@@ -105,15 +100,14 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     	return nameShow;
     }
     
-    public String getDescription(ListFileTypes filetype)
+    public String getDescription()
     {
-    	if((ListFileTypes.Other == filetype)|| (ListFileTypes.Other == filetype))
-    		return "";
-    	
-    	if(ListFileTypes.Other == filetype)
+    	if(ListTypes.File == listTypes)
     		return desc+" Byte";
-    	return "<Dir> "+desc+" Byte";
-   	
+    	else if(ListFolderTypes.Up == listFolderTypes)
+    		return "";
+    	else
+    		return "<Dir> "+desc+" Byte";
     }
   
     public void setImage(ImageView img) 
