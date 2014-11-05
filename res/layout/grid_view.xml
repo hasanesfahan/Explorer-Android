@@ -19,15 +19,7 @@
         android:layout_alignLeft="@+id/item_view_Image_File"
         android:layout_alignRight="@+id/item_view_Image_File"
         android:layout_below="@+id/item_view_Image_File"
+        android:gravity="center"
         android:text="TextView" />
-
-    <TextView
-        android:id="@+id/item_view_Text_Desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/item_view_Text_Name"
-        android:layout_below="@+id/item_view_Text_Name"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
