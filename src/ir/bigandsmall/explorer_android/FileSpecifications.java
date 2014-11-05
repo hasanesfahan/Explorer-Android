@@ -104,10 +104,12 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     {
     	if(ListTypes.File == listTypes)
     		return SizeOfFile.getSize(desc);
+    	
     	else if(ListFolderTypes.Up == listFolderTypes)
     		return "";
+    	
     	else
-    		return "<Dir-"+desc+">";
+    		return String.format("%15s", "<Dir - "+desc+" >");
     }
   
     public void setImage(ImageView img) 
