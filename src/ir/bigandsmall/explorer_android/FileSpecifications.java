@@ -118,10 +118,10 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     		img.setBackgroundResource(ImageFolder.getImageId(listFolderTypes));
     	else
     	{
-    		if(listFileType != ListFileTypes.Photo)
+    		//if(listFileType != ListFileTypes.Photo)
     			img.setBackgroundResource(ImageFile.getImageId(name));
-    		else
-    			img.setBackgroundDrawable(ImageFile.getImageBitmap(pathFile));
+    		//else
+    		//	img.setBackgroundDrawable(ImageFile.getImageBitmap(pathFile));
     	}	
     }
     
