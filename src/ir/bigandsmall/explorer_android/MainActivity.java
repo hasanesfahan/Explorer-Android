@@ -4,6 +4,8 @@ import java.io.File;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
@@ -33,25 +35,6 @@ public class MainActivity extends Activity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		
-		ll = (LinearLayout)findViewById(R.id.LinearLayout_Main);
-		
-		
-		
-		if(GridViewListView)
-		{
-			lv = new ListView(this);
-			ll.addView(lv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		}
-		else
-		{
-			gv = new GridView(this);
-			gv.setNumColumns(4);
-			ll.addView(gv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		}
-			
-		
 		
 		
 		
@@ -102,10 +85,23 @@ public class MainActivity extends Activity  {
 	
 	private void setParametr()
 	{
+		ll = (LinearLayout)findViewById(R.id.LinearLayout_Main);
+		ll.removeAllViews();
+		
 		if(GridViewListView)
+		{
+			lv = new ListView(this);
+			ll.addView(lv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 			lv.setOnItemClickListener(oicl);
+		}
 		else
+		{
+			gv = new GridView(this);
+			gv.setNumColumns(4);
+			ll.addView(gv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 			gv.setOnItemClickListener(oicl);
+		}
+		
 		
 		 
 	}
@@ -166,7 +162,26 @@ public class MainActivity extends Activity  {
 		
 	}
 
-   
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	 @Override
+	 public boolean onOptionsItemSelected(MenuItem item) 
+	 {
+	    switch (item.getItemId()) 
+	    {
+	    	case R.id.action_settings:
+	    		GridViewListView = !GridViewListView;
+	    		setParametr();
+	    		showMainDirectory();
+	    	break;
+	    }
+	    return super.onOptionsItemSelected(item);
+	  }
 	
-	 
 }
