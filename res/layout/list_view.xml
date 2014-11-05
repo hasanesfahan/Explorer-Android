@@ -19,6 +19,7 @@
 		    android:layout_alignParentTop="true"
 		    android:layout_toRightOf="@+id/item_view_Image_File"
 		    android:singleLine="true"
+		    android:gravity="left"
 		    android:text="@string/temp_file_name"
 		    android:textStyle="bold" />
 
