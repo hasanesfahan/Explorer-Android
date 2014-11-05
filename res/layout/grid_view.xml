@@ -20,6 +20,7 @@
         android:layout_alignRight="@+id/item_view_Image_File"
         android:layout_below="@+id/item_view_Image_File"
         android:gravity="center"
+        android:singleLine="true"
         android:text="TextView" />
 
 </RelativeLayout>
