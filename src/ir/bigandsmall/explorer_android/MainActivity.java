@@ -85,7 +85,7 @@ public class MainActivity extends Activity  {
 	
 	private void setParametr()
 	{
-		ll = (LinearLayout)findViewById(R.id.LinearLayout_Main);
+		ll = (LinearLayout)findViewById(R.id.LinearLayout_Show_View);
 		ll.removeAllViews();
 		
 		if(GridViewListView)
