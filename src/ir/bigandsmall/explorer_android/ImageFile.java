@@ -55,9 +55,9 @@ public class ImageFile {
         } 
         
 		// Photo file
-		//if (listFileTypes == ListFileTypes.Photo) {
-        //	return R.drawable.ic_photo;
-        //}
+		if (listFileTypes == ListFileTypes.Photo) {
+        	return R.drawable.ic_photo;
+        }
         
 		// Text file
 		if (listFileTypes == ListFileTypes.Txt) {
