@@ -103,11 +103,11 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     public String getDescription()
     {
     	if(ListTypes.File == listTypes)
-    		return desc+" Byte";
+    		return SizeOfFile.getSize(desc);
     	else if(ListFolderTypes.Up == listFolderTypes)
     		return "";
     	else
-    		return "<Dir> "+desc+" Byte";
+    		return "<Dir-"+desc+">";
     }
   
     public void setImage(ImageView img) 
