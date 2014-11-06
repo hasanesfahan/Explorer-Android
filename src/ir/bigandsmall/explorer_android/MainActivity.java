@@ -203,22 +203,10 @@ public class MainActivity extends Activity  {
 	    	break;
 	    	
 	    	case R.id.action_newfolder :
-	    		AlertDialog.Builder builder = new Builder(this);
-	            final EditText text = new EditText(this);
+	    		
+	    		AlertDialog alertDialog= new DialogNewFolder(this,CurentPath).create();
+	    		alertDialog.show();
 
-	            builder.setTitle("New Folder").setMessage("Name of new folder").setView(text);
-	            builder.setPositiveButton("Create", new OnClickListener() {
-
-	                public void onClick(DialogInterface di, int i)
-	                {
-	                    final String name = text.getText().toString();
-	                    if(!NewFolder.createNewFolder(CurentPath+"/"+name))
-	                    	Toast.makeText(getApplicationContext(), "cannot create folder", 1000).show();
-	                    
-	                }
-	            });
-	            builder.setNegativeButton("Cancel", null);
-	            builder.create().show();
 	    	break;
 	    }
 	    return super.onOptionsItemSelected(item);
