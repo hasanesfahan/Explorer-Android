@@ -3,6 +3,10 @@ package ir.bigandsmall.explorer_android;
 import java.io.File;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,10 +14,13 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity  {
@@ -93,6 +100,7 @@ public class MainActivity extends Activity  {
 			lv = new ListView(this);
 			ll.addView(lv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 			lv.setOnItemClickListener(oicl);
+			lv.setOnItemLongClickListener(oilcl);
 		}
 		else
 		{
@@ -100,6 +108,7 @@ public class MainActivity extends Activity  {
 			gv.setNumColumns(4);
 			ll.addView(gv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 			gv.setOnItemClickListener(oicl);
+			gv.setOnItemLongClickListener(oilcl);
 		}
 		
 		
@@ -143,6 +152,18 @@ public class MainActivity extends Activity  {
         }
 	};
 	
+	
+	OnItemLongClickListener  oilcl = new OnItemLongClickListener() 
+	{
+	    @Override
+		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) 
+        {
+	    	FileSpecifications obj = adapter.getItem(position);
+	    	
+			return false;
+		}
+	};
+	
 	private void openfil1e(String filePath)
 	{ 
 		 FileOpen inten = new FileOpen(filePath);
@@ -179,6 +200,25 @@ public class MainActivity extends Activity  {
 	    		GridViewListView = !GridViewListView;
 	    		setParametr();
 	    		showMainDirectory();
+	    	break;
+	    	
+	    	case R.id.action_newfolder :
+	    		AlertDialog.Builder builder = new Builder(this);
+	            final EditText text = new EditText(this);
+
+	            builder.setTitle("New Folder").setMessage("Name of new folder").setView(text);
+	            builder.setPositiveButton("Create", new OnClickListener() {
+
+	                public void onClick(DialogInterface di, int i)
+	                {
+	                    final String name = text.getText().toString();
+	                    if(!NewFolder.createNewFolder(CurentPath+"/"+name))
+	                    	Toast.makeText(getApplicationContext(), "cannot create folder", 1000).show();
+	                    
+	                }
+	            });
+	            builder.setNegativeButton("Cancel", null);
+	            builder.create().show();
 	    	break;
 	    }
 	    return super.onOptionsItemSelected(item);

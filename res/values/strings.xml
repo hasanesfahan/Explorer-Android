@@ -2,7 +2,10 @@
 <resources>
 
     <string name="app_name">Explorer</string>
+    
+    
     <string name="action_settings">Show</string>
+     <string name="action_newfolder">New Folder</string>
     
     
      <string name="temp_file_name">File Name</string>
