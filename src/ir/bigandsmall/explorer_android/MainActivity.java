@@ -137,7 +137,12 @@ public class MainActivity extends Activity  {
         {
 	    	FileSpecifications obj = adapter.getItem(position);
 	    	
-			return false;
+	    	
+	    	AlertDialog alertDialog= new DialogActionOnFolder(MainActivity.this , obj.getPath()).create();
+    		alertDialog.show();
+    		
+    		
+			return true;
 		}
 	};
 	
@@ -224,6 +229,33 @@ public class MainActivity extends Activity  {
 		}
     	
     	setCurentPath();
+	}
+	
+	
+	
+	public void DeleteFile(String Path)
+	{ 
+		final File f = new File(Path);
+		
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		builder.setMessage(f.getName()).setTitle("Remove Selected Files");
+		builder.setNegativeButton("No", null);
+		
+		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+		{
+           @Override
+           public void onClick(DialogInterface dialog, int which)
+           {
+           	 	f.delete();
+           	 	refreshList();
+           }
+       });
+
+ 	   AlertDialog dialog = builder.create(); 
+ 	   dialog.show();
+ 	   
 	}
 	
 }
