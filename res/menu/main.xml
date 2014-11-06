@@ -11,5 +11,12 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:title="@string/action_newfolder"/>
+    
+    
+    <item
+        android:id="@+id/action_refresh"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_refresh"/>
 
 </menu>

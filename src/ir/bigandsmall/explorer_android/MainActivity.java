@@ -37,6 +37,7 @@ public class MainActivity extends Activity  {
 	private GridView gv ;
 	
 	private boolean GridViewListView =  true;
+	private FileSpecifications LastFileSpecifications;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class MainActivity extends Activity  {
 	
 	private void showMainDirectory()
 	{
+		LastFileSpecifications = null;
 		
 		MainFolderSelectedPath = "";
 		
@@ -120,37 +122,12 @@ public class MainActivity extends Activity  {
 	{
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-        	FileSpecifications obj = adapter.getItem(position);
-
-        	
-        	if((obj.getType() == ListTypes.Folder))
-        	{
-
-        		if(MainFolderSelectedPath.equalsIgnoreCase(""))
-        			MainFolderSelectedPath = obj.getPath();
-        		
-        		
-        		if((obj.getFlolderType() == ListFolderTypes.Up)&&(MainFolderSelectedPath.equalsIgnoreCase(CurentPath)))
-        		{
-        			CurentPath = "";
-            		showMainDirectory();
-        		}
-        		else
-        		{
-        			CurentPath = obj.getPath();
-        			FileSpecifications fsp =new FileSpecifications(new File(obj.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
-        			showCurentDirectory(new File(obj.getPath()),fsp);
-				}
-        		  
-        	}
-        	else
-        	{
-        		openfil1e(obj.getPath());
-			}
-        	
-        	setCurentPath();
+        	LastFileSpecifications  = adapter.getItem(position);
+        	refreshList();
         }
 	};
+	
+	
 	
 	
 	OnItemLongClickListener  oilcl = new OnItemLongClickListener() 
@@ -186,7 +163,6 @@ public class MainActivity extends Activity  {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -208,8 +184,46 @@ public class MainActivity extends Activity  {
 	    		alertDialog.show();
 
 	    	break;
+	    	
+	    	case R.id.action_refresh :
+	    		 refreshList();
+	    	break;
 	    }
 	    return super.onOptionsItemSelected(item);
 	  }
+	 
+	public void refreshList()
+	{ 
+		
+		if(LastFileSpecifications == null)
+			showMainDirectory();
+		
+		else if((LastFileSpecifications.getType() == ListTypes.Folder))
+    	{
+
+    		if(MainFolderSelectedPath.equalsIgnoreCase(""))
+    			MainFolderSelectedPath = LastFileSpecifications.getPath();
+    		
+    		
+    		if((LastFileSpecifications.getFlolderType() == ListFolderTypes.Up)&&(MainFolderSelectedPath.equalsIgnoreCase(CurentPath)))
+    		{
+    			CurentPath = "";
+        		showMainDirectory();
+    		}
+    		else
+    		{
+    			CurentPath = LastFileSpecifications.getPath();
+    			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+    			showCurentDirectory(new File(LastFileSpecifications.getPath()),fsp);
+			}
+    		  
+    	}
+    	else
+    	{
+    		openfil1e(LastFileSpecifications.getPath());
+		}
+    	
+    	setCurentPath();
+	}
 	
 }

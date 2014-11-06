@@ -33,6 +33,11 @@ public class DialogNewFolder extends Builder {
 	            	 final String name = text.getText().toString();
 	                 if(!NewFolder.createNewFolder(PathDirectory+"/"+name))
 	                 	Toast.makeText(mContext, "cannot create folder here", Toast.LENGTH_SHORT).show();
+	                 else
+	                 {
+	                	 MainActivity ma=(MainActivity)mContext;
+	                	 ma.refreshList();
+	                 }
 	            }
 	        });
 	        
