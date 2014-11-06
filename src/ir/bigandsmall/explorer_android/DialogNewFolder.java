@@ -21,6 +21,7 @@ public class DialogNewFolder extends Builder {
 	        this.setTitle("New Folder");
 
 	       final EditText text = new EditText(mContext);
+	       text.setSingleLine(true);
 
 	        
 	       this.setView(text);
