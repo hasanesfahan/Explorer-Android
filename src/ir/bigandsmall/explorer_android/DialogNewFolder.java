@@ -13,12 +13,12 @@ public class DialogNewFolder extends Builder {
 	
 	 public DialogNewFolder(Context context,String Path) 
 	 {
-	        super(context);
-	        this.mContext = context;
-	        this.PathDirectory = Path;
+	       super(context);
+	       this.mContext = context;
+	       this.PathDirectory = Path;
 
 	        
-	        this.setTitle("New Folder");
+	       this.setTitle("New Folder");
 
 	       final EditText text = new EditText(mContext);
 	       text.setSingleLine(true);

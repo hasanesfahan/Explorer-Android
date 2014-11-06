@@ -4,9 +4,7 @@ import java.io.File;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +13,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -27,7 +24,7 @@ public class MainActivity extends Activity  {
 
 	private FileArrayAdapter adapter;
     
-	private String CurentPath;
+	private String CurentPath = "";
 	
 	private String MainFolderSelectedPath;
 	
@@ -135,14 +132,16 @@ public class MainActivity extends Activity  {
 	    @Override
 		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) 
         {
-	    	FileSpecifications obj = adapter.getItem(position);
 	    	
-	    	
-	    	AlertDialog alertDialog= new DialogActionOnFolder(MainActivity.this , obj.getPath()).create();
-    		alertDialog.show();
+	    	if(!CurentPath.equalsIgnoreCase(""))
+	    	{
+	    		FileSpecifications obj = adapter.getItem(position);
+		    	
+		    	AlertDialog alertDialog= new DialogActionOnFolder(MainActivity.this , obj.getPath()).create();
+	    		alertDialog.show();
+	    	}
     		
-    		
-			return true;
+	    	return true;
 		}
 	};
 	
