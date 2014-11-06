@@ -22,10 +22,12 @@ public class DialogActionOnFolder extends Builder {
 	        
 	       this.setTitle("Choose Action");
 
-	        String action[] = new String[3];
+	        String action[] = new String[4];
 	        action[0] = "Remove";
-	        action[1] = "Move";
-	        action[2] = "Copy";
+	        action[1] = "Copy To Clipboard";
+	        action[2] = "Move To Clipboard";
+	        action[3] = "Paste From Clipboard";
+	        
 
 	         
 	        this.setItems(action, new DialogInterface.OnClickListener() {
@@ -35,6 +37,20 @@ public class DialogActionOnFolder extends Builder {
 	            	   {
 	            		   MainActivity ma=(MainActivity)mContext;
 	            		   ma.DeleteFile(PathDirectory);
+	            	   }
+	            	   else if(which == 1)
+	            	   {
+	            		   MainActivity ma=(MainActivity)mContext;
+	            		   ma.CopyFileFrom(PathDirectory);
+	            	   }
+	            	   else if(which == 2)
+	            	   {
+	            		    
+	            	   }
+	            	   else if(which == 3)
+	            	   {
+	            		   MainActivity ma=(MainActivity)mContext;
+	            		   ma.CopyFileTo(PathDirectory);
 	            	   }
 	               }
 	        });

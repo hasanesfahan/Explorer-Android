@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -28,6 +29,10 @@ public class MainActivity extends Activity  {
 	
 	private String MainFolderSelectedPath;
 	
+	private int ItemSelected = 0;
+	
+	private String clipboardPath;
+	
 	private LinearLayout ll;
 	
 	private ListView lv ;
@@ -42,6 +47,7 @@ public class MainActivity extends Activity  {
 		setContentView(R.layout.activity_main);
 		
 		
+		clipboardPath="";
 		
 		setParametr();
 		
@@ -111,7 +117,6 @@ public class MainActivity extends Activity  {
 		}
 		
 		
-		 
 	}
 	
 	
@@ -135,10 +140,12 @@ public class MainActivity extends Activity  {
 	    	
 	    	if(!CurentPath.equalsIgnoreCase(""))
 	    	{
+	    		ItemSelected= position;
 	    		FileSpecifications obj = adapter.getItem(position);
 		    	
 		    	AlertDialog alertDialog= new DialogActionOnFolder(MainActivity.this , obj.getPath()).create();
 	    		alertDialog.show();
+	    		
 	    	}
     		
 	    	return true;
@@ -206,8 +213,9 @@ public class MainActivity extends Activity  {
     	{
 
     		if(MainFolderSelectedPath.equalsIgnoreCase(""))
+    		{
     			MainFolderSelectedPath = LastFileSpecifications.getPath();
-    		
+    		}
     		
     		if((LastFileSpecifications.getFlolderType() == ListFolderTypes.Up)&&(MainFolderSelectedPath.equalsIgnoreCase(CurentPath)))
     		{
@@ -220,14 +228,14 @@ public class MainActivity extends Activity  {
     			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
     			showCurentDirectory(new File(LastFileSpecifications.getPath()),fsp);
 			}
-    		  
+    		setCurentPath();
     	}
     	else
     	{
     		openfil1e(LastFileSpecifications.getPath());
 		}
     	
-    	setCurentPath();
+    	
 	}
 	
 	
@@ -256,5 +264,30 @@ public class MainActivity extends Activity  {
  	   dialog.show();
  	   
 	}
+	
+	public void CopyFileFrom(String Path)
+	{  
+		clipboardPath = Path;
+	}
+	
+	public void CopyFileTo(String destination)
+	{ 
+		if(clipboardPath.equalsIgnoreCase(""))
+			return;
+		
+		try { 
+			
+			if(ItemSelected == 0)
+				new CopyFile(clipboardPath, CurentPath);
+			else
+				new CopyFile(clipboardPath, destination);
+		} 
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		clipboardPath = "";
+		refreshList();
+	}
+	
 	
 }
