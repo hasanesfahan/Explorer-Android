@@ -37,7 +37,7 @@ public class DialogNewFolder extends Builder {
 	                 else
 	                 {
 	                	 MainActivity ma=(MainActivity)mContext;
-	                	 ma.refreshList();
+	                	 ma.refreshList(true);
 	                 }
 	            }
 	        });

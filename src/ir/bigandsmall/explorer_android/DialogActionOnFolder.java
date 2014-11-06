@@ -45,7 +45,8 @@ public class DialogActionOnFolder extends Builder {
 	            	   }
 	            	   else if(which == 2)
 	            	   {
-	            		    
+	            		  // MainActivity ma=(MainActivity)mContext;
+	            		  // ma.CopyFileTo(PathDirectory);
 	            	   }
 	            	   else if(which == 3)
 	            	   {

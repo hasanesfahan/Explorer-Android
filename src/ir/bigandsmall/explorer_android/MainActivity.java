@@ -125,7 +125,8 @@ public class MainActivity extends Activity  {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
         	LastFileSpecifications  = adapter.getItem(position);
-        	refreshList();
+
+        	refreshList(false);
         }
 	};
 	
@@ -197,18 +198,26 @@ public class MainActivity extends Activity  {
 	    	break;
 	    	
 	    	case R.id.action_refresh :
-	    		 refreshList();
+	    		 refreshList(true);
 	    	break;
 	    }
 	    return super.onOptionsItemSelected(item);
 	  }
 	 
-	public void refreshList()
+	public void refreshList(boolean forceThisPath)
 	{ 
 		
-		if(LastFileSpecifications == null)
-			showMainDirectory();
 		
+		if(forceThisPath)
+		{
+			FileSpecifications fsp =new FileSpecifications(new File(CurentPath) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+			showCurentDirectory(new File(LastFileSpecifications.getPath()),fsp);
+		}
+		else if(LastFileSpecifications == null)
+		{
+			Toast.makeText(getApplicationContext(), "ssssssssss", 1000).show();
+			showMainDirectory();
+		}
 		else if((LastFileSpecifications.getType() == ListTypes.Folder))
     	{
 
@@ -256,7 +265,7 @@ public class MainActivity extends Activity  {
            public void onClick(DialogInterface dialog, int which)
            {
            	 	f.delete();
-           	 	refreshList();
+           	 	refreshList(true);
            }
        });
 
@@ -286,7 +295,7 @@ public class MainActivity extends Activity  {
 			// TODO: handle exception
 		}
 		clipboardPath = "";
-		refreshList();
+		refreshList(true);
 	}
 	
 	
