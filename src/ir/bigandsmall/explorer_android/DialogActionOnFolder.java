@@ -11,13 +11,13 @@ public class DialogActionOnFolder extends Builder {
 
 	
 	private Context mContext;
-	final String PathDirectory;
+	final FileSpecifications fsp;
 	
-	 public DialogActionOnFolder(Context context,String ObjectPath) 
+	 public DialogActionOnFolder(Context context,FileSpecifications Objectfsp) 
 	 {
 	        super(context);
 	        this.mContext = context;
-	        this.PathDirectory = ObjectPath;
+	        this.fsp = Objectfsp;
 
 	        
 	       this.setTitle("Choose Action");
@@ -36,12 +36,12 @@ public class DialogActionOnFolder extends Builder {
 	            	   if(which == 0)
 	            	   {
 	            		   MainActivity ma=(MainActivity)mContext;
-	            		   ma.DeleteFile(PathDirectory);
+	            		   ma.DeleteFile(fsp);
 	            	   }
 	            	   else if(which == 1)
 	            	   {
 	            		   MainActivity ma=(MainActivity)mContext;
-	            		   ma.CopyFileFrom(PathDirectory);
+	            		   ma.CopyFrom(fsp);
 	            	   }
 	            	   else if(which == 2)
 	            	   {
@@ -51,7 +51,7 @@ public class DialogActionOnFolder extends Builder {
 	            	   else if(which == 3)
 	            	   {
 	            		   MainActivity ma=(MainActivity)mContext;
-	            		   ma.CopyFileTo(PathDirectory);
+	            		   ma.CopyTo(fsp);
 	            	   }
 	               }
 	        });

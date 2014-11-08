@@ -31,7 +31,8 @@ public class MainActivity extends Activity  {
 	
 	private int ItemSelected = 0;
 	
-	private String clipboardPath;
+	private FileSpecifications clipboardFromFileSpecifications;
+	private FileSpecifications clipboardToFileSpecifications;
 	
 	private LinearLayout ll;
 	
@@ -46,8 +47,7 @@ public class MainActivity extends Activity  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		
-		clipboardPath="";
+		 
 		
 		setParametr();
 		
@@ -57,6 +57,7 @@ public class MainActivity extends Activity  {
 	
 	private void showMainDirectory()
 	{
+		CurentPath = "";
 		LastFileSpecifications = null;
 		
 		MainFolderSelectedPath = "";
@@ -76,7 +77,7 @@ public class MainActivity extends Activity  {
 			gv.setAdapter(adapter);
 		}
 			
-	    
+		setCurentPath();
 	}
 	
 	
@@ -139,12 +140,11 @@ public class MainActivity extends Activity  {
 		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) 
         {
 	    	
-	    	if(!CurentPath.equalsIgnoreCase(""))
+	    	if (!CurentPath.equalsIgnoreCase(""))
 	    	{
 	    		ItemSelected= position;
-	    		FileSpecifications obj = adapter.getItem(position);
-		    	
-		    	AlertDialog alertDialog= new DialogActionOnFolder(MainActivity.this , obj.getPath()).create();
+
+		    	AlertDialog alertDialog= new DialogActionOnFolder(MainActivity.this , adapter.getItem(position)).create();
 	    		alertDialog.show();
 	    		
 	    	}
@@ -228,7 +228,6 @@ public class MainActivity extends Activity  {
     		
     		if((LastFileSpecifications.getFlolderType() == ListFolderTypes.Up)&&(MainFolderSelectedPath.equalsIgnoreCase(CurentPath)))
     		{
-    			CurentPath = "";
         		showMainDirectory();
     		}
     		else
@@ -237,21 +236,21 @@ public class MainActivity extends Activity  {
     			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
     			showCurentDirectory(new File(LastFileSpecifications.getPath()),fsp);
 			}
-    		setCurentPath();
+    		
     	}
     	else
     	{
     		openfil1e(LastFileSpecifications.getPath());
 		}
     	
-    	
+		setCurentPath();
 	}
 	
 	
 	
-	public void DeleteFile(String Path)
+	public void DeleteFile(FileSpecifications fsp)
 	{ 
-		final File f = new File(Path);
+		final File f = new File(fsp.getPath());
 		
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -264,8 +263,12 @@ public class MainActivity extends Activity  {
            @Override
            public void onClick(DialogInterface dialog, int which)
            {
-           	 	f.delete();
-           	 	refreshList(true);
+        	   if(f.isDirectory())
+        		   DeleteDirectorys.deleteDirectory(f);
+        	   else
+           	 		f.delete();
+        	   
+        	   refreshList(true);
            }
        });
 
@@ -274,28 +277,30 @@ public class MainActivity extends Activity  {
  	   
 	}
 	
-	public void CopyFileFrom(String Path)
+	public void CopyFrom(FileSpecifications fsp)
 	{  
-		clipboardPath = Path;
+		clipboardFromFileSpecifications = fsp;
 	}
 	
-	public void CopyFileTo(String destination)
+	public void CopyTo(FileSpecifications fsp)
 	{ 
-		if(clipboardPath.equalsIgnoreCase(""))
-			return;
+		clipboardToFileSpecifications = fsp;
 		
-		try { 
+		//if(clipboardPath.equalsIgnoreCase(""))
+		//	return;
+		
+	/*	try { 
 			
-			if(ItemSelected == 0)
-				new CopyFile(clipboardPath, CurentPath);
-			else
-				new CopyFile(clipboardPath, destination);
+			//if(ItemSelected == 0)
+				//new CopyFile(clipboardPath, CurentPath);
+			//else
+				//new CopyFile(clipboardPath, destination);
 		} 
 		catch (Exception e) {
 			// TODO: handle exception
 		}
 		clipboardPath = "";
-		refreshList(true);
+		refreshList(true);*/
 	}
 	
 	
