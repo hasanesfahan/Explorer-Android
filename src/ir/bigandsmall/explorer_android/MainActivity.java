@@ -146,11 +146,15 @@ public class MainActivity extends Activity  {
 	    	FileSpecifications temp = adapter.getItem(position);
 	    	if(temp.getType() == ListTypes.Folder)
 	    	{
+	    		if((clipboardFromFileSpecifications == null)&&(temp.getFlolderType() == ListFolderTypes.Up))
+	    			return true;
+	    		
 	    		ItemSelected= position;
 	    		boolean lasteselected = false;
 	    		if(clipboardFromFileSpecifications != null)
 	    			lasteselected = true;
 
+	    		
 			    AlertDialog alertDialog= new DialogDirectory(MainActivity.this , adapter.getItem(position),lasteselected).create();
 		    	alertDialog.show();
 		    	
@@ -290,6 +294,13 @@ public class MainActivity extends Activity  {
  	   AlertDialog dialog = builder.create(); 
  	   dialog.show();
  	   
+ 	   emptyClipboard();
+	}
+	
+	private void emptyClipboard()
+	{
+		clipboardFromFileSpecifications = null;
+		clipboardToFileSpecifications = null;
 	}
 	
 	public void CopyFrom(FileSpecifications fsp)
