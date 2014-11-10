@@ -139,16 +139,29 @@ public class MainActivity extends Activity  {
 	    @Override
 		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) 
         {
+	    	//when long click in main page
+	    	if ((CurentPath.equalsIgnoreCase("")))
+	    		return true;
 	    	
-	    	
-	    	
-	    	if ((!CurentPath.equalsIgnoreCase("")))//&&(clipboardFromFileSpecifications != null))
+	    	FileSpecifications temp = adapter.getItem(position);
+	    	if(temp.getType() == ListTypes.Folder)
 	    	{
 	    		ItemSelected= position;
+	    		boolean lasteselected = false;
+	    		if(clipboardFromFileSpecifications != null)
+	    			lasteselected = true;
 
-		    	AlertDialog alertDialog= new DialogDirectory(MainActivity.this , adapter.getItem(position)).create();
-	    		alertDialog.show();
-	    		
+			    AlertDialog alertDialog= new DialogDirectory(MainActivity.this , adapter.getItem(position),lasteselected).create();
+		    	alertDialog.show();
+		    	
+	    	}
+	    	else
+	    	{
+		    	ItemSelected= position;
+
+			    AlertDialog alertDialog= new DialogFile(MainActivity.this , adapter.getItem(position)).create();
+		    	alertDialog.show();
+		    	
 	    	}
     		
 	    	return true;

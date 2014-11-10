@@ -5,11 +5,41 @@
     
     
     <string name="action_settings">Show</string>
-     <string name="action_newfolder">New Folder</string>
-     <string name="action_refresh">Refresh</string>
+    <string name="action_newfolder">New Folder</string>
+    <string name="action_refresh">Refresh</string>
     
     
-     <string name="temp_file_name">File Name</string>
-     <string name="temp_file_desc">Description</string>
+    <string name="temp_file_name">File Name</string>
+    <string name="temp_file_desc">Description</string>
+    
+    
+    <string-array name="DialogDirectory">
+         <item >Rename</item>
+         <item >Delete</item>
+         <item >Copy To Clipboard</item>
+         <item >Cut To Clipboard</item>
+         <item >New Folder</item>
+	</string-array>
+	
+    <string-array name="DialogDirectoryWidthPast">
+         <item >Rename</item>
+         <item >Delete</item>
+         <item >Copy To Clipboard</item>
+         <item >Cut To Clipboard</item>
+         <item >New Folder</item>
+         <item >Past From Clipboard</item>
+	</string-array>
+	
+    <string-array name="DialogDirectoryUp">
+         <item >Past From Clipboard</item>
+	</string-array>
+	
+    <string-array name="DialogFile">
+         <item >Rename</item>
+         <item >Delete</item>
+         <item >Copy To Clipboard</item>
+         <item >Cut To Clipboard</item>
+	</string-array>
+	
 
 </resources>

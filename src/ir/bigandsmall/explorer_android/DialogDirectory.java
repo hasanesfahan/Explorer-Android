@@ -11,22 +11,27 @@ public class DialogDirectory extends Builder implements OnClickListener {
 	private Context mContext;
 	final FileSpecifications fsp;
 	
-	 public DialogDirectory(Context context,FileSpecifications Objectfsp) 
+	 public DialogDirectory(Context context,FileSpecifications Objectfsp , boolean lastSelected) 
 	 {
 	        super(context);
 	        this.mContext = context;
 	        this.fsp = Objectfsp;
 
 	        
-	       this.setTitle("Choose Action");
+	        this.setTitle("Choose Action");
 
-	        String action[] = new String[6];
-	        action[0] = "Rename";
-	        action[1] = "Delete";
-	        action[2] = "Copy To Clipboard";
-	        action[3] = "Cut To Clipboard";
-	        action[4] = "New Folder";
-	        action[5] = "Past From Clipboard";
+	        String action[];
+	        
+	        if(Objectfsp.getFlolderType() == ListFolderTypes.Up)
+	        {
+	        	action = context.getResources().getStringArray(R.array.DialogDirectoryUp);
+	        }
+	        else if(lastSelected)
+	        {
+	        	action = context.getResources().getStringArray(R.array.DialogDirectoryWidthPast);
+	        }
+	        else
+	        	action = context.getResources().getStringArray(R.array.DialogDirectory);
 	        
 	        this.setItems(action,this);
 	        
