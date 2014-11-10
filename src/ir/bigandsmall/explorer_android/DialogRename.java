@@ -25,6 +25,7 @@ public class DialogRename extends Builder {
 
 	       final EditText text = new EditText(mContext);
 	       text.setSingleLine(true);
+	       text.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
 	       text.setText(Fsp.getName());
 	        
 	       this.setView(text);

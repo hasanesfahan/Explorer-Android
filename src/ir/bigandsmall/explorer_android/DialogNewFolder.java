@@ -3,6 +3,7 @@ package ir.bigandsmall.explorer_android;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.InputType;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class DialogNewFolder extends Builder {
 	       this.setTitle("New Folder");
 
 	       final EditText text = new EditText(mContext);
+	       text.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
 	       text.setSingleLine(true);
 
 	        
