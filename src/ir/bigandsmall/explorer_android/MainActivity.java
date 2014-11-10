@@ -212,8 +212,7 @@ public class MainActivity extends Activity  {
 	    	
 	    	case R.id.action_newfolder :
 	    		
-	    		AlertDialog alertDialog= new DialogNewFolder(this,CurentPath).create();
-	    		alertDialog.show();
+	    		createNewFolder(CurentPath);
 
 	    	break;
 	    	
@@ -266,7 +265,13 @@ public class MainActivity extends Activity  {
 		setCurentPath();
 	}
 	
-	
+
+	public void createNewFolder(String path)
+	{ 
+		AlertDialog alertDialog= new DialogNewFolder(this,path).create();
+		alertDialog.show();
+		emptyClipboard();
+	}
 	
 	public void DeleteFile(FileSpecifications fsp)
 	{ 

@@ -48,6 +48,8 @@ public class DialogDirectory extends Builder implements OnClickListener {
 	       mTemp.PastTo(fsp);
 	   else if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Rename)))
 	       mTemp.RenameFilesAndFolder(fsp);
+	   else if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_New_Folder)))
+	       mTemp.createNewFolder(fsp.getPath());
 	    
 	}
 }
