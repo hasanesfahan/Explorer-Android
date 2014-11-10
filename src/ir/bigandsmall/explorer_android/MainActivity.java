@@ -226,7 +226,6 @@ public class MainActivity extends Activity  {
 	public void refreshList(boolean forceThisPath)
 	{ 
 		
-		
 		if(forceThisPath)
 		{
 			FileSpecifications fsp =new FileSpecifications(new File(CurentPath) , ".." , ListTypes.Folder , ListFolderTypes.Up );
