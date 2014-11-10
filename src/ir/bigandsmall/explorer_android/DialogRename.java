@@ -5,6 +5,7 @@ import java.io.File;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.InputType;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -29,22 +30,24 @@ public class DialogRename extends Builder {
 	       this.setView(text);
 
 	         
-	       this.setPositiveButton("Create", new DialogInterface.OnClickListener(){
+	       this.setPositiveButton("Rename", new DialogInterface.OnClickListener(){
 	            @Override
 	            public void onClick(DialogInterface dialog, int which)
 	            {
 	            	 final String name = text.getText().toString();
+	            	 if(name.length() == 0)
+	            		 return;
 	            	 
 	            	 if(fsp.getType() == ListTypes.Folder)
 	            	 {
 	            		 File lastfilename = new File(fsp.getPath());
 	            		 File newfilename = new File(fsp.getParentPath()+"/"+name);
-	            		 lastfilename.renameTo(newfilename);
-	            		 
+	            		 if(!lastfilename.renameTo(newfilename))
+	            			 Toast.makeText(mContext, "Unable to rename folder!", Toast.LENGTH_LONG).show();
 	            	 }
 	            	 
 	            	  
-	            	 Toast.makeText(mContext, fsp.getParentPath(), 1000).show();
+	            	 
 
 	            	 MainActivity ma=(MainActivity)mContext;
                 	 ma.refreshList(true);
