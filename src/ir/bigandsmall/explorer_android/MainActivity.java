@@ -354,8 +354,25 @@ public class MainActivity extends Activity  {
 				
 			} catch (Exception e) {}
 		}
-		else
+		else if((clipboardFromFileSpecifications.getType() == ListTypes.File)
+				&&(clipboardToFileSpecifications.getType() == ListTypes.Folder))
 		{
+			try 
+			{
+				if(!clipboardUseMove)
+				{
+					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
+								+"/"+clipboardFromFileSpecifications.getName()));
+				}
+				else
+				{
+					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
+							+"/"+clipboardFromFileSpecifications.getName()));
+					//DeleteDirectorys.deleteDirectory(new File(clipboardFromFileSpecifications.getPath()));
+				}
+				
+				
+			} catch (Exception e) {}
 			
 		}
 		

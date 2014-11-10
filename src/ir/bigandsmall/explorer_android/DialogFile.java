@@ -34,6 +34,12 @@ public class DialogFile extends Builder implements OnClickListener {
 		
 		if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Delete)))
 		    mTemp.DeleteFile(fsp);
+		else if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Copy_To_Clipboard)))
+			mTemp.CopyFrom(fsp);
+		else if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Cut_To_Clipboard)))
+			mTemp.CutFrom(fsp);
+		else if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Past_From_Clipboard)))
+			mTemp.PastTo(fsp);
 		else if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Rename)))
 			mTemp.RenameFilesAndFolder(fsp);
 		
