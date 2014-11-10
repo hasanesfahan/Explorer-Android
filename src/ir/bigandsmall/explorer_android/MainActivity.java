@@ -31,8 +31,8 @@ public class MainActivity extends Activity  {
 	
 	private int ItemSelected = 0;
 	
-	private FileSpecifications clipboardFromFileSpecifications;
-	private FileSpecifications clipboardToFileSpecifications;
+	private FileSpecifications clipboardFromFileSpecifications=null;
+	private FileSpecifications clipboardToFileSpecifications=null;
 	
 	private LinearLayout ll;
 	
@@ -140,7 +140,9 @@ public class MainActivity extends Activity  {
 		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) 
         {
 	    	
-	    	if (!CurentPath.equalsIgnoreCase(""))
+	    	
+	    	
+	    	if ((!CurentPath.equalsIgnoreCase("")))//&&(clipboardFromFileSpecifications != null))
 	    	{
 	    		ItemSelected= position;
 
@@ -286,21 +288,34 @@ public class MainActivity extends Activity  {
 	{ 
 		clipboardToFileSpecifications = fsp;
 		
-		//if(clipboardPath.equalsIgnoreCase(""))
-		//	return;
+		if(clipboardFromFileSpecifications == null)
+			return;
 		
-	/*	try { 
-			
-			//if(ItemSelected == 0)
-				//new CopyFile(clipboardPath, CurentPath);
-			//else
-				//new CopyFile(clipboardPath, destination);
-		} 
-		catch (Exception e) {
-			// TODO: handle exception
+		if((clipboardFromFileSpecifications.getType() == ListTypes.Folder)
+					&&(clipboardToFileSpecifications.getType() == ListTypes.Folder))
+		{
+			try 
+			{
+				//if()
+				new CopyFiles().copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()));
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			finally
+			{
+				clipboardFromFileSpecifications = null;
+				clipboardToFileSpecifications = null;
+			}
 		}
-		clipboardPath = "";
-		refreshList(true);*/
+		else
+		{
+			
+		}
+		
+
+
 	}
 	
 	
