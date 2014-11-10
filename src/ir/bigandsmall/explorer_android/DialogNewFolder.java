@@ -32,6 +32,9 @@ public class DialogNewFolder extends Builder {
 	            public void onClick(DialogInterface dialog, int which)
 	            {
 	            	 final String name = text.getText().toString();
+	            	 if(name.length() == 0)
+	            		 return;
+	            	 
 	                 if(!NewFolder.createNewFolder(PathDirectory+"/"+name))
 	                 	Toast.makeText(mContext, "cannot create folder here", Toast.LENGTH_SHORT).show();
 	                 else
