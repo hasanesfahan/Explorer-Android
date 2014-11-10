@@ -31,9 +31,9 @@ public class DialogFile extends Builder implements OnClickListener {
 	public void onClick(DialogInterface dialog, int which) 
 	{
 		if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Delete)))
-	   {
-		    MainActivity mTemp = (MainActivity)mContext;
+		{
+			MainActivity mTemp = (MainActivity)mContext;
 		    mTemp.DeleteFile(fsp);
-	   }
+		}
 	}
 }
