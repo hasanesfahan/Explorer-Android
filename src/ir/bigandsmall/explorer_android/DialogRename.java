@@ -25,7 +25,7 @@ public class DialogRename extends Builder {
 
 	       final EditText text = new EditText(mContext);
 	       text.setSingleLine(true);
-
+	       text.setText(Fsp.getName());
 	        
 	       this.setView(text);
 
@@ -38,28 +38,18 @@ public class DialogRename extends Builder {
 	            	 if(name.length() == 0)
 	            		 return;
 	            	 
-	            	 if(fsp.getType() == ListTypes.Folder)
-	            	 {
-	            		 File lastfilename = new File(fsp.getPath());
-	            		 File newfilename = new File(fsp.getParentPath()+"/"+name);
-	            		 if(!lastfilename.renameTo(newfilename))
-	            			 Toast.makeText(mContext, "Unable to rename folder!", Toast.LENGTH_LONG).show();
-	            	 }
-	            	 
-	            	  
-	            	 
-
+            	 	 File lastfilename = new File(fsp.getPath());
+            		 File newfilename = new File(fsp.getParentPath()+"/"+name);
+            		 if(!lastfilename.renameTo(newfilename))
+            			 Toast.makeText(mContext, "Unable to rename !", Toast.LENGTH_LONG).show();
+            	 
+	    
 	            	 MainActivity ma=(MainActivity)mContext;
                 	 ma.refreshList(true);
 
 	            }
 	        });
 	        
-	       this.setNegativeButton("Cancel", null); 
-	       
-	        
 	    }
-	 
-	 
  
 }
