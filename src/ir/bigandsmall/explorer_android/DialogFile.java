@@ -10,6 +10,7 @@ public class DialogFile extends Builder implements OnClickListener {
 	
 	private Context mContext;
 	final FileSpecifications fsp;
+	final String action[];
 	
 	 public DialogFile(Context context,FileSpecifications Objectfsp) 
 	 {
@@ -20,13 +21,7 @@ public class DialogFile extends Builder implements OnClickListener {
 	        
 	        this.setTitle("Choose Action");
 
-	        String action[] = new String[4];
-	        
-	        
-	        action[0] = "Rename";
-	        action[1] = "Delete";
-	        action[2] = "Copy To Clipboard";
-	        action[3] = "Cut To Clipboard";
+	        action = context.getResources().getStringArray(R.array.DialogFile);
 	        
 	        this.setItems(action,this);
 	        
@@ -35,21 +30,10 @@ public class DialogFile extends Builder implements OnClickListener {
 	@Override
 	public void onClick(DialogInterface dialog, int which) 
 	{
-	   if(which == 0)
+		if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Delete)))
 	   {
-		   
-	   }
-	   else if(which == 1)
-	   {
-		   
-	   }
-	   else if(which == 2)
-	   {
-
-	   }
-	   else if(which == 3)
-	   {
-		   
+		    MainActivity mTemp = (MainActivity)mContext;
+		    mTemp.DeleteFile(fsp);
 	   }
 	}
 }

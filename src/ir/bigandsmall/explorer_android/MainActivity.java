@@ -152,7 +152,6 @@ public class MainActivity extends Activity  {
 	    		if((clipboardFromFileSpecifications == null)&&(temp.getFlolderType() == ListFolderTypes.Up))
 	    			return true;
 	    		
-	    		//ItemSelected= position;
 	    		boolean lasteselected = false;
 	    		if(clipboardFromFileSpecifications != null)
 	    			lasteselected = true;
@@ -164,7 +163,6 @@ public class MainActivity extends Activity  {
 	    	}
 	    	else
 	    	{
-		    	//ItemSelected= position;
 
 			    AlertDialog alertDialog= new DialogFile(MainActivity.this , adapter.getItem(position)).create();
 		    	alertDialog.show();
