@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -173,7 +172,7 @@ public class MainActivity extends Activity  {
 		}
 	};
 	
-	private void openfil1e(String filePath)
+	private void openfile(String filePath)
 	{ 
 		 FileOpen inten = new FileOpen(filePath);
 
@@ -221,46 +220,34 @@ public class MainActivity extends Activity  {
 	    	break;
 	    }
 	    return super.onOptionsItemSelected(item);
-	  }
+	}
 	 
 	public void refreshList(boolean forceThisPath)
 	{ 
-		
-		if(forceThisPath)
-		{
-			FileSpecifications fsp =new FileSpecifications(new File(CurentPath) , ".." , ListTypes.Folder , ListFolderTypes.Up );
-			showCurentDirectory(new File(LastFileSpecifications.getPath()),fsp);
-		}
-		else if(LastFileSpecifications == null)
-		{
-			Toast.makeText(getApplicationContext(), "ssssssssss", 1000).show();
+		if(LastFileSpecifications == null)
 			showMainDirectory();
-		}
+
 		else if((LastFileSpecifications.getType() == ListTypes.Folder))
     	{
-
-    		if(MainFolderSelectedPath.equalsIgnoreCase(""))
+			
+			if(LastFileSpecifications.getFlolderType() == ListFolderTypes.Directory)
     		{
-    			MainFolderSelectedPath = LastFileSpecifications.getPath();
-    		}
-    		
-    		if((LastFileSpecifications.getFlolderType() == ListFolderTypes.Up)&&(MainFolderSelectedPath.equalsIgnoreCase(CurentPath)))
-    		{
-        		showMainDirectory();
-    		}
-    		else
-    		{
-    			CurentPath = LastFileSpecifications.getPath();
-    			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+				CurentPath = LastFileSpecifications.getPath();
+    			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
     			showCurentDirectory(new File(LastFileSpecifications.getPath()),fsp);
+    		}
+			else
+			{
+				CurentPath = LastFileSpecifications.getParentPath();
+    			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+    			showCurentDirectory(new File(LastFileSpecifications.getParentPath()),fsp);
 			}
     		
     	}
-    	else
-    	{
-    		openfil1e(LastFileSpecifications.getPath());
+		else
+	    {
+			openfile(LastFileSpecifications.getPath());
 		}
-    	
 		setCurentPath();
 	}
 	
