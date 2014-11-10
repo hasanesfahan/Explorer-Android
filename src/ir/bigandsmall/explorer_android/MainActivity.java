@@ -270,7 +270,6 @@ public class MainActivity extends Activity  {
 	{ 
 		AlertDialog alertDialog= new DialogNewFolder(this,path).create();
 		alertDialog.show();
-		emptyClipboard();
 	}
 	
 	public void DeleteFile(FileSpecifications fsp)
@@ -300,7 +299,6 @@ public class MainActivity extends Activity  {
  	   AlertDialog dialog = builder.create(); 
  	   dialog.show();
  	   
- 	   emptyClipboard();
 	}
 	
 	
@@ -309,7 +307,6 @@ public class MainActivity extends Activity  {
 		AlertDialog alertDialog= new DialogRename(this,fsp).create();
 		alertDialog.show();
 		
-		emptyClipboard();
 	}
 	
 	private void emptyClipboard()
@@ -344,12 +341,14 @@ public class MainActivity extends Activity  {
 			{
 				if(!clipboardUseMove)
 				{
-					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()));
+					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
+								+"/"+clipboardFromFileSpecifications.getName()));
 				}
 				else
 				{
-					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()));
-					DeleteDirectorys.deleteDirectory(new File(clipboardFromFileSpecifications.getPath()));
+					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
+							+"/"+clipboardFromFileSpecifications.getName()));
+					//DeleteDirectorys.deleteDirectory(new File(clipboardFromFileSpecifications.getPath()));
 				}
 				
 				
@@ -361,6 +360,7 @@ public class MainActivity extends Activity  {
 		}
 		
 		emptyClipboard();
+		refreshList(true);
 
 	}
 	
