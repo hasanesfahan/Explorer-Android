@@ -31,7 +31,7 @@ public class DialogDirectory extends Builder implements OnClickListener {
 	        this.setItems(action,this);
 	        
     }
-	 
+
 	@Override
 	public void onClick(DialogInterface dialog, int which) 
 	{

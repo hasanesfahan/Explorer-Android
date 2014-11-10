@@ -297,7 +297,7 @@ public class MainActivity extends Activity  {
 			try 
 			{
 				//if()
-				new CopyFiles().copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()));
+				new Copy().copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()));
 				
 				
 			} catch (Exception e) {

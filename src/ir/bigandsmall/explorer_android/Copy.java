@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class CopyFiles {
-
-	
-
+public class Copy {
 
 	public static void copyFile(File sourceLocation, File targetLocation)throws FileNotFoundException, IOException 
 	{
