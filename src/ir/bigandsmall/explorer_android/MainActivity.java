@@ -232,15 +232,26 @@ public class MainActivity extends Activity  {
 			
 			if(LastFileSpecifications.getFlolderType() == ListFolderTypes.Directory)
     		{
+				
 				CurentPath = LastFileSpecifications.getPath();
     			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
     			showCurentDirectory(new File(LastFileSpecifications.getPath()),fsp);
+    			
+				if(MainFolderSelectedPath.equalsIgnoreCase(""))
+					MainFolderSelectedPath = CurentPath;
+				
     		}
 			else
 			{
-				CurentPath = LastFileSpecifications.getParentPath();
-    			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
-    			showCurentDirectory(new File(LastFileSpecifications.getParentPath()),fsp);
+				if(MainFolderSelectedPath.equalsIgnoreCase(CurentPath))
+					showMainDirectory();
+					
+				else
+				{
+					CurentPath = LastFileSpecifications.getParentPath();
+	    			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+	    			showCurentDirectory(new File(LastFileSpecifications.getParentPath()),fsp);
+				}
 			}
     		
     	}
