@@ -96,6 +96,7 @@ public class MainActivity extends Activity  {
 			adapter = new FileArrayAdapter(this,R.layout.grid_view, new ListFilesDirectory(f,fsp).getListFile());
 			gv.setAdapter(adapter);
 		}
+	    setCurentPath();
 	}
 	
 	private void setParametr()
@@ -232,10 +233,9 @@ public class MainActivity extends Activity  {
 			
 			if(LastFileSpecifications.getFlolderType() == ListFolderTypes.Directory)
     		{
-				
 				CurentPath = LastFileSpecifications.getPath();
-    			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
-    			showCurentDirectory(new File(LastFileSpecifications.getPath()),fsp);
+    			FileSpecifications fsp =new FileSpecifications(new File(CurentPath) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+    			showCurentDirectory(new File(CurentPath),fsp);
     			
 				if(MainFolderSelectedPath.equalsIgnoreCase(""))
 					MainFolderSelectedPath = CurentPath;
@@ -244,13 +244,14 @@ public class MainActivity extends Activity  {
 			else
 			{
 				if(MainFolderSelectedPath.equalsIgnoreCase(CurentPath))
+				{
 					showMainDirectory();
-					
+				}
 				else
 				{
 					CurentPath = LastFileSpecifications.getParentPath();
-	    			FileSpecifications fsp =new FileSpecifications(new File(LastFileSpecifications.getParentPath()) , ".." , ListTypes.Folder , ListFolderTypes.Up );
-	    			showCurentDirectory(new File(LastFileSpecifications.getParentPath()),fsp);
+	    			FileSpecifications fsp =new FileSpecifications(new File(CurentPath) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+	    			showCurentDirectory(new File(CurentPath),fsp);
 				}
 			}
     		
@@ -259,7 +260,7 @@ public class MainActivity extends Activity  {
 	    {
 			openfile(LastFileSpecifications.getPath());
 		}
-		setCurentPath();
+		
 	}
 	
 
