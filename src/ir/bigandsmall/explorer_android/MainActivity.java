@@ -29,10 +29,13 @@ public class MainActivity extends Activity  {
 	
 	private String MainFolderSelectedPath;
 	
-	private int ItemSelected = 0;
+	//private int ItemSelected = 0;
+	
 	
 	private FileSpecifications clipboardFromFileSpecifications=null;
 	private FileSpecifications clipboardToFileSpecifications=null;
+	private boolean clipboardUseMove = false;
+	
 	
 	private LinearLayout ll;
 	
@@ -149,7 +152,7 @@ public class MainActivity extends Activity  {
 	    		if((clipboardFromFileSpecifications == null)&&(temp.getFlolderType() == ListFolderTypes.Up))
 	    			return true;
 	    		
-	    		ItemSelected= position;
+	    		//ItemSelected= position;
 	    		boolean lasteselected = false;
 	    		if(clipboardFromFileSpecifications != null)
 	    			lasteselected = true;
@@ -161,7 +164,7 @@ public class MainActivity extends Activity  {
 	    	}
 	    	else
 	    	{
-		    	ItemSelected= position;
+		    	//ItemSelected= position;
 
 			    AlertDialog alertDialog= new DialogFile(MainActivity.this , adapter.getItem(position)).create();
 		    	alertDialog.show();
@@ -304,11 +307,18 @@ public class MainActivity extends Activity  {
 	}
 	
 	public void CopyFrom(FileSpecifications fsp)
-	{  
+	{
+		clipboardUseMove = false;
 		clipboardFromFileSpecifications = fsp;
 	}
 	
-	public void CopyTo(FileSpecifications fsp)
+	public void CutFrom(FileSpecifications fsp)
+	{  
+		clipboardUseMove = true;
+		clipboardFromFileSpecifications = fsp;
+	}
+	
+	public void PastTo(FileSpecifications fsp)
 	{ 
 		clipboardToFileSpecifications = fsp;
 		
@@ -320,25 +330,25 @@ public class MainActivity extends Activity  {
 		{
 			try 
 			{
-				//if()
-				new Copy().copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()));
+				if(!clipboardUseMove)
+				{
+					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()));
+				}
+				else
+				{
+					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()));
+					DeleteDirectorys.deleteDirectory(new File(clipboardFromFileSpecifications.getPath()));
+				}
 				
 				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			finally
-			{
-				clipboardFromFileSpecifications = null;
-				clipboardToFileSpecifications = null;
-			}
+			} catch (Exception e) {}
 		}
 		else
 		{
 			
 		}
 		
-
+		emptyClipboard();
 
 	}
 	

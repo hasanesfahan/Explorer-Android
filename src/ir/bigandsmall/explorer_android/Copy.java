@@ -10,7 +10,7 @@ import java.io.OutputStream;
 
 public class Copy {
 
-	public static void copyFile(File sourceLocation, File targetLocation)throws FileNotFoundException, IOException 
+	static public  void copyFile(File sourceLocation, File targetLocation)throws FileNotFoundException, IOException 
 	{
 		InputStream in = new FileInputStream(sourceLocation);
 	    OutputStream out = new FileOutputStream(targetLocation);
@@ -27,7 +27,7 @@ public class Copy {
 	    out.close();
 	}
 	
-	public static void copyDirectory(File sourceLocation, File targetLocation)  throws IOException 
+	static public void copyDirectory(File sourceLocation, File targetLocation)  throws IOException 
 	{
 		if (sourceLocation.isDirectory()) 
 		{

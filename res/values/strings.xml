@@ -13,32 +13,41 @@
     <string name="temp_file_desc">Description</string>
     
     
+    <string name="dialog_Rename">Rename</string>
+    <string name="dialog_Delete">Delete</string>
+    <string name="dialog_Copy_To_Clipboard">Copy To Clipboard</string>
+    <string name="dialog_Cut_To_Clipboard">Cut To Clipboard</string>
+    <string name="dialog_New_Folder">New Folder</string>
+    <string name="dialog_Past_From_Clipboard">Past From Clipboard</string>
+    
+    
     <string-array name="DialogDirectory">
-         <item >Rename</item>
-         <item >Delete</item>
-         <item >Copy To Clipboard</item>
-         <item >Cut To Clipboard</item>
-         <item >New Folder</item>
+         <item >@string/dialog_Rename</item>
+         <item >@string/dialog_Delete</item>
+         <item >@string/dialog_Copy_To_Clipboard</item>
+         <item >@string/dialog_Cut_To_Clipboard</item>
+         <item >@string/dialog_New_Folder</item>
 	</string-array>
-	
+
+    
     <string-array name="DialogDirectoryWidthPast">
-         <item >Rename</item>
-         <item >Delete</item>
-         <item >Copy To Clipboard</item>
-         <item >Cut To Clipboard</item>
-         <item >New Folder</item>
-         <item >Past From Clipboard</item>
+         <item >@string/dialog_Rename</item>
+         <item >@string/dialog_Delete</item>
+         <item >@string/dialog_Copy_To_Clipboard</item>
+         <item >@string/dialog_Cut_To_Clipboard</item>
+         <item >@string/dialog_New_Folder</item>
+         <item >@string/dialog_Past_From_Clipboard</item>
 	</string-array>
 	
     <string-array name="DialogDirectoryUp">
-         <item >Past From Clipboard</item>
+         <item >@string/dialog_Past_From_Clipboard</item>
 	</string-array>
 	
     <string-array name="DialogFile">
-         <item >Rename</item>
-         <item >Delete</item>
-         <item >Copy To Clipboard</item>
-         <item >Cut To Clipboard</item>
+         <item >@string/dialog_Rename</item>
+         <item >@string/dialog_Delete</item>
+         <item >@string/dialog_Copy_To_Clipboard</item>
+         <item >@string/dialog_Cut_To_Clipboard</item>
 	</string-array>
 	
 

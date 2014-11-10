@@ -36,11 +36,26 @@ public class DialogDirectory extends Builder implements OnClickListener {
 	@Override
 	public void onClick(DialogInterface dialog, int which) 
 	{
-	   if(action[which].equalsIgnoreCase("Delete"))
+	   if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Delete)))
 	   {
 		    MainActivity mTemp = (MainActivity)mContext;
 		    mTemp.DeleteFile(fsp);
 	   }
+	   else if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Copy_To_Clipboard)))
+	   {
+		    MainActivity mTemp = (MainActivity)mContext;
+		    mTemp.CopyFrom(fsp);
+	   }
+	   else if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Cut_To_Clipboard)))
+	   {
+		    MainActivity mTemp = (MainActivity)mContext;
+		    mTemp.CutFrom(fsp);
+	   } 
+	   else if(action[which].equalsIgnoreCase(mContext.getResources().getString(R.string.dialog_Past_From_Clipboard)))
+	   {
+		    MainActivity mTemp = (MainActivity)mContext;
+		    mTemp.PastTo(fsp);
+	   } 
 	    
 	}
 }
