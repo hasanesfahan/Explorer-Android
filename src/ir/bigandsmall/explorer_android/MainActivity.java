@@ -334,47 +334,18 @@ public class MainActivity extends Activity  {
 		if(clipboardFromFileSpecifications == null)
 			return;
 		
-		if((clipboardFromFileSpecifications.getType() == ListTypes.Folder)
-					&&(clipboardToFileSpecifications.getType() == ListTypes.Folder))
+		
+		try 
 		{
-			try 
-			{
-				if(!clipboardUseMove)
-				{
-					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
-								+"/"+clipboardFromFileSpecifications.getName()));
-				}
-				else
-				{
-					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
-							+"/"+clipboardFromFileSpecifications.getName()));
-					//DeleteDirectorys.deleteDirectory(new File(clipboardFromFileSpecifications.getPath()));
-				}
+			Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
+					+"/"+clipboardFromFileSpecifications.getName()));
+	
+			//if(clipboardUseMove)
+				//DeleteDirectorys.deleteDirectory(new File(clipboardFromFileSpecifications.getPath()));
 				
 				
-			} catch (Exception e) {}
-		}
-		else if((clipboardFromFileSpecifications.getType() == ListTypes.File)
-				&&(clipboardToFileSpecifications.getType() == ListTypes.Folder))
-		{
-			try 
-			{
-				if(!clipboardUseMove)
-				{
-					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
-								+"/"+clipboardFromFileSpecifications.getName()));
-				}
-				else
-				{
-					Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
-							+"/"+clipboardFromFileSpecifications.getName()));
-					//DeleteDirectorys.deleteDirectory(new File(clipboardFromFileSpecifications.getPath()));
-				}
-				
-				
-			} catch (Exception e) {}
-			
-		}
+		} catch (Exception e) {}
+		
 		
 		emptyClipboard();
 		refreshList(true);
