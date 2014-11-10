@@ -298,6 +298,15 @@ public class MainActivity extends Activity  {
  	   emptyClipboard();
 	}
 	
+	
+	public void RenameFilesAndFolder(FileSpecifications fsp)
+	{ 
+		AlertDialog alertDialog= new DialogRename(this,fsp).create();
+		alertDialog.show();
+		
+		emptyClipboard();
+	}
+	
 	private void emptyClipboard()
 	{
 		clipboardFromFileSpecifications = null;
