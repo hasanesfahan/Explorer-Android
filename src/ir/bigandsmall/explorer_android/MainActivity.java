@@ -146,7 +146,7 @@ public class MainActivity extends Activity  {
 	    	{
 	    		ItemSelected= position;
 
-		    	AlertDialog alertDialog= new DialogActionOnFolder(MainActivity.this , adapter.getItem(position)).create();
+		    	AlertDialog alertDialog= new DialogDirectory(MainActivity.this , adapter.getItem(position)).create();
 	    		alertDialog.show();
 	    		
 	    	}
