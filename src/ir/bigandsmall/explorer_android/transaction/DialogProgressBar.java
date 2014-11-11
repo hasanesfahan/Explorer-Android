@@ -24,6 +24,12 @@ public class DialogProgressBar extends Builder {
 	private TextView  MainProgressValue ;
 	
 	
+	private long SizeAllFiles = 0;
+	private long SizeAllFilesLoaded = 0 ;
+	private long SizeCurentFile = 0;
+	private long SizeCurentFilesLoaded=0;
+	
+	
 	
 	 
 	 public DialogProgressBar(Context context) 
@@ -124,11 +130,26 @@ public class DialogProgressBar extends Builder {
 	      
 	    }
 		 
-	 	public void setSingleProgress(int val)
+	 		 	
+	 	public void setSizeAllFiles(long val)
 	 	{
-	 		SingleProgress.setProgress(val);
-	 		SingleProgressValue.setText(val+"%");
+	 		SizeAllFiles = val;
 	 	}
+	 	
+	 	public void setSizeCurentFile(long val)
+	 	{
+	 		SizeCurentFile = val;
+	 	}
+	 	
+	 	public void setSizeCurentFilesLoaded(long val)
+	 	{
+	 		SizeCurentFilesLoaded += val;
+	 	}
+	 	
+	 	
+	 	
+//	 	Si/ngleProgress.setProgress(val);
+ 		//SingleProgressValue.setText(val+"%");
 	 	
 	 	public void setPathFromAndTo(String src, String dst)
 	 	{

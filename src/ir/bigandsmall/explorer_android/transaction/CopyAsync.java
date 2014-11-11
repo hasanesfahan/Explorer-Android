@@ -53,37 +53,6 @@ public class CopyAsync extends AsyncTask<String, String, String>
 		try {
 			
 			copyDirectory(sourceLocation,targetLocation);
-			 
-		/*InputStream in = new FileInputStream(sourceLocation);
-	    OutputStream out = new FileOutputStream(targetLocation);
-
-	    
-	    lenghtOfFile = sourceLocation.length();
-	    
-	    Log.d("ANDRO_ASYNC_ff",lenghtOfFile+"");
-	    
-	    
-	    byte[] buf = new byte[1024];
-	    int len;
-	    
-	    long total = 0;
-	    
-	    while ((len = in.read(buf)) > 0) 
-	    {
-	      out.write(buf, 0, len);
-	      total+=len;
-	      publishProgress(""+(int)((total*100)/lenghtOfFile));
-	      
-	      for (int i = 0; i < 999999999; i++);
-	      
-	    }
-	    
-	    in.close();
-	    out.close(); */
-	    
-		
-	  // Copy.copyFile(sourceLocation, targetLocation, this);
-			
 			
 	
 		} catch (Exception e) {}
@@ -101,7 +70,7 @@ public class CopyAsync extends AsyncTask<String, String, String>
 	
 	protected void onProgressUpdate(String... progress)
 	{
-		dialogProgressBar.setSingleProgress(Integer.parseInt(progress[0]));
+		//dialogProgressBar.setSingleProgress(Integer.parseInt(progress[0]));
 	}
 	
 /*	private void setProgressSingle(int SingleProgress)
@@ -109,10 +78,10 @@ public class CopyAsync extends AsyncTask<String, String, String>
 		dialogProgressBar.setSingleProgress(SingleProgress);
 	}*/
 	
-	private void setProgressMain(int mainProgress)
+	/*private void setProgressMain(int mainProgress)
 	{
-		dialogProgressBar.setSingleProgress(mainProgress);
-	}
+		//dialogProgressBar.setSingleProgress(mainProgress);
+	}*/
 	
 	
 	public void copyDirectory(File sourceLocation, File targetLocation)  throws IOException 
