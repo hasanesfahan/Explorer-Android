@@ -313,6 +313,11 @@ public class MainActivity extends Activity  {
 		if(clipboardFromFileSpecifications == null)
 			return;
 		
+		if(CollisionDiscovery.isCollisionDiscovery(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath())))
+		{
+			Toast.makeText(getApplicationContext(), "destination is source", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		
 		try 
 		{
