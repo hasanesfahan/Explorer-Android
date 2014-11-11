@@ -1,4 +1,7 @@
-package ir.bigandsmall.explorer_android;
+package ir.bigandsmall.explorer_android.transaction;
+
+import ir.bigandsmall.explorer_android.FileSpecifications;
+import ir.bigandsmall.explorer_android.MainActivity;
 
 import java.io.File;
 

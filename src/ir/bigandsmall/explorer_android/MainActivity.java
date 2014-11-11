@@ -1,5 +1,14 @@
 package ir.bigandsmall.explorer_android;
 
+import ir.bigandsmall.explorer_android.transaction.CollisionDiscovery;
+import ir.bigandsmall.explorer_android.transaction.Copy;
+import ir.bigandsmall.explorer_android.transaction.Cut;
+import ir.bigandsmall.explorer_android.transaction.DialogDelete;
+import ir.bigandsmall.explorer_android.transaction.DialogDirectory;
+import ir.bigandsmall.explorer_android.transaction.DialogFile;
+import ir.bigandsmall.explorer_android.transaction.DialogNewFolder;
+import ir.bigandsmall.explorer_android.transaction.DialogRename;
+
 import java.io.File;
 
 import android.app.Activity;

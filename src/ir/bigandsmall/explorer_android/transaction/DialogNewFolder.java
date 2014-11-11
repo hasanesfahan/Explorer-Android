@@ -1,5 +1,6 @@
-package ir.bigandsmall.explorer_android;
+package ir.bigandsmall.explorer_android.transaction;
 
+import ir.bigandsmall.explorer_android.MainActivity;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
