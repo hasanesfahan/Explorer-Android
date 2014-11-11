@@ -277,31 +277,8 @@ public class MainActivity extends Activity  {
 	
 	public void DeleteFile(FileSpecifications fsp)
 	{ 
-		final File f = new File(fsp.getPath());
-		
-		
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-		builder.setMessage(f.getName()).setTitle("Remove Selected Files");
-		builder.setNegativeButton("No", null);
-		
-		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
-		{
-           @Override
-           public void onClick(DialogInterface dialog, int which)
-           {
-        	   if(f.isDirectory())
-        		   DeleteDirectorys.deleteDirectory(f);
-        	   else
-           	 		f.delete();
-        	   
-        	   refreshList(true);
-           }
-       });
-
- 	   AlertDialog dialog = builder.create(); 
- 	   dialog.show();
- 	   
+		AlertDialog alertDialog= new DialogDelete(this,fsp).create();
+		alertDialog.show();
 	}
 	
 	
@@ -309,7 +286,6 @@ public class MainActivity extends Activity  {
 	{ 
 		AlertDialog alertDialog= new DialogRename(this,fsp).create();
 		alertDialog.show();
-		
 	}
 	
 	private void emptyClipboard()
