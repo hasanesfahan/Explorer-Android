@@ -1,8 +1,6 @@
 package ir.bigandsmall.explorer_android;
 
-import ir.bigandsmall.explorer_android.transaction.CollisionDiscovery;
-import ir.bigandsmall.explorer_android.transaction.Copy;
-import ir.bigandsmall.explorer_android.transaction.Cut;
+import ir.bigandsmall.explorer_android.transaction.CopyAsync;
 import ir.bigandsmall.explorer_android.transaction.DialogDelete;
 import ir.bigandsmall.explorer_android.transaction.DialogDirectory;
 import ir.bigandsmall.explorer_android.transaction.DialogFile;
@@ -13,7 +11,6 @@ import java.io.File;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +23,6 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends Activity  {
@@ -305,6 +301,7 @@ public class MainActivity extends Activity  {
 	
 	public void CopyFrom(FileSpecifications fsp)
 	{
+		new CopyAsync(MainActivity.this).execute("");
 		clipboardUseMove = false;
 		clipboardFromFileSpecifications = fsp;
 	}
@@ -317,7 +314,8 @@ public class MainActivity extends Activity  {
 	
 	public void PastTo(FileSpecifications fsp)
 	{ 
-		clipboardToFileSpecifications = fsp;
+		
+		/*clipboardToFileSpecifications = fsp;
 		
 		if(clipboardFromFileSpecifications == null)
 			return;
@@ -345,7 +343,7 @@ public class MainActivity extends Activity  {
 		} catch (Exception e) {}
 		
 		
-		emptyClipboard();
+		emptyClipboard();*/
 		refreshList(true);
 
 	}
