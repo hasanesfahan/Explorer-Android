@@ -335,11 +335,16 @@ public class MainActivity extends Activity  {
 		
 		try 
 		{
-			Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
-					+"/"+clipboardFromFileSpecifications.getName()));
-	
-			//if(clipboardUseMove)
-				//DeleteDirectorys.deleteDirectory(new File(clipboardFromFileSpecifications.getPath()));
+			if(!clipboardUseMove)
+			{
+				Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
+						+"/"+clipboardFromFileSpecifications.getName()));
+			}
+			else
+			{
+				Cut.cutDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
+						+"/"+clipboardFromFileSpecifications.getName()));
+			}
 				
 				
 		} catch (Exception e) {}
