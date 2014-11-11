@@ -151,19 +151,15 @@ public class DialogProgressBar extends Builder {
 	 		SizeCurentFilesLoaded += val;
 	 		SizeAllFilesLoaded += val;
 	 		
-	 		int progressfileLoad = (int)((SizeCurentFile*100)/SizeCurentFilesLoaded);
+	 		int progressfileLoad = (int)((SizeCurentFilesLoaded*100)/SizeCurentFile);
 	 		SingleProgress.setProgress(progressfileLoad);
 	 		SingleProgressValue.setText(progressfileLoad+"%");
 	 		
-	 		int progressAllfileLoad = (int)((SizeAllFiles*100)/SizeAllFilesLoaded);
+	 		int progressAllfileLoad = (int)((SizeAllFilesLoaded*100)/SizeAllFiles);
 	 		MainProgress.setProgress(progressAllfileLoad);
 	 		MainProgressValue.setText(progressAllfileLoad+"%");
 	 	}
-	 	
-	 	
-	 	
-//	 	Si/ngleProgress.setProgress(val);
- 		//SingleProgressValue.setText(val+"%");
+	
 	 	
 	 	public void setPathFromAndTo(String src, String dst)
 	 	{
