@@ -74,7 +74,6 @@ public class DialogProgressBar extends Builder {
 	       SingleProgress.setProgressDrawable(mContext.getResources().getSystem().getDrawable(android.R.drawable.progress_horizontal));
 	       SingleProgress.setMax(100);
 	       SingleProgress.setPadding(20, 0, 20, 10);
-	       SingleProgress.setProgress(50);
 	       SingleProgress.setIndeterminate(false);
 	       FrameLayout.LayoutParams SingleProgressParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM);
 	       SingleProgress.setLayoutParams(SingleProgressParams);  
@@ -94,7 +93,6 @@ public class DialogProgressBar extends Builder {
 	       MainProgress.setProgressDrawable(mContext.getResources().getSystem().getDrawable(android.R.drawable.progress_horizontal));
 	       MainProgress.setMax(100);
 	       MainProgress.setPadding(20, 0, 20, 10);
-	       MainProgress.setProgress(50);
 	       MainProgress.setIndeterminate(false);
 	       FrameLayout.LayoutParams MainProgressParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM);
 	       MainProgress.setLayoutParams(MainProgressParams);  

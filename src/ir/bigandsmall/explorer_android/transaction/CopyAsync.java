@@ -11,7 +11,6 @@ import java.io.OutputStream;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 public class CopyAsync extends AsyncTask<String, String, String>
 {
@@ -47,10 +46,15 @@ public class CopyAsync extends AsyncTask<String, String, String>
 		
 		File targetLocation = new File("storage/sdcard/DCIM/b/w.jpg");
 		
+		
+		
+		
 		long lenghtOfFile = 0;
 		try {
+			
+			copyDirectory(sourceLocation,targetLocation);
 			 
-		InputStream in = new FileInputStream(sourceLocation);
+		/*InputStream in = new FileInputStream(sourceLocation);
 	    OutputStream out = new FileOutputStream(targetLocation);
 
 	    
@@ -75,7 +79,7 @@ public class CopyAsync extends AsyncTask<String, String, String>
 	    }
 	    
 	    in.close();
-	    out.close(); 
+	    out.close(); */
 	    
 		
 	  // Copy.copyFile(sourceLocation, targetLocation, this);
@@ -87,10 +91,7 @@ public class CopyAsync extends AsyncTask<String, String, String>
 
 	}
 
-	protected void onProgressUpdate(String... progress)
-	{
-		dialogProgressBar.setSingleProgress(Integer.parseInt(progress[0]));
-	}
+	
 
 	@Override
 	protected void onPostExecute(String unused)
@@ -98,8 +99,20 @@ public class CopyAsync extends AsyncTask<String, String, String>
 		
 	}
 	
+	protected void onProgressUpdate(String... progress)
+	{
+		dialogProgressBar.setSingleProgress(Integer.parseInt(progress[0]));
+	}
 	
-
+/*	private void setProgressSingle(int SingleProgress)
+	{
+		dialogProgressBar.setSingleProgress(SingleProgress);
+	}*/
+	
+	private void setProgressMain(int mainProgress)
+	{
+		dialogProgressBar.setSingleProgress(mainProgress);
+	}
 	
 	
 	public void copyDirectory(File sourceLocation, File targetLocation)  throws IOException 
@@ -135,9 +148,14 @@ public class CopyAsync extends AsyncTask<String, String, String>
 	    byte[] buf = new byte[1024];
 	    int len;
 	    
+	    long lenghtOfFile = sourceLocation.length(),total=0;
+	    
 	    while ((len = in.read(buf)) > 0) 
 	    {
 	    	out.write(buf, 0, len);
+	    	
+	    	total+=len;
+	    	publishProgress(""+(int)((total*100)/lenghtOfFile));
 	    }
 	    
 	    in.close();
