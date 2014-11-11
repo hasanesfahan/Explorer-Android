@@ -225,9 +225,14 @@ public class MainActivity extends Activity  {
 	 
 	public void refreshList(boolean forceThisPath)
 	{ 
+		
 		if(LastFileSpecifications == null)
 			showMainDirectory();
-
+		else if (forceThisPath)
+		{
+			FileSpecifications fsp =new FileSpecifications(new File(CurentPath) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+			showCurentDirectory(new File(CurentPath),fsp);
+		}
 		else if((LastFileSpecifications.getType() == ListTypes.Folder))
     	{
 			
