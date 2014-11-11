@@ -1,5 +1,6 @@
 package ir.bigandsmall.explorer_android;
 
+import ir.bigandsmall.explorer_android.transaction.CollisionDiscovery;
 import ir.bigandsmall.explorer_android.transaction.CopyAsync;
 import ir.bigandsmall.explorer_android.transaction.DialogDelete;
 import ir.bigandsmall.explorer_android.transaction.DialogDirectory;
@@ -23,6 +24,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity  {
@@ -301,7 +303,6 @@ public class MainActivity extends Activity  {
 	
 	public void CopyFrom(FileSpecifications fsp)
 	{
-		new CopyAsync(MainActivity.this).execute("");
 		clipboardUseMove = false;
 		clipboardFromFileSpecifications = fsp;
 	}
@@ -315,20 +316,28 @@ public class MainActivity extends Activity  {
 	public void PastTo(FileSpecifications fsp)
 	{ 
 		
-		/*clipboardToFileSpecifications = fsp;
+		clipboardToFileSpecifications = fsp;
 		
 		if(clipboardFromFileSpecifications == null)
 			return;
 		
-		if(CollisionDiscovery.isCollisionDiscovery(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath())))
+		
+		 if(CollisionDiscovery.isCollisionDiscovery(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath())))
 		{
 			Toast.makeText(getApplicationContext(), "destination is source", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
+		
+		
+		
+		
 		try 
 		{
-			if(!clipboardUseMove)
+			new CopyAsync(MainActivity.this).execute(new File(clipboardFromFileSpecifications.getPath()),
+					new File(clipboardToFileSpecifications.getPath()+"/"+clipboardFromFileSpecifications.getName()));
+			
+			/*if(!clipboardUseMove)
 			{
 				Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
 						+"/"+clipboardFromFileSpecifications.getName()));
@@ -337,13 +346,17 @@ public class MainActivity extends Activity  {
 			{
 				Cut.cutDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
 						+"/"+clipboardFromFileSpecifications.getName()));
-			}
+			}*/
 				
 				
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			
+			
+			Toast.makeText(MainActivity.this,"ssssssssssssss",1000).show();
+		}
 		
 		
-		emptyClipboard();*/
+		emptyClipboard(); 
 		refreshList(true);
 
 	}

@@ -12,7 +12,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class CopyAsync extends AsyncTask<String, String, String>
+public class CopyAsync extends AsyncTask<File, String, String>
 {
 	Context co;
 	DialogProgressBar dialogProgressBar;
@@ -39,32 +39,14 @@ public class CopyAsync extends AsyncTask<String, String, String>
 	 
 
 	@Override
-	protected String doInBackground(String... aurl)
+	protected String doInBackground(File... files)
 	{
-	 
-		File sourceLocation = new File("storage/sdcard/DCIM/a/w.jpg");
-		
-		File targetLocation = new File("storage/sdcard/DCIM/b/w.jpg");
-		
-		
-		dialogProgressBar.setSizeAllFiles(Size.getSize(sourceLocation));
-		
+		dialogProgressBar.setSizeAllFiles(Size.getSize(files[0]));
 		try {
-			
-			copyDirectory(sourceLocation,targetLocation);
-			
-	
+			copyDirectory(files[0],files[1]);
 		} catch (Exception e) {}
-	return null;
-
-	}
-
-	
-
-	@Override
-	protected void onPostExecute(String unused)
-	{
 		
+		return null;
 	}
 	
 	protected void onProgressUpdate(String... progress)
@@ -72,17 +54,7 @@ public class CopyAsync extends AsyncTask<String, String, String>
 		dialogProgressBar.setSizeCurentFilesLoaded(Long.parseLong(progress[0]));
 	}
 	
-/*	private void setProgressSingle(int SingleProgress)
-	{
-		dialogProgressBar.setSingleProgress(SingleProgress);
-	}*/
-	
-	/*private void setProgressMain(int mainProgress)
-	{
-		//dialogProgressBar.setSingleProgress(mainProgress);
-	}*/
-	
-	
+
 	public void copyDirectory(File sourceLocation, File targetLocation)  throws IOException 
 	{
 		if (sourceLocation.isDirectory()) 
@@ -107,9 +79,7 @@ public class CopyAsync extends AsyncTask<String, String, String>
 	
 	public  void copyFile(File sourceLocation, File targetLocation)throws FileNotFoundException, IOException 
 	{
-		
 		dialogProgressBar.setPathFromAndTo(sourceLocation.getPath() , targetLocation.getPath());
-		
 		dialogProgressBar.setSizeCurentFile(sourceLocation.length());
 		
 		InputStream in = new FileInputStream(sourceLocation);
