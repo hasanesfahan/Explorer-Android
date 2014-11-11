@@ -48,8 +48,8 @@ public class CopyAsync extends AsyncTask<String, String, String>
 		
 		
 		
+		dialogProgressBar.setSizeAllFiles(Size.getSize(sourceLocation));
 		
-		long lenghtOfFile = 0;
 		try {
 			
 			copyDirectory(sourceLocation,targetLocation);
@@ -111,20 +111,19 @@ public class CopyAsync extends AsyncTask<String, String, String>
 		
 		dialogProgressBar.setPathFromAndTo(sourceLocation.getPath() , targetLocation.getPath());
 		
+		dialogProgressBar.setSizeCurentFile(sourceLocation.length());
+		
 		InputStream in = new FileInputStream(sourceLocation);
 	    OutputStream out = new FileOutputStream(targetLocation);
 
 	    byte[] buf = new byte[1024];
 	    int len;
 	    
-	    long lenghtOfFile = sourceLocation.length(),total=0;
-	    
 	    while ((len = in.read(buf)) > 0) 
 	    {
 	    	out.write(buf, 0, len);
 	    	
-	    	total+=len;
-	    	publishProgress(""+(int)((total*100)/lenghtOfFile));
+	    	publishProgress(""+len);
 	    }
 	    
 	    in.close();

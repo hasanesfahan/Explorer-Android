@@ -139,6 +139,9 @@ public class DialogProgressBar extends Builder {
 	 	public void setSizeCurentFile(long val)
 	 	{
 	 		SizeCurentFile = val;
+
+	 		SingleProgress.setProgress(0);
+	 		SingleProgressValue.setText("0%");
 	 	}
 	 	
 	 	public void setSizeCurentFilesLoaded(long val)
