@@ -9,13 +9,14 @@ public class CollisionDiscovery {
 		if (sourceLocation.isDirectory()) 
 		{
 			if (sourceLocation.getPath().toString().equalsIgnoreCase(targetLocation.getPath().toString())) 
-				return false;
+				return true;
 
 		    String[] children = sourceLocation.list();
 		    
 		    for (int i = 0; i < children.length; i++) 
 		    {
-		    	return isCollisionDiscovery(new File(sourceLocation, children[i]), targetLocation);
+		    	if(new File(sourceLocation, children[i]).isDirectory())
+		    		return isCollisionDiscovery(new File(sourceLocation, children[i]), targetLocation);
 		    }
 		}
 		return false;
