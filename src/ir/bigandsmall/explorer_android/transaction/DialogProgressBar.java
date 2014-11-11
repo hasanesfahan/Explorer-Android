@@ -134,11 +134,13 @@ public class DialogProgressBar extends Builder {
 	 	public void setSizeAllFiles(long val)
 	 	{
 	 		SizeAllFiles = val;
+	 		SizeAllFilesLoaded = 0;
 	 	}
 	 	
 	 	public void setSizeCurentFile(long val)
 	 	{
 	 		SizeCurentFile = val;
+	 		SizeCurentFilesLoaded = 0;
 
 	 		SingleProgress.setProgress(0);
 	 		SingleProgressValue.setText("0%");
@@ -147,6 +149,15 @@ public class DialogProgressBar extends Builder {
 	 	public void setSizeCurentFilesLoaded(long val)
 	 	{
 	 		SizeCurentFilesLoaded += val;
+	 		SizeAllFilesLoaded += val;
+	 		
+	 		int progressfileLoad = (int)((SizeCurentFile*100)/SizeCurentFilesLoaded);
+	 		SingleProgress.setProgress(progressfileLoad);
+	 		SingleProgressValue.setText(progressfileLoad+"%");
+	 		
+	 		int progressAllfileLoad = (int)((SizeAllFiles*100)/SizeAllFilesLoaded);
+	 		MainProgress.setProgress(progressAllfileLoad);
+	 		MainProgressValue.setText(progressAllfileLoad+"%");
 	 	}
 	 	
 	 	

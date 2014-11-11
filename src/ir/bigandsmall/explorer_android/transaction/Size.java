@@ -7,13 +7,19 @@ public class Size {
 	public static long getSize(File directory)
 	{
 	    long length = 0;
-	    for (File file : directory.listFiles()) 
+	    if(directory.isDirectory())
 	    {
-	        if (file.isFile())
-	            length += file.length();
-	        else
-	            length += getSize(file);
+		    for (File file : directory.listFiles()) 
+		    {
+		        if (file.isFile())
+		            length += file.length();
+		        else
+		            length += getSize(file);
+		    }
 	    }
+	    else
+	    	length += directory.length();
+	    
 	    return length;
 	}
 

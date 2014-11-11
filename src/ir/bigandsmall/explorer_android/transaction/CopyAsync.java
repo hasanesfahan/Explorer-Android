@@ -47,7 +47,6 @@ public class CopyAsync extends AsyncTask<String, String, String>
 		File targetLocation = new File("storage/sdcard/DCIM/b/w.jpg");
 		
 		
-		
 		dialogProgressBar.setSizeAllFiles(Size.getSize(sourceLocation));
 		
 		try {
@@ -70,7 +69,7 @@ public class CopyAsync extends AsyncTask<String, String, String>
 	
 	protected void onProgressUpdate(String... progress)
 	{
-		//dialogProgressBar.setSingleProgress(Integer.parseInt(progress[0]));
+		dialogProgressBar.setSizeCurentFilesLoaded(Long.parseLong(progress[0]));
 	}
 	
 /*	private void setProgressSingle(int SingleProgress)
