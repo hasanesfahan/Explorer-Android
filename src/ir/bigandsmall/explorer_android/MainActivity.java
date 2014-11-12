@@ -53,9 +53,7 @@ public class MainActivity extends Activity  {
 	private LinearLayout ll;
 	
 	private ListView lv ;
-	private GridView gv ;
 	
-	private boolean GridViewListView =  true;
 	private FileSpecifications LastFileSpecifications;
 	
 	@Override
@@ -81,17 +79,8 @@ public class MainActivity extends Activity  {
 		
 		
 	    
-		
-		if(GridViewListView)
-		{
-			adapter = new FileArrayAdapter(this,R.layout.list_view, new ListMainFolder().getListFile());
-			lv.setAdapter(adapter);
-		}
-		else
-		{
-			adapter = new FileArrayAdapter(this,R.layout.grid_view, new ListMainFolder().getListFile());
-			gv.setAdapter(adapter);
-		}
+		adapter = new FileArrayAdapter(this,R.layout.list_view, new ListMainFolder().getListFile());
+		lv.setAdapter(adapter);
 			
 		setCurentPath();
 	}
@@ -100,17 +89,9 @@ public class MainActivity extends Activity  {
 	private void showCurentDirectory(File f,FileSpecifications fsp)
 	{
 	     
-	    if(GridViewListView)
-		{
-	    	adapter = new FileArrayAdapter(this,R.layout.list_view, new ListFilesDirectory(f,fsp).getListFile());
-			lv.setAdapter(adapter);
-		}
-		else
-		{
-			adapter = new FileArrayAdapter(this,R.layout.grid_view, new ListFilesDirectory(f,fsp).getListFile());
-			gv.setAdapter(adapter);
-		}
-	    setCurentPath();
+	    adapter = new FileArrayAdapter(this,R.layout.list_view, new ListFilesDirectory(f,fsp).getListFile());
+		lv.setAdapter(adapter);
+		setCurentPath();
 	}
 	
 	private void setParametr()
@@ -118,23 +99,11 @@ public class MainActivity extends Activity  {
 		ll = (LinearLayout)findViewById(R.id.LinearLayout_Show_View);
 		ll.removeAllViews();
 		
-		if(GridViewListView)
-		{
-			lv = new ListView(this);
-			ll.addView(lv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-			lv.setOnItemClickListener(oicl);
-			lv.setOnItemLongClickListener(oilcl);
-		}
-		else
-		{
-			gv = new GridView(this);
-			gv.setNumColumns(4);
-			ll.addView(gv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-			gv.setOnItemClickListener(oicl);
-			gv.setOnItemLongClickListener(oilcl);
-		}
-		
-		
+		lv = new ListView(this);
+		ll.addView(lv, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		lv.setOnItemClickListener(oicl);
+		lv.setOnItemLongClickListener(oilcl);
+				
 	}
 	
 	
@@ -218,12 +187,6 @@ public class MainActivity extends Activity  {
 	 {
 	    switch (item.getItemId()) 
 	    {
-	    	case R.id.action_settings:
-	    		GridViewListView = !GridViewListView;
-	    		setParametr();
-	    		showMainDirectory();
-	    	break;
-	    	
 	    	case R.id.action_newfolder :
 	    		
 	    		createNewFolder(CurentPath);
