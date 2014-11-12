@@ -3,6 +3,7 @@ package ir.bigandsmall.explorer_android;
 import ir.bigandsmall.explorer_android.definitions.ListFileTypes;
 import ir.bigandsmall.explorer_android.definitions.ListFolderTypes;
 import ir.bigandsmall.explorer_android.definitions.ListTypes;
+import ir.bigandsmall.explorer_android.transaction.Size;
 
 import java.io.File;
 
@@ -13,7 +14,7 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
 
 	private String name;
 	private String nameShow;
-	private long desc; 
+	private String desc; 
     private String pathFile;
     
     private ListFileTypes listFileType;
@@ -24,7 +25,7 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     public FileSpecifications(File f  ,ListTypes listTypes)
     {
         this.name = f.getName();
-        this.desc =  f.length() ;   
+        this.desc = Size.humanReadableByteCount(f,false) ;   
         this.pathFile = f.getAbsolutePath();
         
          this.listTypes = listTypes;
@@ -41,7 +42,7 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     	
 
     	if(filelist != null)
-    		this.desc  = filelist.length;
+    		this.desc  = ""+filelist.length;
 	   	 
 	   	 
         this.name = f.getName();   
@@ -59,7 +60,7 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     	File[] filelist =f.listFiles(); 
     	
     	if(filelist != null)
-    		this.desc = filelist.length;
+    		this.desc =""+ filelist.length;
 
         this.name = NameOrder;   
         this.pathFile = f.getAbsolutePath();
@@ -107,7 +108,7 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     public String getDescription()
     {
     	if(ListTypes.File == listTypes)
-    		return SizeOfFile.getSize(desc);
+    		return desc;
     	
     	else if(ListFolderTypes.Up == listFolderTypes)
     		return "";
