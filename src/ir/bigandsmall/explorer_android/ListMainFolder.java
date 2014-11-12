@@ -1,5 +1,8 @@
 package ir.bigandsmall.explorer_android;
 
+import ir.bigandsmall.explorer_android.definitions.ListFolderTypes;
+import ir.bigandsmall.explorer_android.definitions.ListTypes;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

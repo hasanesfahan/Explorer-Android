@@ -1,5 +1,7 @@
 package ir.bigandsmall.explorer_android;
 
+import ir.bigandsmall.explorer_android.definitions.ListFolderTypes;
+import ir.bigandsmall.explorer_android.definitions.ListTypes;
 import ir.bigandsmall.explorer_android.dialog.DialogDirectory;
 import ir.bigandsmall.explorer_android.dialog.DialogFile;
 import ir.bigandsmall.explorer_android.transaction.CollisionDiscovery;

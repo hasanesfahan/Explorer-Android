@@ -1,5 +1,7 @@
 package ir.bigandsmall.explorer_android;
 
+import ir.bigandsmall.explorer_android.definitions.ListFileTypes;
+
 import java.io.File;
 
 import android.graphics.drawable.Drawable;
