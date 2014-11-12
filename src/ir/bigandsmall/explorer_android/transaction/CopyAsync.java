@@ -18,13 +18,14 @@ public class CopyAsync extends AsyncTask<File, String, String>
 {
 	Context co;
 	DialogProgressBar dialogProgressBar;
+	AlertDialog alertDialog;
 	
 	public CopyAsync(Context co) 
 	{
 		this.co = co;
 		
 		dialogProgressBar= new DialogProgressBar(co) ;
-		AlertDialog alertDialog = dialogProgressBar.create();
+		alertDialog = dialogProgressBar.create();
 		alertDialog.show();
 	}
 	
@@ -40,6 +41,7 @@ public class CopyAsync extends AsyncTask<File, String, String>
     @Override
 	protected void onPostExecute(String result) 
 	{
+    	alertDialog.dismiss();
     	refreshPareentList();
 	}
 	
