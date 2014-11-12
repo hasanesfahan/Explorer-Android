@@ -328,7 +328,6 @@ public class MainActivity extends Activity  {
 		}
 		else
 		{
-			CurentPath = LastFileSpecifications.getParentPath();
 			FileSpecifications fsp =new FileSpecifications(new File(CurentPath) , ".." , ListTypes.Folder , ListFolderTypes.Up );
 			LastFileSpecifications = fsp;
 			refreshList(false);
