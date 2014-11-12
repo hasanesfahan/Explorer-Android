@@ -1,8 +1,8 @@
 package ir.bigandsmall.explorer_android.dialog;
 
-import ir.bigandsmall.explorer_android.FileSpecifications;
 import ir.bigandsmall.explorer_android.MainActivity;
 import ir.bigandsmall.explorer_android.R;
+import ir.bigandsmall.explorer_android.adapter.FileSpecifications;
 import ir.bigandsmall.explorer_android.definitions.ListFolderTypes;
 import android.app.AlertDialog.Builder;
 import android.content.Context;

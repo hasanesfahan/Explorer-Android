@@ -1,5 +1,7 @@
 package ir.bigandsmall.explorer_android;
 
+import ir.bigandsmall.explorer_android.adapter.FileArrayAdapter;
+import ir.bigandsmall.explorer_android.adapter.FileSpecifications;
 import ir.bigandsmall.explorer_android.definitions.ListFolderTypes;
 import ir.bigandsmall.explorer_android.definitions.ListTypes;
 import ir.bigandsmall.explorer_android.dialog.DialogDirectory;

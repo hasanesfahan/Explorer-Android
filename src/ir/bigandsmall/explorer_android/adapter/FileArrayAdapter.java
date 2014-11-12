@@ -1,4 +1,7 @@
-package ir.bigandsmall.explorer_android;
+package ir.bigandsmall.explorer_android.adapter;
+
+import ir.bigandsmall.explorer_android.R;
+import ir.bigandsmall.explorer_android.R.id;
 
 import java.util.List;
 

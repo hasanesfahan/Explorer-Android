@@ -1,6 +1,6 @@
 package ir.bigandsmall.explorer_android.list;
 
-import ir.bigandsmall.explorer_android.FileSpecifications;
+import ir.bigandsmall.explorer_android.adapter.FileSpecifications;
 import ir.bigandsmall.explorer_android.definitions.ListFolderTypes;
 import ir.bigandsmall.explorer_android.definitions.ListTypes;
 
