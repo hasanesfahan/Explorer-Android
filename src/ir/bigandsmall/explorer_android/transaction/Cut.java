@@ -10,7 +10,7 @@ public class Cut {
 	{
 		try 
 		{
-			Copy.copyFile(sourceLocation, targetLocation);
+			//Copy.copyFile(sourceLocation, targetLocation);
 		}
 		catch (Exception e) 
 		{

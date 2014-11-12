@@ -34,7 +34,6 @@ public class CopyAsync extends AsyncTask<File, String, String>
     @Override
     protected void onPreExecute() 
     {
-    	
         super.onPreExecute();
     }
 
