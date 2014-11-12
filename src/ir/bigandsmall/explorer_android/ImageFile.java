@@ -82,11 +82,7 @@ public class ImageFile {
         }
 	}
 	
-	public static Drawable getImageBitmap(String url)
-	{
-		// photo file
-		return new ReadImageFile().ReadImageFromFile(url);
-	}
+	
 	
     public static ListFileTypes getImageFileType(String fileName)
 	{
