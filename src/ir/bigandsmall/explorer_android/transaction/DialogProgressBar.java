@@ -32,10 +32,11 @@ public class DialogProgressBar extends Builder {
 	
 	
 	 
-	 public DialogProgressBar(Context context) 
+	 public DialogProgressBar(Context context,String title) 
 	 {
 	       super(context);
 	       this.mContext = context;
+	       this.setTitle(title); 
 	        
 	       LinearLayout LL = new LinearLayout(mContext);
 	       LL.setOrientation(LinearLayout.VERTICAL);
@@ -120,7 +121,7 @@ public class DialogProgressBar extends Builder {
 	       this.setView(LL);
 	       this.setCancelable(false);
 	       
-	       this.setTitle("Copying"); 
+	       
 	       this.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
 	            @Override
 	            public void onClick(DialogInterface dialog, int which)

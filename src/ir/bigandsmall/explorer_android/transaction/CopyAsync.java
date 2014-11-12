@@ -4,9 +4,7 @@ import ir.bigandsmall.explorer_android.MainActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -19,12 +17,18 @@ public class CopyAsync extends AsyncTask<File, String, String>
 	Context co;
 	DialogProgressBar dialogProgressBar;
 	AlertDialog alertDialog;
+	private boolean MoveActive = false;
 	
-	public CopyAsync(Context co) 
+	public CopyAsync(Context co,Boolean MoveActive) 
 	{
 		this.co = co;
+		this.MoveActive = MoveActive;
 		
-		dialogProgressBar= new DialogProgressBar(co) ;
+		if(MoveActive)
+			dialogProgressBar= new DialogProgressBar(co,"Moving") ;
+		else
+			dialogProgressBar= new DialogProgressBar(co,"Copying") ;
+		
 		alertDialog = dialogProgressBar.create();
 		alertDialog.show();
 	}
@@ -78,7 +82,7 @@ public class CopyAsync extends AsyncTask<File, String, String>
 	}
 	
 
-	public void copyDirectory(File sourceLocation, File targetLocation)  throws IOException 
+	public void copyDirectory(File sourceLocation, File targetLocation) 
 	{
 		if (sourceLocation.isDirectory()) 
 		{
@@ -98,26 +102,41 @@ public class CopyAsync extends AsyncTask<File, String, String>
 		{
 			copyFile(sourceLocation, targetLocation);
 		}
+		
+		if(MoveActive)
+			if(targetLocation.exists())
+				sourceLocation.delete();
 	}
 	
-	public  void copyFile(File sourceLocation, File targetLocation)throws FileNotFoundException, IOException 
+	public  void copyFile(File sourceLocation, File targetLocation) 
 	{
 		publishProgress(sourceLocation.getPath() , targetLocation.getPath(),sourceLocation.length()+"");
 		
-		InputStream in = new FileInputStream(sourceLocation);
-	    OutputStream out = new FileOutputStream(targetLocation);
-
-	    byte[] buf = new byte[1024];
-	    int len;
-	    
-	    while ((len = in.read(buf)) > 0) 
-	    {
-	    	out.write(buf, 0, len);
-	    	
-	    	publishProgress(""+len);
-	    }
-	    
-	    in.close();
-	    out.close();
+		try
+		{
+			InputStream in = new FileInputStream(sourceLocation);
+		    OutputStream out = new FileOutputStream(targetLocation);
+	
+		    byte[] buf = new byte[1024];
+		    int len;
+		    
+		    while ((len = in.read(buf)) > 0) 
+		    {
+		    	out.write(buf, 0, len);
+		    	
+		    	publishProgress(""+len);
+		    }
+		    
+		    in.close();
+		    out.close();
+		}
+		catch (Exception e) 
+		{
+			targetLocation.delete();
+		}
+		
+		if(MoveActive)
+			if(targetLocation.exists())
+				sourceLocation.delete();
 	}
 }

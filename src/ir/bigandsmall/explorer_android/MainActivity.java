@@ -336,16 +336,8 @@ public class MainActivity extends Activity  {
 		try 
 		{
 			
-			if(!clipboardUseMove)
-			{
-				new CopyAsync(MainActivity.this).execute(new File(clipboardFromFileSpecifications.getPath()),
-						new File(clipboardToFileSpecifications.getPath()+"/"+clipboardFromFileSpecifications.getName()));
-			}
-			else
-			{
-			//	Cut.cutDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
-			//			+"/"+clipboardFromFileSpecifications.getName()));
-			}
+			new CopyAsync(MainActivity.this,clipboardUseMove).execute(new File(clipboardFromFileSpecifications.getPath()),
+					new File(clipboardToFileSpecifications.getPath()+"/"+clipboardFromFileSpecifications.getName()));
 				
 				
 		} catch (Exception e) {
