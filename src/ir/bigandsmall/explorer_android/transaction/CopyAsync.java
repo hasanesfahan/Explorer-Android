@@ -1,5 +1,7 @@
 package ir.bigandsmall.explorer_android.transaction;
 
+import ir.bigandsmall.explorer_android.MainActivity;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,8 +37,19 @@ public class CopyAsync extends AsyncTask<File, String, String>
         super.onPreExecute();
     }
 
- 
-	 
+    @Override
+	protected void onPostExecute(String result) 
+	{
+    	refreshPareentList();
+	}
+	
+    
+	private void refreshPareentList() 
+	{
+    	MainActivity mtemp = (MainActivity)co;
+    	mtemp.refreshList(true);
+	}
+	
 
 	@Override
 	protected String doInBackground(File... files)

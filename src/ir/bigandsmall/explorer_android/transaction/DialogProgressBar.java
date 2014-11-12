@@ -118,6 +118,7 @@ public class DialogProgressBar extends Builder {
 	      
 	       
 	       this.setView(LL);
+	       this.setCancelable(false);
 	       
 	       this.setTitle("Copying"); 
 	       this.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){

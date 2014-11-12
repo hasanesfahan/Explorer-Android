@@ -350,9 +350,7 @@ public class MainActivity extends Activity  {
 				
 				
 		} catch (Exception e) {
-			
-			
-			Toast.makeText(MainActivity.this,"ssssssssssssss",1000).show();
+
 		}
 		
 		
