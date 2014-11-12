@@ -3,6 +3,8 @@ package ir.bigandsmall.explorer_android;
 import ir.bigandsmall.explorer_android.definitions.ListFileTypes;
 import ir.bigandsmall.explorer_android.definitions.ListFolderTypes;
 import ir.bigandsmall.explorer_android.definitions.ListTypes;
+import ir.bigandsmall.explorer_android.icon.ImageFile;
+import ir.bigandsmall.explorer_android.icon.ImageFolder;
 import ir.bigandsmall.explorer_android.transaction.Size;
 
 import java.io.File;

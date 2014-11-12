@@ -1,5 +1,7 @@
-package ir.bigandsmall.explorer_android;
+package ir.bigandsmall.explorer_android.icon;
 
+import ir.bigandsmall.explorer_android.R;
+import ir.bigandsmall.explorer_android.R.drawable;
 import ir.bigandsmall.explorer_android.definitions.ListFolderTypes;
 
 public class ImageFolder {
