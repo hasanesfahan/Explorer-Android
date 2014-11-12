@@ -4,9 +4,9 @@ import ir.bigandsmall.explorer_android.transaction.CollisionDiscovery;
 import ir.bigandsmall.explorer_android.transaction.CopyAsync;
 import ir.bigandsmall.explorer_android.transaction.DialogDirectory;
 import ir.bigandsmall.explorer_android.transaction.DialogFile;
-import ir.bigandsmall.explorer_android.transaction.DialogNewFolder;
 import ir.bigandsmall.explorer_android.transaction.DialogRename;
 import ir.bigandsmall.explorer_android.transaction.delete.DialogDelete;
+import ir.bigandsmall.explorer_android.transaction.newfolder.DialogNewFolder;
 
 import java.io.File;
 
