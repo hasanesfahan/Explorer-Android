@@ -51,7 +51,16 @@ public class CopyAsync extends AsyncTask<File, String, String>
 	
 	protected void onProgressUpdate(String... progress)
 	{
-		dialogProgressBar.setSizeCurentFilesLoaded(Long.parseLong(progress[0]));
+		if(progress.length == 3)
+		{
+			dialogProgressBar.setPathFromAndTo(progress[0] , progress[1]);
+			dialogProgressBar.setSizeCurentFile(Long.parseLong(progress[2]));
+			
+		}
+		else
+		{
+			dialogProgressBar.setSizeCurentFilesLoaded(Long.parseLong(progress[0]));
+		}
 	}
 	
 
@@ -79,8 +88,7 @@ public class CopyAsync extends AsyncTask<File, String, String>
 	
 	public  void copyFile(File sourceLocation, File targetLocation)throws FileNotFoundException, IOException 
 	{
-		dialogProgressBar.setPathFromAndTo(sourceLocation.getPath() , targetLocation.getPath());
-		dialogProgressBar.setSizeCurentFile(sourceLocation.length());
+		publishProgress(sourceLocation.getPath() , targetLocation.getPath(),sourceLocation.length()+"");
 		
 		InputStream in = new FileInputStream(sourceLocation);
 	    OutputStream out = new FileOutputStream(targetLocation);
