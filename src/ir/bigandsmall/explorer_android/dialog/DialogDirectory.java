@@ -4,8 +4,6 @@ import ir.bigandsmall.explorer_android.FileSpecifications;
 import ir.bigandsmall.explorer_android.ListFolderTypes;
 import ir.bigandsmall.explorer_android.MainActivity;
 import ir.bigandsmall.explorer_android.R;
-import ir.bigandsmall.explorer_android.R.array;
-import ir.bigandsmall.explorer_android.R.string;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
