@@ -2,6 +2,7 @@ package ir.bigandsmall.explorer_android;
 
 import ir.bigandsmall.explorer_android.transaction.CollisionDiscovery;
 import ir.bigandsmall.explorer_android.transaction.CopyAsync;
+import ir.bigandsmall.explorer_android.transaction.Cut;
 import ir.bigandsmall.explorer_android.transaction.DialogDelete;
 import ir.bigandsmall.explorer_android.transaction.DialogDirectory;
 import ir.bigandsmall.explorer_android.transaction.DialogFile;
@@ -334,19 +335,17 @@ public class MainActivity extends Activity  {
 		
 		try 
 		{
-			new CopyAsync(MainActivity.this).execute(new File(clipboardFromFileSpecifications.getPath()),
-					new File(clipboardToFileSpecifications.getPath()+"/"+clipboardFromFileSpecifications.getName()));
 			
-			/*if(!clipboardUseMove)
+			if(!clipboardUseMove)
 			{
-				Copy.copyDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
-						+"/"+clipboardFromFileSpecifications.getName()));
+				new CopyAsync(MainActivity.this).execute(new File(clipboardFromFileSpecifications.getPath()),
+						new File(clipboardToFileSpecifications.getPath()+"/"+clipboardFromFileSpecifications.getName()));
 			}
 			else
 			{
-				Cut.cutDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
-						+"/"+clipboardFromFileSpecifications.getName()));
-			}*/
+			//	Cut.cutDirectory(new File(clipboardFromFileSpecifications.getPath()), new File(clipboardToFileSpecifications.getPath()
+			//			+"/"+clipboardFromFileSpecifications.getName()));
+			}
 				
 				
 		} catch (Exception e) {
