@@ -1,6 +1,7 @@
-package ir.bigandsmall.explorer_android.transaction;
+package ir.bigandsmall.explorer_android.transaction.copy;
 
 import ir.bigandsmall.explorer_android.MainActivity;
+import ir.bigandsmall.explorer_android.transaction.Size;
 
 import java.io.File;
 import java.io.FileInputStream;

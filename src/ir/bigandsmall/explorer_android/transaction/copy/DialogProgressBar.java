@@ -1,4 +1,4 @@
-package ir.bigandsmall.explorer_android.transaction;
+package ir.bigandsmall.explorer_android.transaction.copy;
 
 import android.app.AlertDialog.Builder;
 import android.content.Context;

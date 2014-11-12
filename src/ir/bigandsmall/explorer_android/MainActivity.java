@@ -1,10 +1,10 @@
 package ir.bigandsmall.explorer_android;
 
 import ir.bigandsmall.explorer_android.transaction.CollisionDiscovery;
-import ir.bigandsmall.explorer_android.transaction.CopyAsync;
 import ir.bigandsmall.explorer_android.transaction.DialogDirectory;
 import ir.bigandsmall.explorer_android.transaction.DialogFile;
 import ir.bigandsmall.explorer_android.transaction.DialogRename;
+import ir.bigandsmall.explorer_android.transaction.copy.CopyAsync;
 import ir.bigandsmall.explorer_android.transaction.delete.DialogDelete;
 import ir.bigandsmall.explorer_android.transaction.newfolder.DialogNewFolder;
 
