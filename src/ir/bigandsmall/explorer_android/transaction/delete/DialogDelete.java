@@ -1,4 +1,4 @@
-package ir.bigandsmall.explorer_android.transaction;
+package ir.bigandsmall.explorer_android.transaction.delete;
 
 import ir.bigandsmall.explorer_android.FileSpecifications;
 import ir.bigandsmall.explorer_android.MainActivity;
