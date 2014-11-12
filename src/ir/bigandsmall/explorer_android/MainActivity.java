@@ -319,5 +319,20 @@ public class MainActivity extends Activity  {
 
 	}
 	
-	
+	@Override
+	public void onBackPressed() 
+	{
+		if(MainFolderSelectedPath.equalsIgnoreCase(""))
+		{
+			super.onBackPressed();
+		}
+		else
+		{
+			CurentPath = LastFileSpecifications.getParentPath();
+			FileSpecifications fsp =new FileSpecifications(new File(CurentPath) , ".." , ListTypes.Folder , ListFolderTypes.Up );
+			LastFileSpecifications = fsp;
+			refreshList(false);
+		}
+
+	}
 }

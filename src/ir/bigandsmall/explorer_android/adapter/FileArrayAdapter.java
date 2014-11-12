@@ -2,21 +2,18 @@ package ir.bigandsmall.explorer_android.adapter;
 
 import ir.bigandsmall.explorer_android.R;
 import ir.bigandsmall.explorer_android.R.id;
-import ir.bigandsmall.explorer_android.definitions.ListTypes;
 
 import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter; 
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> implements OnClickListener {
+public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 
 	private Context c;
 	private int id;
@@ -50,8 +47,6 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> implement
 		TextView tvName = (TextView) cv.findViewById(R.id.item_view_Text_Name);
 		ImageView tvImage = (ImageView) cv.findViewById(R.id.item_view_Image_File);
 		
-		if(o.getType() == ListTypes.Folder)
-			tvImage.setOnClickListener(this);
 		
 		o.setImage(tvImage);
 		tvName.setText(o.getNameShow());
@@ -61,16 +56,8 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> implement
 			TextView tvDesc = (TextView) cv.findViewById(R.id.item_view_Text_Desc);
 			tvDesc.setText(o.getDescription());
 		}
-		
-		
 		 
 		return cv;
 	}
 
-	@Override
-	public void onClick(View v) 
-	{
-
-		Toast.makeText(c, "sssssss", 1000).show();
-	}
 }

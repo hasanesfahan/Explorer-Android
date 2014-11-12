@@ -19,6 +19,8 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
 	private String desc; 
     private String pathFile;
     
+    private boolean choosed = false;
+    
     private ListFileTypes listFileType;
     private ListFolderTypes listFolderTypes;
     private ListTypes listTypes;
@@ -152,4 +154,15 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     	return "";
     }
 
+    public void setChoosed(boolean b)
+    {
+    	choosed = b;
+    }
+    
+    public boolean getChoosed()
+    {
+    	return choosed;
+    }
+    
+    
 }
