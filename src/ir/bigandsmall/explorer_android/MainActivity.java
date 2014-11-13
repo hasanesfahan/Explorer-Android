@@ -79,7 +79,7 @@ public class MainActivity extends Activity  {
 		
 		
 	    
-		adapter = new FileArrayAdapter(this,R.layout.list_view, new ListMainFolder().getListFile());
+		adapter = new FileArrayAdapter(MainActivity.this,R.layout.list_view, new ListMainFolder().getListFile());
 		lv.setAdapter(adapter);
 			
 		setCurentPath();
@@ -89,7 +89,7 @@ public class MainActivity extends Activity  {
 	private void showCurentDirectory(File f,FileSpecifications fsp)
 	{
 	     
-	    adapter = new FileArrayAdapter(this,R.layout.list_view, new ListFilesDirectory(f,fsp).getListFile());
+	    adapter = new FileArrayAdapter(MainActivity.this,R.layout.list_view, new ListFilesDirectory(f,fsp).getListFile());
 		lv.setAdapter(adapter);
 		setCurentPath();
 	}

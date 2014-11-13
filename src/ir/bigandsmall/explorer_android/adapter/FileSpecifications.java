@@ -104,6 +104,11 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
     	return listFolderTypes;
     }
     
+    public ListFileTypes getFileType()
+    {
+    	return listFileType;
+    }
+    
     public String getNameShow()
     {
     	return nameShow;
@@ -123,14 +128,17 @@ public class FileSpecifications  implements Comparable<FileSpecifications> {
   
     public void setImage(ImageView img) 
     {
+    	
     	if(listTypes == ListTypes.Folder)
     		img.setBackgroundResource(ImageFolder.getImageId(listFolderTypes));
     	else
     	{
-    		//if(listFileType != ListFileTypes.Photo)
+    		if(listFileType != ListFileTypes.Photo)
     			img.setBackgroundResource(ImageFile.getImageId(name));
-    		//else
-    		//	img.setBackgroundDrawable(ImageFile.getImageBitmap(pathFile));
+    		else
+    		{
+    			
+    		}
     	}	
     }
     
