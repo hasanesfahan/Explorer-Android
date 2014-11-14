@@ -5,6 +5,8 @@ import ir.bigandsmall.explorer_android.definitions.ListFileTypes;
 import ir.bigandsmall.explorer_android.definitions.ListTypes;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +14,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
+import android.graphics.Matrix;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +97,8 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 				//Toast.makeText(c, "bbbbbb1", 1000).show();
 			//if(position==8)
 			//{
+				 
+					
 				Thread pics_thread = new Thread(new Runnable(){
 
 	                @Override
@@ -107,7 +113,7 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 	                            @Override
 	                            public void run() {
 
-	                            	mCacheMap.put(o.getPath(), bitmap);
+	                            	
 	                            	tvImage.setImageBitmap(bitmap);
 	                            	
 	                            	notifyDataSetChanged();
@@ -117,16 +123,18 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 	                    });
 
 	                }
+	                mCacheMap.put(o.getPath(), bitmap);
 	                }
 
 	            });
-
-	            pics_thread.start();
 				
+
+				
+				 
+				pics_thread.start(); 
 			}
 			else
 			{
-				//Toast.makeText(c, "cccccccc", 1000).show();
 				notifyDataSetChanged();
 				tvImage.setImageBitmap(isBitmapCached(o.getPath()));
 			} 
@@ -157,47 +165,50 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		return false;
 	}
 	
+	enum ScalingLogic
+	{
+		FIT
+	};
 	
-	
-	private Bitmap grtbitmap(String  params) {
-
-		final File file = new File(params);
-		
+	private Bitmap grtbitmap(String STRING_PATH_TO_FILE)
+	{
 		 
-			
-		Bitmap mThumb = null;
-		
-		
-		 
-			long len_kb = file.length() / 1024;
-			
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.outWidth = 52;
-			options.outHeight = 52;
-				
-			if (len_kb > 1000 && len_kb < 5000) {
-				options.inSampleSize = 32;
-				options.inPurgeable = true;
-				mThumb = BitmapFactory.decodeFile(file.getPath(), options);
-									
-			} else if (len_kb >= 5000) {
-				options.inSampleSize = 32;
-				options.inPurgeable = true;
-				mThumb = BitmapFactory.decodeFile(file.getPath(), options);
-								
-			} else if (len_kb <= 1000) {
-				options.inPurgeable = true;
-				mThumb = Bitmap.createScaledBitmap(
-						 						   BitmapFactory.decodeFile(file.getPath()),
-						 						   52,
-						 						   52,
-						 						   false);
-			}	
-			 
-			
-			
-		
-		
-	    return mThumb;
+		 return decodeFile(STRING_PATH_TO_FILE,20,20,ScalingLogic.FIT);
 	}
+	
+	public static Bitmap decodeFile(String pathName, int dstWidth, int dstHeight, ScalingLogic scalingLogic) {
+	    Options options = new Options();
+	    options.inJustDecodeBounds = true;
+	    BitmapFactory.decodeFile(pathName, options);
+	    options.inJustDecodeBounds = false;
+	    options.inSampleSize = calculateSampleSize(options.outWidth, options.outHeight, dstWidth, dstHeight, scalingLogic);
+	    Bitmap unscaledBitmap = BitmapFactory.decodeFile(pathName, options);
+	 
+	    return unscaledBitmap;
+	}
+	
+	
+	 
+	public static int calculateSampleSize(int srcWidth, int srcHeight, int dstWidth, int dstHeight, ScalingLogic scalingLogic) {
+	    if (scalingLogic == ScalingLogic.FIT) {
+	        final float srcAspect = (float)srcWidth / (float)srcHeight;
+	        final float dstAspect = (float)dstWidth / (float)dstHeight;
+	 
+	        if (srcAspect > dstAspect) {
+	            return srcWidth / dstWidth;
+	        } else {
+	            return srcHeight / dstHeight;
+	        }
+	    } else {
+	        final float srcAspect = (float)srcWidth / (float)srcHeight;
+	        final float dstAspect = (float)dstWidth / (float)dstHeight;
+	 
+	        if (srcAspect > dstAspect) {
+	            return srcHeight / dstHeight;
+	        } else {
+	            return srcWidth / dstWidth;
+	        }
+	    }
+	}
+
 }
