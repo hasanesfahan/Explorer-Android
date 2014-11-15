@@ -3,6 +3,7 @@ package ir.bigandsmall.explorer_android.adapter;
 import ir.bigandsmall.explorer_android.R;
 import ir.bigandsmall.explorer_android.definitions.ListFileTypes;
 import ir.bigandsmall.explorer_android.definitions.ListTypes;
+import ir.bigandsmall.explorer_android.displayImage.displayImage;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -165,50 +166,13 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		return false;
 	}
 	
-	enum ScalingLogic
-	{
-		FIT
-	};
+	
 	
 	private Bitmap grtbitmap(String STRING_PATH_TO_FILE)
 	{
-		 
-		 return decodeFile(STRING_PATH_TO_FILE,20,20,ScalingLogic.FIT);
-	}
-	
-	public static Bitmap decodeFile(String pathName, int dstWidth, int dstHeight, ScalingLogic scalingLogic) {
-	    Options options = new Options();
-	    options.inJustDecodeBounds = true;
-	    BitmapFactory.decodeFile(pathName, options);
-	    options.inJustDecodeBounds = false;
-	    options.inSampleSize = calculateSampleSize(options.outWidth, options.outHeight, dstWidth, dstHeight, scalingLogic);
-	    Bitmap unscaledBitmap = BitmapFactory.decodeFile(pathName, options);
-	 
-	    return unscaledBitmap;
+		 return displayImage.decodeFile(STRING_PATH_TO_FILE,20,20);
 	}
 	
 	
-	 
-	public static int calculateSampleSize(int srcWidth, int srcHeight, int dstWidth, int dstHeight, ScalingLogic scalingLogic) {
-	    if (scalingLogic == ScalingLogic.FIT) {
-	        final float srcAspect = (float)srcWidth / (float)srcHeight;
-	        final float dstAspect = (float)dstWidth / (float)dstHeight;
-	 
-	        if (srcAspect > dstAspect) {
-	            return srcWidth / dstWidth;
-	        } else {
-	            return srcHeight / dstHeight;
-	        }
-	    } else {
-	        final float srcAspect = (float)srcWidth / (float)srcHeight;
-	        final float dstAspect = (float)dstWidth / (float)dstHeight;
-	 
-	        if (srcAspect > dstAspect) {
-	            return srcHeight / dstHeight;
-	        } else {
-	            return srcWidth / dstWidth;
-	        }
-	    }
-	}
 
 }
