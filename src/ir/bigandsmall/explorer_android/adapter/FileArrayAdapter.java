@@ -1,22 +1,14 @@
 package ir.bigandsmall.explorer_android.adapter;
 
 import ir.bigandsmall.explorer_android.R;
+import ir.bigandsmall.explorer_android.cacheImage.ImageLoader;
 import ir.bigandsmall.explorer_android.definitions.ListFileTypes;
 import ir.bigandsmall.explorer_android.definitions.ListTypes;
-import ir.bigandsmall.explorer_android.displayImage.displayImage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
-import android.graphics.Matrix;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +18,8 @@ import android.widget.TextView;
 
 public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 
-	
-	private HashMap<String, Bitmap> mCacheMap  = new HashMap<String, Bitmap>();
+	private ImageLoader imageLoader;
+
 	
 	//private Context c;
 	private int id;
@@ -44,10 +36,9 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		items = objects;
 		inflater = (LayoutInflater)ac.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
-		
+		imageLoader = new ImageLoader(ac1,this);
 
-	    if(mCacheMap == null)
-			mCacheMap = new HashMap<String, Bitmap>();
+	   
 		
 	}
 	
@@ -85,60 +76,7 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		
 		if(isImageItem(o))
 		{
-			
-			 if(mCacheMap.containsKey(o.getPath()))
-			{
-				 
-				 tvImage.setImageBitmap(isBitmapCached(o.getPath()));
-				//Toast.makeText(c, "aaaaaaaaa", 1000).show();
-			}
-			else if(isBitmapCached(o.getPath()) == null)
-			{
-			
-				//Toast.makeText(c, "bbbbbb1", 1000).show();
-			//if(position==8)
-			//{
-				 
-					
-				Thread pics_thread = new Thread(new Runnable(){
-
-	                @Override
-	                public void run() {
-
-	               final Bitmap bitmap = grtbitmap(o.getPath());
-
-	                if(bitmap!=null){
-
-	                   ac.runOnUiThread(new Runnable(){
-
-	                            @Override
-	                            public void run() {
-
-	                            	
-	                            	tvImage.setImageBitmap(bitmap);
-	                            	
-	                            	notifyDataSetChanged();
-
-	                            }
-
-	                    });
-
-	                }
-	                mCacheMap.put(o.getPath(), bitmap);
-	                }
-
-	            });
-				
-
-				
-				 
-				pics_thread.start(); 
-			}
-			else
-			{
-				notifyDataSetChanged();
-				tvImage.setImageBitmap(isBitmapCached(o.getPath()));
-			} 
+			imageLoader.newImageLoad(o.getPath(),tvImage);
 		}
 		else
 		{
@@ -153,9 +91,7 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 	}
 
 	
-	public Bitmap isBitmapCached(String name) {
-		return mCacheMap.get(name);
-	}
+	
 	
 	private boolean isImageItem(FileSpecifications o)
 	{
@@ -168,10 +104,7 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 	
 	
 	
-	private Bitmap grtbitmap(String STRING_PATH_TO_FILE)
-	{
-		 return displayImage.decodeFile(STRING_PATH_TO_FILE,20,20);
-	}
+	
 	
 	
 
