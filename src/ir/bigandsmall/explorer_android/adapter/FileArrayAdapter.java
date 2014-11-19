@@ -11,12 +11,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
+public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> implements OnClickListener {
 
 	private ImageLoader imageLoader;
 
@@ -52,40 +54,60 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		final FileSpecifications o = items.get(position);
-		View cv = convertView;
-		if (cv == null) 
-		{
-			 cv = inflater.inflate(id, parent, false);
-		}
-		else
-		{
-			if(isImageItem(o))
-			{
-				
-			}
-		}
+		final FileSpecifications fsp = items.get(position);
+		if (convertView == null) 
+			convertView = inflater.inflate(id, parent, false);
+
 		
-		TextView tvName = (TextView) cv.findViewById(R.id.item_view_Text_Name);
-		final ImageView tvImage = (ImageView) cv.findViewById(R.id.item_view_Image_File);
-		TextView tvDesc = (TextView) cv.findViewById(R.id.item_view_Text_Desc);
+		TextView tvName = (TextView) convertView.findViewById(R.id.item_view_Text_Name);
+		final ImageView tvImage = (ImageView) convertView.findViewById(R.id.item_view_Image_File);
+		TextView tvDesc = (TextView) convertView.findViewById(R.id.item_view_Text_Desc);
 		
-		tvImage.setBackgroundResource(R.drawable.ic_def);
+		setImage(fsp, tvImage);
 		
-		if(isImageItem(o))
-			imageLoader.newImageLoad(o.getPath(),tvImage);
-		else
-			o.setImage(tvImage);
+		tvName.setText(fsp.getNameShow());
+		tvDesc.setText(fsp.getDescription());
+		tvImage.setOnClickListener(this);
 		
-		
-		tvName.setText(o.getNameShow());
-		tvDesc.setText(o.getDescription());
-		
-		return cv;
+		return convertView;
 	}
 
 	
+	@Override
+	public void onClick(View v) 
+	{
+		ImageView vm = (ImageView)v;
+		FileSpecifications f =(FileSpecifications) vm.getTag();
+		
+		if(f.getChoosed())
+		{
+			f.setChoosed(false);
+			vm.setImageResource(0);
+		}
+		else
+		{
+			f.setChoosed(true);
+			vm.setImageResource(R.drawable.ic_true);
+		}
+	}
 	
+	private void setImage(FileSpecifications fsp,ImageView tvImage)
+	{
+		tvImage.setBackgroundResource(R.drawable.ic_def);
+		
+		if(!fsp.getChoosed())
+			tvImage.setImageResource(0);
+		else
+			tvImage.setImageResource(R.drawable.ic_true);
+		
+		
+		if(isImageItem(fsp))
+			imageLoader.newImageLoad(fsp.getPath(),tvImage);
+		else
+			fsp.setImage(tvImage);
+		tvImage.setTag(fsp);
+			
+	}
 	
 	private boolean isImageItem(FileSpecifications o)
 	{
@@ -96,9 +118,7 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		return false;
 	}
 	
-	
-	
-	
+	 
 	
 	
 
