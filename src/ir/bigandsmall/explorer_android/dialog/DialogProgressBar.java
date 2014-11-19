@@ -1,5 +1,7 @@
-package ir.bigandsmall.explorer_android.transaction.copy;
+package ir.bigandsmall.explorer_android.dialog;
 
+
+import ir.bigandsmall.explorer_android.Displacement.Task.DisplacementAsyncTask;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,7 +34,7 @@ public class DialogProgressBar extends Builder {
 	
 	
 	 
-	 public DialogProgressBar(Context context,String title) 
+	 public DialogProgressBar(Context context,String title,final DisplacementAsyncTask displacementAsyncTask) 
 	 {
 	       super(context);
 	       this.mContext = context;
@@ -126,7 +128,7 @@ public class DialogProgressBar extends Builder {
 	            @Override
 	            public void onClick(DialogInterface dialog, int which)
 	            {
-	            	 
+	            	displacementAsyncTask.cancel(true);
 	            }
 	        });
 	      

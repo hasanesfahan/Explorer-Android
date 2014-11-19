@@ -1,5 +1,8 @@
 package ir.bigandsmall.explorer_android;
 
+import ir.bigandsmall.explorer_android.Displacement.Task.DisplacementAsyncTask;
+import ir.bigandsmall.explorer_android.Displacement.Task.TaskOperation;
+import ir.bigandsmall.explorer_android.Displacement.Task.TypeOperation;
 import ir.bigandsmall.explorer_android.adapter.FileArrayAdapter;
 import ir.bigandsmall.explorer_android.adapter.FileSpecifications;
 import ir.bigandsmall.explorer_android.definitions.ListFolderTypes;
@@ -10,7 +13,6 @@ import ir.bigandsmall.explorer_android.list.ListFilesDirectory;
 import ir.bigandsmall.explorer_android.list.ListMainFolder;
 import ir.bigandsmall.explorer_android.openFile.FileOpen;
 import ir.bigandsmall.explorer_android.transaction.CollisionDiscovery;
-import ir.bigandsmall.explorer_android.transaction.copy.CopyAsync;
 import ir.bigandsmall.explorer_android.transaction.delete.DialogDelete;
 import ir.bigandsmall.explorer_android.transaction.newfolder.DialogNewFolder;
 import ir.bigandsmall.explorer_android.transaction.rename.DialogRename;
@@ -27,7 +29,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,7 +48,8 @@ public class MainActivity extends Activity  {
 	
 	private FileSpecifications clipboardFromFileSpecifications=null;
 	private FileSpecifications clipboardToFileSpecifications=null;
-	private boolean clipboardUseMove = false;
+	private TaskOperation taskOperation = TaskOperation.Copy;
+	private TypeOperation typeOperation = TypeOperation.None;
 	
 	
 	private LinearLayout ll;
@@ -273,19 +275,19 @@ public class MainActivity extends Activity  {
 	
 	public void CopyFrom(FileSpecifications fsp)
 	{
-		clipboardUseMove = false;
+		taskOperation = TaskOperation.Copy;
 		clipboardFromFileSpecifications = fsp;
 	}
 	
 	public void CutFrom(FileSpecifications fsp)
 	{  
-		clipboardUseMove = true;
+		taskOperation = TaskOperation.Cut;
 		clipboardFromFileSpecifications = fsp;
 	}
 	
 	public void PastTo(FileSpecifications fsp)
 	{ 
-		
+		typeOperation=TypeOperation.None;
 		clipboardToFileSpecifications = fsp;
 		
 		if(clipboardFromFileSpecifications == null)
@@ -305,7 +307,7 @@ public class MainActivity extends Activity  {
 		try 
 		{
 			
-			new CopyAsync(MainActivity.this,clipboardUseMove).execute(new File(clipboardFromFileSpecifications.getPath()),
+			new DisplacementAsyncTask(MainActivity.this,taskOperation,typeOperation,"").execute(new File(clipboardFromFileSpecifications.getPath()),
 					new File(clipboardToFileSpecifications.getPath()+"/"+clipboardFromFileSpecifications.getName()));
 				
 				

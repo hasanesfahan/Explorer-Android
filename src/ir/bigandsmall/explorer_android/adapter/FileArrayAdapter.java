@@ -70,18 +70,12 @@ public class FileArrayAdapter extends ArrayAdapter<FileSpecifications> {
 		final ImageView tvImage = (ImageView) cv.findViewById(R.id.item_view_Image_File);
 		TextView tvDesc = (TextView) cv.findViewById(R.id.item_view_Text_Desc);
 		
-		tvImage.setBackgroundDrawable(null);
-		tvImage.setImageDrawable(null);
-		
+		tvImage.setBackgroundResource(R.drawable.ic_def);
 		
 		if(isImageItem(o))
-		{
 			imageLoader.newImageLoad(o.getPath(),tvImage);
-		}
 		else
-		{
 			o.setImage(tvImage);
-		}
 		
 		
 		tvName.setText(o.getNameShow());

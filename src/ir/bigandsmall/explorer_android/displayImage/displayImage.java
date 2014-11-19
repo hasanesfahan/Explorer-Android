@@ -17,9 +17,7 @@ public class displayImage {
 	    BitmapFactory.decodeFile(pathName, options);
 	    options.inJustDecodeBounds = false;
 	    options.inSampleSize = calculateSampleSize(options.outWidth, options.outHeight, dstWidth, dstHeight, ScalingLogic.FIT);
-	    Bitmap unscaledBitmap = BitmapFactory.decodeFile(pathName, options);
-	 
-	    return unscaledBitmap;
+	    return BitmapFactory.decodeFile(pathName, options);
 	}
 	
 	

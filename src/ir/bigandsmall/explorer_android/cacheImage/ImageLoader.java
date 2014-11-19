@@ -7,10 +7,12 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 public class ImageLoader {
-	private HashMap<String, Bitmap> mCacheMap ;
+	private HashMap<String, Drawable> mCacheMap ;
 	
 	private Activity activity;
 	private FileArrayAdapter fadpater;
@@ -22,24 +24,25 @@ public class ImageLoader {
 		
 		
 		if(mCacheMap == null)
-			mCacheMap = new HashMap<String, Bitmap>();
+			mCacheMap = new HashMap<String, Drawable>();
 	}
 	
 	
-	public Bitmap isBitmapCached(String name) {
+	public Drawable isBitmapCached(String name) {
 		return mCacheMap.get(name);
 	}
 	
-	private Bitmap getImage(String STRING_PATH_TO_FILE)
+	private BitmapDrawable getImage(String STRING_PATH_TO_FILE)
 	{
-		 return displayImage.decodeFile(STRING_PATH_TO_FILE,20,20);
+		 return new BitmapDrawable(activity.getResources(),displayImage.decodeFile(STRING_PATH_TO_FILE,20,20));
 	}
 	
 	public void newImageLoad(String Path,ImageView tvImage)
 	{
 		if(mCacheMap.containsKey(Path))
 		{
-			 tvImage.setImageBitmap(isBitmapCached(Path));
+			if(isBitmapCached(Path) != null)
+				tvImage.setBackgroundDrawable(isBitmapCached(Path));
 		}
 		else if(isBitmapCached(Path) == null)
 		{
@@ -56,7 +59,7 @@ public class ImageLoader {
 	        public void run() 
 			{
 	
-		        final Bitmap bitmap = getImage(Path);
+		        final Drawable bitmap = getImage(Path);
 		
 		        if(bitmap!=null)
 		        {
@@ -65,7 +68,7 @@ public class ImageLoader {
 		        	@Override
 		        	public void run() 
 		        	{
-		        		tvImage.setImageBitmap(bitmap);
+		        		tvImage.setBackgroundDrawable(bitmap);
 		        		fadpater.notifyDataSetChanged();
 		        	}
 		
